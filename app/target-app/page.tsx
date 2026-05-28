@@ -308,6 +308,8 @@ Link to tapering tool.`,
                 <p className="mt-1 text-sm text-slate-600">
                   GI bleeding risk and medication review dashboard
                 </p>
+
+                
               </div>
             </div>
 

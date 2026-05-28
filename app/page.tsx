@@ -124,6 +124,15 @@ export default function HomePage() {
               Ihnen, sich direkt zu Beginn alles anzuschauen, um das Spektrum
               unserer Unterlagen kennenzulernen.
             </p>
+
+            <div className="mt-4">
+  <a
+    href="/target-app"
+    className="inline-block rounded-2xl bg-sky-600 px-5 py-3 text-sm font-semibold text-white hover:bg-sky-700"
+  >
+    Open TARGET App
+  </a>
+</div>
           </div>
         </div>
       </section>
