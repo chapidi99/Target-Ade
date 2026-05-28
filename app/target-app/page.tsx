@@ -282,38 +282,44 @@ Link to tapering tool.`,
     };
   }, [takesNSAIDs, nsaidRiskResult, allFourCoreMedsNo, medicationBoxes.length]);
 
-  return (
-    <main className="min-h-screen bg-slate-50 text-slate-900">
-      <div className="mx-auto max-w-7xl px-4 py-6 md:px-6">
-        <header className="mb-6 rounded-3xl border border-slate-200 bg-white shadow-sm">
-          <div className="flex flex-col gap-4 px-6 py-5 md:flex-row md:items-center md:justify-between">
-            <div className="flex items-start gap-4">
-              <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-sky-100 text-sky-700">
-                <Stethoscope className="h-7 w-7" />
-              </div>
-
-              <div>
-                <h1 className="text-2xl font-bold tracking-tight">
-                  TARGET App
-                </h1>
-                <p className="mt-1 text-sm text-slate-600">
-                  GI bleeding risk and medication review dashboard
-                </p>
-
-                
-              </div>
+ return (
+  <main className="min-h-screen bg-slate-50 text-slate-900">
+    <div className="mx-auto max-w-7xl px-4 py-6 md:px-6">
+      <header className="mb-6 rounded-3xl border border-slate-200 bg-white shadow-sm">
+        <div className="flex flex-col gap-4 px-6 py-5 md:flex-row md:items-center md:justify-between">
+          <div className="flex items-start gap-4">
+            <div className="flex h-16 w-16 items-center justify-center overflow-hidden rounded-2xl border border-slate-200 bg-white p-1 shadow-sm">
+              <Image
+                src="https://www.uni-bielefeld.de/fakultaeten/medizin/fakultaet/arbeitsgruppen/allgemeinmedizin/forschung/target/Fly_Bild1.png"
+                alt="TARGET Logo"
+                width={64}
+                height={64}
+                className="h-full w-full object-contain"
+                priority
+              />
             </div>
 
-            <button
-              type="button"
-              onClick={resetAssessment}
-              className="inline-flex items-center gap-2 rounded-2xl border border-slate-300 bg-white px-4 py-2.5 text-sm font-semibold text-slate-700 shadow-sm transition hover:bg-slate-50"
-            >
-              <RefreshCw className="h-4 w-4" />
-              Reset assessment
-            </button>
+            <div>
+              <h1 className="text-2xl font-bold tracking-tight">
+                TARGET App
+              </h1>
+
+              <p className="mt-1 text-sm text-slate-600">
+                GI bleeding risk and medication review dashboard
+              </p>
+            </div>
           </div>
-        </header>
+
+          <button
+            type="button"
+            onClick={resetAssessment}
+            className="inline-flex items-center gap-2 rounded-2xl border border-slate-300 bg-white px-4 py-2.5 text-sm font-semibold text-slate-700 shadow-sm transition hover:bg-slate-50"
+          >
+            <RefreshCw className="h-4 w-4" />
+            Reset assessment
+          </button>
+        </div>
+      </header>
 
         <div className="grid gap-6 lg:grid-cols-[minmax(0,1.2fr)_380px]">
           <section className="space-y-6">
