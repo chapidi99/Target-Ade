@@ -1657,11 +1657,17 @@ function ScriptSection({
 }
 
 type NonPharmaOption = {
-  category: "Exercise" | "Devices" | "Procedures" | "Cognitive and behavioural therapies" | "Other";
+  category:
+    | "Exercise"
+    | "Devices"
+    | "Procedures"
+    | "Cognitive and behavioural therapies"
+    | "Other";
   name: string;
   summary: string;
   firstPublished: string;
   website: string;
+  websiteUrl: string;
 };
 
 const nonPharmaOptions: NonPharmaOption[] = [
@@ -1672,6 +1678,8 @@ const nonPharmaOptions: NonPharmaOption[] = [
       "Physical exercise while immersed in water, typically 32–36°C. The intervention comprises two to three 30–60 minute sessions per week, for a mean duration of 12 weeks.",
     firstPublished: "Keine Angabe",
     website: "Aquatic exercise for knee and hip osteoarthritis",
+    websiteUrl:
+      "https://www.racgp.org.au/clinical-resources/clinical-guidelines/handi/handi-interventions/exercise/aquatic-exercise-for-knee-and-hip-osteoarthritis",
   },
   {
     category: "Exercise",
@@ -1680,6 +1688,8 @@ const nonPharmaOptions: NonPharmaOption[] = [
       "Advising patients with acute low-back pain to stay active, rather than to rest in bed. Staying active does not mean participating in any specific exercises.",
     firstPublished: "Keine Angabe",
     website: "Exercise for acute lower back pain",
+    websiteUrl:
+      "https://www.racgp.org.au/clinical-resources/clinical-guidelines/handi/handi-interventions/exercise/exercise-for-acute-lower-back-pain",
   },
   {
     category: "Exercise",
@@ -1688,6 +1698,8 @@ const nonPharmaOptions: NonPharmaOption[] = [
       "Exercise therapy has been reported as an effective intervention for chronic low back pain. It can be supervised, group-based, or unsupervised home exercise.",
     firstPublished: "2016",
     website: "Exercise for chronic low back pain",
+    websiteUrl:
+      "https://www.racgp.org.au/clinical-resources/clinical-guidelines/handi/handi-interventions/exercise/exercise-for-chronic-low-back-pain",
   },
   {
     category: "Exercise",
@@ -1696,6 +1708,8 @@ const nonPharmaOptions: NonPharmaOption[] = [
       "Regular land- or water-based therapeutic exercise for adults with knee osteoarthritis. Exercise programs may be delivered face to face or via the internet.",
     firstPublished: "2014, updated 2017",
     website: "Exercise for knee osteoarthritis",
+    websiteUrl:
+      "https://www.racgp.org.au/clinical-resources/clinical-guidelines/handi/handi-interventions/exercise/exercise-for-knee-osteoarthritis",
   },
   {
     category: "Exercise",
@@ -1704,6 +1718,8 @@ const nonPharmaOptions: NonPharmaOption[] = [
       "Hip and knee strengthening exercises can lead to improvement in pain and function.",
     firstPublished: "2021",
     website: "Hip and knee strengthening exercises for patellofemoral pain",
+    websiteUrl:
+      "https://www.racgp.org.au/clinical-resources/clinical-guidelines/handi/handi-interventions/exercise/exercise-for-patellofemoral-pain-syndrome",
   },
   {
     category: "Devices",
@@ -1712,6 +1728,8 @@ const nonPharmaOptions: NonPharmaOption[] = [
       "Prefabricated or custom-made splints may be worn at night or during the day to support or immobilise affected joints.",
     firstPublished: "2014",
     website: "Splints for the reduction of pain from hand osteoarthritis",
+    websiteUrl:
+      "https://www.racgp.org.au/clinical-resources/clinical-guidelines/handi/handi-interventions/device/splints-for-the-reduction-of-pain-from-hand-osteoa",
   },
   {
     category: "Devices",
@@ -1720,6 +1738,8 @@ const nonPharmaOptions: NonPharmaOption[] = [
       "Daily use of a walking cane or stick to decrease the load through the affected knee and improve pain and function.",
     firstPublished: "Keine Angabe",
     website: "Walking cane for knee osteoarthritis",
+    websiteUrl:
+      "https://www.racgp.org.au/clinical-resources/clinical-guidelines/handi/handi-interventions/device/walking-cane-for-knee-osteoarthritis",
   },
   {
     category: "Devices",
@@ -1728,6 +1748,8 @@ const nonPharmaOptions: NonPharmaOption[] = [
       "Strong adhesive tape or strapping is applied before painful activities to unload painful soft tissues.",
     firstPublished: "Keine Angabe",
     website: "Knee taping for osteoarthritis",
+    websiteUrl:
+      "https://www.racgp.org.au/clinical-resources/clinical-guidelines/handi/handi-interventions/device/knee-taping-for-osteoarthritis",
   },
   {
     category: "Procedures",
@@ -1736,6 +1758,8 @@ const nonPharmaOptions: NonPharmaOption[] = [
       "A physiotherapy program including exercise, elbow manipulation, self-manipulation, and progressive wrist extensor exercises.",
     firstPublished: "Keine Angabe",
     website: "Physiotherapy for tennis elbow",
+    websiteUrl:
+      "https://www.racgp.org.au/clinical-resources/clinical-guidelines/handi/handi-interventions/procedures/physiotherapy-for-tennis-elbow",
   },
   {
     category: "Procedures",
@@ -1744,6 +1768,8 @@ const nonPharmaOptions: NonPharmaOption[] = [
       "Medical compression therapy applied externally to the lower leg to improve venous return and reduce oedema.",
     firstPublished: "2017",
     website: "Compression for venous leg ulcers",
+    websiteUrl:
+      "https://www.racgp.org.au/clinical-resources/clinical-guidelines/handi/handi-interventions/procedures/compression-for-venous-leg-ulcers",
   },
   {
     category: "Cognitive and behavioural therapies",
@@ -1752,6 +1778,8 @@ const nonPharmaOptions: NonPharmaOption[] = [
       "Mindfulness-based stress reduction and cognitive behavioural therapy delivered in group format over 8 weeks with home practice.",
     firstPublished: "2017",
     website: "Mindfulness and CBT for chronic low back pain",
+    websiteUrl:
+      "https://www.racgp.org.au/clinical-resources/clinical-guidelines/handi/handi-interventions/cogntive-and-behavioural-therapies/mindfulness-and-cbt-for-chronic-low-back-pain",
   },
   {
     category: "Other",
@@ -1760,6 +1788,8 @@ const nonPharmaOptions: NonPharmaOption[] = [
       "Elevating the head of the bed using blocks under the legs or wedge pillows. In the research, elevation was 20 cm.",
     firstPublished: "2021",
     website: "RACGP - Elevating the head of the bed for GERD",
+    websiteUrl:
+      "https://www.racgp.org.au/clinical-resources/clinical-guidelines/handi/conditions/gastroesophageal/elevating-the-head-of-the-bed-for-gerd",
   },
 ];
 
@@ -1899,15 +1929,14 @@ function NonPharmaOptionsModal({ onClose }: { onClose: () => void }) {
                     {isOpen ? "Show less" : "Read summary"}
                   </button>
 
-                  <button
-                    type="button"
-                    onClick={() =>
-                      alert(`Website/evidence link: ${option.website}`)
-                    }
-                    className="rounded-2xl bg-sky-600 px-3 py-2 text-xs font-semibold text-white hover:bg-sky-700"
-                  >
-                    Website
-                  </button>
+                  <a
+  href={option.websiteUrl}
+  target="_blank"
+  rel="noopener noreferrer"
+  className="rounded-2xl bg-sky-600 px-3 py-2 text-xs font-semibold text-white hover:bg-sky-700"
+>
+  Website
+</a>
                 </div>
               </div>
             );
