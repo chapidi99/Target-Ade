@@ -270,16 +270,7 @@ Link to tapering tool.`,
       };
     }
 
-    if (takesNSAIDs === false && medicationBoxes.length > 0) {
-      return {
-        emoji: "ℹ️",
-        title: "Medication guidance active",
-        subtitle: "Relevant guidance shown for selected medications",
-        className:
-          "border-sky-200 bg-gradient-to-br from-sky-50 to-white text-sky-900",
-        icon: Activity,
-      };
-    }
+  
 
     return {
       emoji: "🩺",
@@ -758,9 +749,23 @@ function MedicationRow({
   value: YesNo;
   onChange: (value: YesNo) => void;
 }) {
+  const isYes = value === true;
+
   return (
-    <div className="flex flex-col gap-3 rounded-2xl border border-slate-200 bg-slate-50 p-4 md:flex-row md:items-center md:justify-between">
-      <div className="pr-4 text-sm font-medium text-slate-800">{label}</div>
+    <div
+      className={`flex flex-col gap-3 rounded-2xl border p-4 md:flex-row md:items-center md:justify-between ${
+        isYes
+          ? "border-rose-200 bg-rose-50"
+          : "border-slate-200 bg-slate-50"
+      }`}
+    >
+      <div
+        className={`pr-4 text-sm font-medium ${
+          isYes ? "text-rose-900" : "text-slate-800"
+        }`}
+      >
+        {label}
+      </div>
 
       <div className="inline-flex rounded-2xl border border-slate-200 bg-white p-1">
         <button
@@ -768,7 +773,7 @@ function MedicationRow({
           onClick={() => onChange(true)}
           className={`rounded-xl px-4 py-2 text-sm font-semibold transition ${
             value === true
-              ? "bg-sky-600 text-white shadow-sm"
+              ? "bg-rose-600 text-white shadow-sm"
               : "text-slate-700 hover:bg-slate-50"
           }`}
         >
