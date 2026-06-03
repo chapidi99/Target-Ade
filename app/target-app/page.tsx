@@ -123,54 +123,48 @@ const [showNsaidRiskScript, setShowNsaidRiskScript] = useState(false);
     riskFactors.severeComorbidDiseases,
   ].filter(Boolean).length;
 
-  const isHighRisk =
-    hasHighRiskFactor || moderateRiskCount >= 3;
+  const isHighRisk = hasHighRiskFactor || moderateRiskCount >= 3;
 
   if (isHighRisk) {
     return {
       level:
         moderateRiskCount >= 3 && !hasHighRiskFactor
-          ? "High risk for GI bleeding: 3 or more moderate risk factors selected"
-          : "High risk for GI bleeding",
-      shortLevel: "High risk",
+          ? "Hohes Risiko für GI-Blutungen: 3 oder mehr moderate Risikofaktoren ausgewählt"
+          : "Hohes Risiko für GI-Blutungen",
+      shortLevel: "Hohes Risiko",
       emoji: "🔴",
       icon: ShieldAlert,
       panelClass:
         "border-rose-200 bg-gradient-to-br from-rose-50 to-white text-rose-900",
       badgeClass: "border-rose-200 bg-rose-100 text-rose-800",
-      specificRecommendationsTooltip: `Avoid NSAIDs if possible, try to use alternatives.
-If NSAID therapy is unavoidable, use a COX-2 inhibitor + PPI (or misoprostol).`,
+      specificRecommendationsTooltip: `NSAR möglichst vermeiden und alternative Behandlungsmöglichkeiten prüfen.
+
+Falls eine NSAR-Therapie unvermeidbar ist, sollte ein COX-2-Hemmer in Kombination mit einem Protonenpumpenhemmer (PPI) oder Misoprostol eingesetzt werden.`,
     };
   }
 
   if (moderateRiskCount >= 1) {
     return {
-      level: "Moderate risk for GI bleeding",
-      shortLevel: "Moderate risk",
+      level: "Moderates Risiko für GI-Blutungen",
+      shortLevel: "Moderates Risiko",
       emoji: "🟡",
       icon: AlertTriangle,
       panelClass:
         "border-amber-200 bg-gradient-to-br from-amber-50 to-white text-amber-900",
       badgeClass: "border-amber-200 bg-amber-100 text-amber-800",
-      specificRecommendationsTooltip: `Avoid chronic use of NSAIDs unless other alternatives are not effective and the patient can take gastroprotective agent.
-If no alternatives, prescribe Cox 2 inhibitor, or non-Cox2 selective NSAID + PPI (or misoprostol).
-Avoid non-Cox 2 selective NSAIDs and Aspirin > 325mg/day in patients > 75 y.
-Avoid (short-term scheduled) concomitant use of non-Cox 2 selective NSAIDs and Aspirin > 325mg/day with other NSAIDs, antiplatelets, anticoagulants (vitamin K antagonist, direct thrombin inhibitor or factor Xa inhibitors), or corticosteroids, or SSRIs (limited evidence also for SNRI), unless alternatives are not effective and the patient can take gastroprotective agent.
-Avoid prescribing NSAIDs Indomethacin and Ketorolac, especially in patients of older age; avoid NSAIDs Phenylbutazon and Nabumeton (Priscus).
-In patients at risk of CVD, if NSAID is necessary, Naproxen is recommended.`,
+      specificRecommendationsTooltip: `Eine langfristige Anwendung von NSAR sollte vermieden werden, sofern wirksame Alternativen verfügbar sind. Falls eine NSAR-Therapie erforderlich ist, sollte eine gastroprotektive Begleittherapie erfolgen.`,
     };
   }
 
   return {
-    level: "Low risk for GI bleeding",
-    shortLevel: "Low risk",
+    level: "Niedriges Risiko für GI-Blutungen",
+    shortLevel: "Niedriges Risiko",
     emoji: "🟢",
     icon: CheckCircle2,
     panelClass:
       "border-emerald-200 bg-gradient-to-br from-emerald-50 to-white text-emerald-900",
     badgeClass: "border-emerald-200 bg-emerald-100 text-emerald-800",
-    specificRecommendationsTooltip: `If NSAIDs are required, use the lowest effective NSAID dose without routine gastroprotection.
-Wenn nur der Risikofaktor Alter > 60 Jahren und sonst kein Risikofaktor vorliegt, ist eine Prophylaxe nicht erforderlich. (DGVS S2k-Leitlinie 2023)`,
+    specificRecommendationsTooltip: `Falls NSAR erforderlich sind, sollte die niedrigste wirksame NSAR-Dosis ohne routinemäßige gastroprotektive Therapie verwendet werden.`,
   };
 }, [takesNSAIDs, riskFactors]);
 
@@ -187,42 +181,46 @@ Patients with a history of Gastric Antral Vascular Ectasia (GAVE) receiving eith
     }
 
     if (medications.anticoagulants === true) {
-      boxes.push({
-        title: "Anticoagulants",
-        text: `Anticoagulants is an independent risk factor for GI bleed; recommended to check indications.
+  boxes.push({
+    title: "Antikoagulanzien",
+    text: `Antikoagulanzien sind ein unabhängiger Risikofaktor für GI-Blutungen. Es wird empfohlen, die Indikation regelmäßig zu überprüfen.
 
-Anticoagulant Direct Factor Xa Inhibitor (DOAC) Rivaroxaban, often prescribed long term for NVAFib and VTE: high risk in older age even without concurrent NSAIDs; monitoring for the signs of gastric toxicity is recommended.
+Der direkte Faktor-Xa-Inhibitor Rivaroxaban (DOAK), der häufig langfristig bei Vorhofflimmern (NVAF) und venösen Thromboembolien (VTE) eingesetzt wird, ist insbesondere im höheren Alter auch ohne gleichzeitige NSAR-Therapie mit einem erhöhten Risiko für GI-Blutungen verbunden. Eine Überwachung auf Anzeichen gastrointestinaler Toxizität wird empfohlen.
 
-Anticoagulant Direct Factor IIa inhibitor / Direct thrombin inhibitor / DOAC Dabigatran, prescribed long term for NVAFib and VTE, is higher risk compared with warfarin and apixaban; consider replacing with lower-risk alternatives, and/or monitoring for the signs of gastric toxicity is recommended.
+Der direkte Faktor-IIa-Inhibitor bzw. direkte Thrombininhibitor Dabigatran (DOAK), der ebenfalls langfristig bei Vorhofflimmern (NVAF) und venösen Thromboembolien (VTE) eingesetzt wird, weist im Vergleich zu Warfarin und Apixaban ein höheres Risiko für GI-Blutungen auf. Es sollte geprüft werden, ob eine Umstellung auf risikoärmere Alternativen möglich ist. Zusätzlich wird eine Überwachung auf Anzeichen gastrointestinaler Toxizität empfohlen.
 
-Link to the Heidelberg tool.`,
-      });
-    }
+Link zum Heidelberger Tool.`,
+  });
+}
 
     if (medications.ssri === true) {
-      boxes.push({
-        title: "SSRI or SNRI Venlafaxine",
-        text: `SSRI is an independent risk factor as stated by DGVS S2k-Leitlinie 2023; recommended to check indications.
+  boxes.push({
+    title: "SSRI oder SNRI (Venlafaxin)",
+    text: `SSRI gelten gemäß der DGVS-S2k-Leitlinie 2023 als unabhängiger Risikofaktor für GI-Blutungen. Es wird empfohlen, die aktuelle Indikation zu überprüfen.
 
-If no current indications, recommended consider deprescribing.
+Falls keine aktuelle Indikation mehr besteht, sollte ein Ausschleichen bzw. Absetzen (Deprescribing) erwogen werden.
 
-Link to tapering tool.`,
-      });
-    }
+Link zum Ausschleich-Tool.`,
+  });
+}
 
-    if (medications.corticosteroids === true) {
-      boxes.push({
-        title: "Corticosteroids",
-        text: `Corticosteroids is not a risk factor for GI bleed on its own, only in combination with other GI-toxic meds, e.g. NSAIDs; recommended to do medication analysis and check indications for corticosteroids and NSAIDs.`,
-      });
-    }
+if (medications.corticosteroids === true) {
+  boxes.push({
+    title: "Kortikosteroide",
+    text: `Kortikosteroide stellen allein keinen unabhängigen Risikofaktor für GI-Blutungen dar. Das Risiko steigt jedoch bei gleichzeitiger Anwendung anderer gastrointestinal belastender Medikamente, insbesondere NSAR.
 
-    if (medications.bisphosphonate === true) {
-      boxes.push({
-        title: "Bisphosphonate",
-        text: `Avoid oral bisphosphonates in patients with a current or recent history of upper gastrointestinal disease i.e. dysphagia, oesophagitis, gastritis, duodenitis, or peptic ulcer disease, or upper gastrointestinal bleeding (risk of relapse/exacerbation of oesophagitis, oesophageal ulcer, oesophageal stricture) – consider "holidays" when appropriate.`,
-      });
-    }
+Es wird empfohlen, eine strukturierte Medikationsanalyse durchzuführen und die Indikationen für Kortikosteroide sowie NSAR zu überprüfen.`,
+  });
+}
+
+if (medications.bisphosphonate === true) {
+  boxes.push({
+    title: "Bisphosphonate",
+    text: `Orale Bisphosphonate sollten bei Patientinnen und Patienten mit aktuellen oder kürzlich aufgetretenen Erkrankungen des oberen Gastrointestinaltrakts vermieden werden, z. B. Dysphagie, Ösophagitis, Gastritis, Duodenitis, peptisches Ulkus oder obere GI-Blutung.
+
+Es besteht das Risiko eines Wiederauftretens bzw. einer Verschlechterung von Ösophagitis, Ösophagusulzera oder Ösophagusstrikturen. Falls klinisch vertretbar, sollten Therapiepausen („Drug Holidays“) in Betracht gezogen werden.`,
+  });
+}
 
     return boxes;
   }, [medications]);
@@ -260,26 +258,24 @@ Link to tapering tool.`,
     }
 
     if (takesNSAIDs === false && allFourCoreMedsNo) {
-      return {
-        emoji: "🟢",
-        title: "Low risk",
-        subtitle: "No core GI-risk medications selected",
-        className:
-          "border-emerald-200 bg-gradient-to-br from-emerald-50 to-white text-emerald-900",
-        icon: CheckCircle2,
-      };
-    }
+  return {
+    emoji: "🟢",
+    title: "Niedriges Risiko",
+    subtitle: "Keine Medikamente mit relevantem GI-Risiko ausgewählt",
+    className:
+      "border-emerald-200 bg-gradient-to-br from-emerald-50 to-white text-emerald-900",
+    icon: CheckCircle2,
+  };
+}
 
-  
-
-    return {
-      emoji: "🩺",
-      title: "Assessment in progress",
-      subtitle: "Answer the questions to see guidance",
-      className:
-        "border-slate-200 bg-gradient-to-br from-slate-50 to-white text-slate-800",
-      icon: Stethoscope,
-    };
+return {
+  emoji: "🩺",
+  title: "Bewertung läuft",
+  subtitle: "Bitte beantworten Sie die Fragen, um Empfehlungen zu erhalten",
+  className:
+    "border-slate-200 bg-gradient-to-br from-slate-50 to-white text-slate-800",
+  icon: Stethoscope,
+};
   }, [takesNSAIDs, nsaidRiskResult, allFourCoreMedsNo, medicationBoxes.length]);
 
  return (
@@ -326,10 +322,9 @@ Link to tapering tool.`,
             <Panel>
               <SectionHeader
                 icon={<Pill className="h-5 w-5" />}
-                eyebrow="Step 1"
-                title="Does your patient take NSAIDs?"
-                description="Select the pathway to continue the assessment."
-              />
+               eyebrow="Schritt 1"
+title="Nimmt Ihr Patient/Ihre Patientin NSAR ein?"
+description="Wählen Sie die zutreffende Option aus, um die Risikobewertung fortzusetzen."/>
 
               <div className="mt-5">
                 <SegmentedChoice value={takesNSAIDs} onChange={setTakesNSAIDs} />
@@ -337,20 +332,20 @@ Link to tapering tool.`,
             </Panel>
 
             {takesNSAIDs === true && (
-              <Panel>
-                <SectionHeader
-                  icon={<ShieldAlert className="h-5 w-5" />}
-                  eyebrow="NSAID pathway"
-                  title="Risk factors for GI bleeding"
-                  description="Select all applicable factors."
-                />
+  <Panel>
+    <SectionHeader
+      icon={<ShieldAlert className="h-5 w-5" />}
+      eyebrow="NSAR"
+      title="Risikofaktoren für GI-Blutungen"
+      description="Bitte wählen Sie alle zutreffenden Faktoren aus."
+    />
 
                 <div className="mt-6 grid gap-6 xl:grid-cols-2">
                   <div className="space-y-3">
                     {/* <CategoryPill tone="rose">High-risk factors</CategoryPill>*/}
 
                     <RiskItem
-                      label="Previous GI bleeding or complicated peptic ulcer (e.g., perforation)"
+                      label="Frühere gastrointestinale Blutungen oder komplizierter peptischer Ulkus (z. B. Perforation)"
                       checked={riskFactors.previousGIBleedingOrComplicatedUlcer}
                       onChange={() =>
                         toggleRiskFactor("previousGIBleedingOrComplicatedUlcer")
@@ -358,7 +353,7 @@ Link to tapering tool.`,
                     />
 
                     <RiskItem
-                      label="Active peptic ulcer"
+                      label="Aktiver peptischer Ulkus"
                       checked={riskFactors.activePepticUlcer}
                       onChange={() => toggleRiskFactor("activePepticUlcer")}
                     />
@@ -368,34 +363,34 @@ Link to tapering tool.`,
                     {/* <CategoryPill tone="amber">Moderate-risk factors</CategoryPill> */}
 
                     <RiskItem
-                      label="Age >60–65 y"
+                      label="Alter >60-65 Jahre"
                       checked={riskFactors.ageOver60to65}
                       onChange={() => toggleRiskFactor("ageOver60to65")}
                     />
                     <RiskItem
-                      label="History of uncomplicated peptic ulcer (PUD)"
+                      label="Vorgeschichte eines peptischen Ulkus (PUD)"
                       checked={riskFactors.historyOfUncomplicatedPUD}
                       onChange={() => toggleRiskFactor("historyOfUncomplicatedPUD")}
                     />
                     <RiskItem
-                      label="Concomitant low-dose ASA (Acetylsalicylic acid)"
+                      label="Gleichzeitige Gabe von niedrig dosiertem ASS (Acetylsalicylsäure)"
                       checked={riskFactors.concomitantLowDoseASA}
                       onChange={() => toggleRiskFactor("concomitantLowDoseASA")}
                     />
                     <RiskItem
-                      label="Concomitant other antiplatelet therapy (e.g., Clopidogrel)"
+                      label="Gleichzeitige Gabe anderer Thrombozytenaggregationshemmer (z. B. Clopidogrel)"
                       checked={riskFactors.concomitantOtherAntiplatelet}
                       onChange={() =>
                         toggleRiskFactor("concomitantOtherAntiplatelet")
                       }
                     />
                     <RiskItem
-                      label="Concomitant anticoagulant therapy (e.g., Rivaroxaban)"
+                      label="Gleichzeitige Gabe von Antikoagulanzien (z. B. Rivaroxaban)"
                       checked={riskFactors.concomitantAnticoagulant}
                       onChange={() => toggleRiskFactor("concomitantAnticoagulant")}
                     />
                     <RiskItem
-                      label="Concomitant glucocorticoid therapy (e.g., Prednisone)"
+                      label="Gleichzeitige Gabe von Glukokortikoiden (z. B. Prednison)"
                       checked={riskFactors.concomitantGlucocorticoid}
                       onChange={() =>
                         toggleRiskFactor("concomitantGlucocorticoid")
@@ -403,84 +398,94 @@ Link to tapering tool.`,
                     />
 
                     <RiskItem
-                      label="Concomitant SSRI therapy"
+                      label="Gleichzeitige SSRI-Therapie"
                       checked={riskFactors.concomitantSSRI}
-                      onChange={() => 
-                        toggleRiskFactor("concomitantSSRI")}
-                    />
+                      onChange={() =>
+                        toggleRiskFactor("concomitantSSRI")
+                      }
+                     />
+
                     <RiskItem
-                      label="High-dose NSAID therapy"
+                      label="Hochdosierte NSAR-Therapie"
                       checked={riskFactors.highDoseNSAIDTherapy}
                       onChange={() => toggleRiskFactor("highDoseNSAIDTherapy")}
-                    />
+                      />
+
                     <RiskItem
-                      label="Severe comorbid diseases?"
+                      label="Schwere Begleiterkrankungen"
                       checked={riskFactors.severeComorbidDiseases}
                       onChange={() => toggleRiskFactor("severeComorbidDiseases")}
-                    />
+                       />
                   </div>
                 </div>
               </Panel>
             )}
 
             {takesNSAIDs === false && (
-              <Panel>
-                <SectionHeader
-                  icon={<Activity className="h-5 w-5" />}
-                  eyebrow="Non-NSAID pathway"
-                  title="Does your patient take at least one of the following medications?"
-                  description="Choose Yes or No for each medication group."
-                />
+  <Panel>
+    <SectionHeader
+      icon={<Activity className="h-5 w-5" />}
+      eyebrow="Pfad ohne NSAR"
+      title="Nimmt Ihr Patient/Ihre Patientin mindestens eines der folgenden Medikamente ein?"
+      description="Bitte geben Sie für jede Medikamentengruppe an, ob sie eingenommen wird."
+    />
 
-                <div className="mt-6 space-y-4">
-                  <MedicationRow
-                    label="Antiplatelets (Aspirin (ASS)), P2Y12 inhibitors (clopidogrel)"
-                    value={medications.antiplatelets}
-                    onChange={(value) => setMedication("antiplatelets", value)}
-                  />
+    <div className="mt-6 space-y-4">
+      <MedicationRow
+        label="Thrombozytenaggregationshemmer (ASS/Aspirin, P2Y12-Hemmer wie Clopidogrel)"
+        value={medications.antiplatelets}
+        onChange={(value) => setMedication("antiplatelets", value)}
+      />
 
-                  <MedicationRow
-                    label="Anticoagulants (DOAC, Vit K antagonists, Factors Xa inhibitors, Heparins)"
-                    value={medications.anticoagulants}
-                    onChange={(value) => setMedication("anticoagulants", value)}
-                  />
+      <MedicationRow
+        label="Antikoagulanzien (DOAK, Vitamin-K-Antagonisten, Faktor-Xa-Hemmer, Heparine)"
+        value={medications.anticoagulants}
+        onChange={(value) => setMedication("anticoagulants", value)}
+      />
 
-                  <MedicationRow
-                    label="SSRI or SNRI Venlafaxine"
-                    value={medications.ssri}
-                    onChange={(value) => setMedication("ssri", value)}
-                  />
+      <MedicationRow
+        label="SSRI oder SNRI (z. B. Venlafaxin)"
+        value={medications.ssri}
+        onChange={(value) => setMedication("ssri", value)}
+      />
 
-                  <MedicationRow
-                    label="Corticosteroids"
-                    value={medications.corticosteroids}
-                    onChange={(value) =>
-                      setMedication("corticosteroids", value)
-                    }
-                  />
+      <MedicationRow
+        label="Kortikosteroide"
+        value={medications.corticosteroids}
+        onChange={(value) =>
+          setMedication("corticosteroids", value)
+        }
+      />
 
-                  <MedicationRow
-                    label="Bisphosphonate"
-                    value={medications.bisphosphonate}
-                    onChange={(value) => setMedication("bisphosphonate", value)}
-                  />
-                </div>
+      <MedicationRow
+        label="Bisphosphonate"
+        value={medications.bisphosphonate}
+        onChange={(value) => setMedication("bisphosphonate", value)}
+      />
+    </div>
 
-                {showMultiMedicationWarning && (
-                  <div className="mt-6">
-                    <InfoCard
-                      title="Combined medication warning"
-                      icon={<AlertTriangle className="h-4 w-4" />}
-                      tone="amber"
-                    >
-                      More than one of abovementioned medications: Avoid
-                      concomitant use of corticosteroids and antiplatelets, or
-                      antiplatelets and anticoagulants, in patients with the
-                      history of peptic ulcer, even uncomplicated. If unavoidable,
-                      add gastroprotection. Link to algorithm.
-                    </InfoCard>
-                  </div>
-                )}
+               {showMultiMedicationWarning && (
+  <div className="mt-6">
+    <InfoCard
+      title="Warnhinweis bei Kombinationstherapie"
+      icon={<AlertTriangle className="h-4 w-4" />}
+      tone="amber"
+    >
+      Bei gleichzeitiger Einnahme von mehr als einem der oben genannten
+      Medikamente sollte die Kombination von Kortikosteroiden und
+      Thrombozytenaggregationshemmern sowie von
+      Thrombozytenaggregationshemmern und Antikoagulanzien bei Patientinnen
+      und Patienten mit einer Ulkusanamnese (auch bei unkompliziertem
+      Ulkus) möglichst vermieden werden.
+
+      Falls eine solche Kombination unvermeidbar ist, sollte eine
+      gastroprotektive Therapie (z. B. mit einem Protonenpumpenhemmer)
+      erwogen werden.
+
+      Link zum Algorithmus.
+    </InfoCard>
+  </div>
+)}
 
                 {allFourCoreMedsNo && (
                   <div className="mt-6 rounded-3xl border border-emerald-200 bg-gradient-to-br from-emerald-50 to-white p-5 text-emerald-900">
@@ -491,7 +496,7 @@ Link to tapering tool.`,
                       <div>
                         <div className="text-lg font-bold">Low risk</div>
                         <div className="text-sm text-emerald-800">
-                          No core GI-risk medications selected.
+                          Keine gastrointestinalen Risikomedikamente ausgewählt.
                         </div>
                       </div>
                     </div>
@@ -515,20 +520,15 @@ Link to tapering tool.`,
                 </div>
               </div>
 
-              <Panel className="bg-white">
-                <div className="flex items-center gap-2">
-                  <CircleHelp className="h-4 w-4 text-slate-500" />
-                  <h2 className="text-sm font-semibold uppercase tracking-[0.18em] text-slate-500">
-                    Guidance
-                  </h2>
-                </div>
+             
+                
 
                 <div className="mt-4 space-y-3">
                   {takesNSAIDs === true && nsaidRiskResult && (
                     <>
                       <QuickAction>
                         <TooltipLabel
-                          label="General recommendations"
+                          label="Allgemeine Empfehlungen"
                           tooltipText={nsaidRiskResult.specificRecommendationsTooltip}
                         />
                       </QuickAction>
@@ -539,7 +539,7 @@ Link to tapering tool.`,
                           onClick={() => setShowAlternativesModal(true)}
                           className="font-semibold text-sky-700 underline underline-offset-2 hover:text-sky-900"
                         >
-                          Alternative ways to manage pain
+                          Alternative Möglichkeiten zur Schmerzbehandlung
                         </button>
                       </QuickAction>
                       <QuickAction>
@@ -552,7 +552,7 @@ Link to tapering tool.`,
   </button>
 </QuickAction>
 
-   {nsaidRiskResult.shortLevel !== "Low risk" && (
+   {nsaidRiskResult.shortLevel !== "Niedriges Risiko" && (
   <QuickAction>
     <button
       type="button"
@@ -570,17 +570,17 @@ Link to tapering tool.`,
                     medicationBoxes.length === 0 &&
                     !allFourCoreMedsNo && (
                       <div className="rounded-2xl border border-dashed border-slate-300 bg-slate-50 p-4 text-sm text-slate-500">
-                        Medication guidance will appear here.
+                        Arzneimittelbezogene Empfehlungen werden hier angezeigt.
                       </div>
                     )}
                 </div>
-              </Panel>
+            
 
               {takesNSAIDs === true && nsaidRiskResult && (
                 <Panel className="bg-white">
                   <div className="flex items-center justify-between gap-3">
                     <div className="text-sm font-semibold uppercase tracking-[0.18em] text-slate-500">
-                      Current risk
+                      Aktuelles Risiko
                     </div>
                     <span
                       className={`rounded-full border px-3 py-1 text-xs font-semibold ${nsaidRiskResult.badgeClass}`}
@@ -590,7 +590,7 @@ Link to tapering tool.`,
                   </div>
 
                   <div className="mt-4 text-sm text-slate-600">
-                    The current result is based on the selected NSAID-related risk factors.
+                    Das aktuelle Ergebnis basiert auf den ausgewählten NSAID-bezogenen Risikofaktoren.
                   </div>
                 </Panel>
               )}
@@ -707,7 +707,7 @@ function SegmentedChoice({
             : "text-slate-700 hover:bg-white"
         }`}
       >
-        Yes
+        Ja
       </button>
       <button
         type="button"
@@ -718,7 +718,7 @@ function SegmentedChoice({
             : "text-slate-700 hover:bg-white"
         }`}
       >
-        No
+        Nein
       </button>
     </div>
   );
@@ -783,7 +783,7 @@ function MedicationRow({
               : "text-slate-700 hover:bg-slate-50"
           }`}
         >
-          Yes
+          Ja
         </button>
 
         <button
@@ -795,7 +795,7 @@ function MedicationRow({
               : "text-slate-700 hover:bg-slate-50"
           }`}
         >
-          No
+          Nein
         </button>
       </div>
     </div>
@@ -914,19 +914,96 @@ function PainScaleModal({
   const [showSDMScript, setShowSDMScript] = useState(false);
   const [showNonPharmaOptions, setShowNonPharmaOptions] = useState(false);
 
-  const painData = [
-    { value: 0, emoji: "😊", title: "No pain", description: "No hurt or discomfort.", bg: "bg-emerald-100", text: "text-emerald-800" },
-    { value: 1, emoji: "🙂", title: "Very mild pain", description: "Hurts a little bit but is easily tolerated.", bg: "bg-green-100", text: "text-green-800" },
-    { value: 2, emoji: "🙂", title: "Mild pain", description: "Discomforting pain. Noticeable but manageable.", bg: "bg-yellow-100", text: "text-yellow-800" },
-    { value: 3, emoji: "😐", title: "Tolerable pain", description: "Hurts more. Pain is present but still tolerable.", bg: "bg-yellow-200", text: "text-yellow-900" },
-    { value: 4, emoji: "😐", title: "Moderate pain", description: "Distressing pain. It starts to interfere with comfort.", bg: "bg-amber-100", text: "text-amber-800" },
-    { value: 5, emoji: "😕", title: "Very distressing pain", description: "Moderate pain that is harder to ignore.", bg: "bg-amber-200", text: "text-amber-900" },
-    { value: 6, emoji: "☹️", title: "Intense pain", description: "Hurts even more. Pain interferes with normal activity.", bg: "bg-orange-100", text: "text-orange-800" },
-    { value: 7, emoji: "☹️", title: "Very intense pain", description: "Strong pain. Difficult to tolerate.", bg: "bg-orange-200", text: "text-orange-900" },
-    { value: 8, emoji: "😣", title: "Utterly horrible pain", description: "Hurts a whole lot. Severe pain.", bg: "bg-red-100", text: "text-red-800" },
-    { value: 9, emoji: "😖", title: "Excruciating pain", description: "Almost unbearable pain.", bg: "bg-red-200", text: "text-red-900" },
-    { value: 10, emoji: "😭", title: "Worst pain", description: "Unimaginable and unspeakable pain.", bg: "bg-red-300", text: "text-red-950" },
-  ];
+ const painData = [
+  {
+    value: 0,
+    emoji: "😊",
+    title: "Keine Schmerzen",
+    description: "Keine Schmerzen oder Beschwerden.",
+    bg: "bg-emerald-100",
+    text: "text-emerald-800",
+  },
+  {
+    value: 1,
+    emoji: "🙂",
+    title: "Sehr leichte Schmerzen",
+    description: "Leichte Schmerzen, die gut toleriert werden können.",
+    bg: "bg-green-100",
+    text: "text-green-800",
+  },
+  {
+    value: 2,
+    emoji: "🙂",
+    title: "Leichte Schmerzen",
+    description: "Spürbare Beschwerden, aber gut beherrschbar.",
+    bg: "bg-yellow-100",
+    text: "text-yellow-800",
+  },
+  {
+    value: 3,
+    emoji: "😐",
+    title: "Erträgliche Schmerzen",
+    description: "Die Schmerzen nehmen zu, sind aber noch gut auszuhalten.",
+    bg: "bg-yellow-200",
+    text: "text-yellow-900",
+  },
+  {
+    value: 4,
+    emoji: "😐",
+    title: "Mäßige Schmerzen",
+    description: "Die Schmerzen sind belastend und beeinträchtigen das Wohlbefinden.",
+    bg: "bg-amber-100",
+    text: "text-amber-800",
+  },
+  {
+    value: 5,
+    emoji: "😕",
+    title: "Deutlich belastende Schmerzen",
+    description: "Mäßige Schmerzen, die zunehmend schwer zu ignorieren sind.",
+    bg: "bg-amber-200",
+    text: "text-amber-900",
+  },
+  {
+    value: 6,
+    emoji: "☹️",
+    title: "Starke Schmerzen",
+    description: "Die Schmerzen beeinträchtigen normale Aktivitäten.",
+    bg: "bg-orange-100",
+    text: "text-orange-800",
+  },
+  {
+    value: 7,
+    emoji: "☹️",
+    title: "Sehr starke Schmerzen",
+    description: "Ausgeprägte Schmerzen, die nur schwer auszuhalten sind.",
+    bg: "bg-orange-200",
+    text: "text-orange-900",
+  },
+  {
+    value: 8,
+    emoji: "😣",
+    title: "Extrem starke Schmerzen",
+    description: "Sehr starke Schmerzen mit erheblicher Belastung.",
+    bg: "bg-red-100",
+    text: "text-red-800",
+  },
+  {
+    value: 9,
+    emoji: "😖",
+    title: "Unerträgliche Schmerzen",
+    description: "Fast nicht mehr auszuhaltende Schmerzen.",
+    bg: "bg-red-200",
+    text: "text-red-900",
+  },
+  {
+    value: 10,
+    emoji: "😭",
+    title: "Schlimmste vorstellbare Schmerzen",
+    description: "Unvorstellbare und unerträgliche Schmerzen.",
+    bg: "bg-red-300",
+    text: "text-red-950",
+  },
+];
 
   const current = painData[pain];
 
@@ -990,20 +1067,34 @@ function PainScaleModal({
 
           <div className="mt-6 grid grid-cols-5 gap-2 text-center text-xs font-semibold">
             <div className="rounded-xl bg-emerald-100 p-2 text-emerald-800">
-              No pain<br />0
-            </div>
-            <div className="rounded-xl bg-green-100 p-2 text-green-800">
-              Mild<br />1–3
-            </div>
-            <div className="rounded-xl bg-amber-100 p-2 text-amber-800">
-              Moderate<br />4–5
-            </div>
-            <div className="rounded-xl bg-orange-100 p-2 text-orange-800">
-              Intense<br />6–7
-            </div>
-            <div className="rounded-xl bg-red-100 p-2 text-red-800">
-              Severe<br />8–10
-            </div>
+    Keine Schmerzen
+    <br />
+    0
+  </div>
+
+  <div className="rounded-xl bg-green-100 p-2 text-green-800">
+    Leicht
+    <br />
+    1–3
+  </div>
+
+  <div className="rounded-xl bg-amber-100 p-2 text-amber-800">
+    Mäßig
+    <br />
+    4–5
+  </div>
+
+  <div className="rounded-xl bg-orange-100 p-2 text-orange-800">
+    Stark
+    <br />
+    6–7
+  </div>
+
+  <div className="rounded-xl bg-red-100 p-2 text-red-800">
+    Sehr stark
+    <br />
+    8–10
+  </div>
           </div>
 
           <div className="mt-6 space-y-3 border-t border-slate-200 pt-4">
@@ -1020,7 +1111,7 @@ function PainScaleModal({
            onClick={() => setShowSDMScript(true)}
            className="block font-semibold text-sky-700 underline underline-offset-2 hover:text-sky-900"
          >
-           Share Decision Making Script
+           Gemeinsame Entscheidungsfindung
         </button>
 
         <button
@@ -1028,7 +1119,7 @@ function PainScaleModal({
   onClick={() => setShowNonPharmaOptions(true)}
   className="block font-semibold text-sky-700 underline underline-offset-2 hover:text-sky-900"
 >
-  Options for non-pharmacological management of pain
+  Nicht-medikamentöse Möglichkeiten zur Schmerzbehandlung
 </button>
         </div>
 
@@ -1078,11 +1169,11 @@ function BewegungRezeptModal({ onClose }: { onClose: () => void }) {
 
   return (
     <div
-  className="fixed inset-0 z-[60] overflow-auto bg-slate-950/80 p-4"
+  className="fixed inset-0 z-[60] overflow-auto bg-slate-950/80 p-2 sm:p-4"
   onClick={onClose}
 >
   <div
-    className="mx-auto max-w-[1220px] rounded-3xl bg-white p-4 shadow-2xl"
+    className="mx-auto w-full max-w-[1220px] rounded-3xl bg-white p-3 shadow-2xl sm:p-4"
     onClick={(e) => e.stopPropagation()}
   >
         <div className="mb-4 flex items-center justify-between">
@@ -1099,10 +1190,10 @@ function BewegungRezeptModal({ onClose }: { onClose: () => void }) {
           </button>
         </div>
 
-        <div className="grid gap-0 overflow-hidden rounded-2xl border border-neutral-800 bg-white text-neutral-950 md:grid-cols-2">
+        <div className="grid gap-0 overflow-hidden rounded-2xl border border-neutral-800 bg-white text-neutral-950 lg:grid-cols-2">
           {/* Left side */}
-          <section className="border-r-2 border-dotted border-neutral-700 p-6">
-            <div className="grid gap-5 md:grid-cols-[1.1fr_0.9fr]">
+          <section className="border-b-2 border-dotted border-neutral-700 p-4 sm:p-6 lg:border-b-0 lg:border-r-2">
+            <div className="grid gap-5 xl:grid-cols-[1.1fr_0.9fr]">
               <div>
                 <div className="mb-5 border border-neutral-800">
                   <WritableBox
@@ -1111,7 +1202,7 @@ function BewegungRezeptModal({ onClose }: { onClose: () => void }) {
                     onChange={(value) => updateField("krankenkasse", value)}
                   />
 
-                  <div className="grid grid-cols-[1fr_120px] border-t border-neutral-800">
+                  <div className="grid grid-cols-1 border-t border-neutral-800 sm:grid-cols-[1fr_120px]">
                     <WritableBox
                       label="Name, Vorname der*des Versicherten"
                       value={form.patientName}
@@ -1127,7 +1218,7 @@ function BewegungRezeptModal({ onClose }: { onClose: () => void }) {
                     />
                   </div>
 
-                  <div className="grid grid-cols-3 border-t border-neutral-800">
+                  <div className="grid grid-cols-1 border-t border-neutral-800 sm:grid-cols-3">
                     <WritableBox
                       label="Kostenträgererkennung"
                       value={form.kostentraegerkennung}
@@ -1151,7 +1242,7 @@ function BewegungRezeptModal({ onClose }: { onClose: () => void }) {
                     />
                   </div>
 
-                  <div className="grid grid-cols-3 border-t border-neutral-800">
+                  <div className="grid grid-cols-1 border-t border-neutral-800 sm:grid-cols-3">
                     <WritableBox
                       label="Betriebsstätten-Nr."
                       value={form.betriebsstaettenNr}
@@ -1273,7 +1364,7 @@ function BewegungRezeptModal({ onClose }: { onClose: () => void }) {
           </section>
 
           {/* Right side */}
-          <section className="p-6">
+          <section className="p-4 sm:p-6">
             <p className="text-[13px] leading-tight">
               Sie haben die ärztliche Empfehlung, an einem Bewegungsangebot
               teilzunehmen. Sämtliche Angebote in Ihrer Nähe finden Sie im
@@ -1284,7 +1375,7 @@ function BewegungRezeptModal({ onClose }: { onClose: () => void }) {
               www.bewegungslandkarte.de
             </p>
 
-            <div className="mt-5 grid grid-cols-[1fr_1.1fr] text-[12px] leading-tight">
+            <div className="mt-5 grid grid-cols-1 gap-3 text-[12px] leading-tight sm:grid-cols-[1fr_1.1fr]">
               <div>
                 <p className="font-bold">Bei Fragen wenden Sie sich bitte an:</p>
                 <p className="mt-2 font-bold">
@@ -1309,7 +1400,7 @@ function BewegungRezeptModal({ onClose }: { onClose: () => void }) {
             </h2>
 
             <div className="mt-3 border-b border-neutral-800 pb-3">
-              <div className="grid grid-cols-[70px_120px_1fr_140px] items-center gap-3">
+              <div className="grid grid-cols-1 items-center gap-3 sm:grid-cols-[70px_120px_1fr_140px]">
                 <div className="text-[11px] font-bold">
                   Ausdauer
                   <br />
@@ -1351,7 +1442,7 @@ function BewegungRezeptModal({ onClose }: { onClose: () => void }) {
               </div>
             </div>
 
-            <div className="grid grid-cols-2 border-b border-neutral-800">
+            <div className="grid grid-cols-1 border-b border-neutral-800 sm:grid-cols-2">
               <div className="border-r border-neutral-800 p-3">
                 <p className="text-[10px] font-bold uppercase">Zusätzlich</p>
                 <div className="grid grid-cols-[70px_1fr_36px] items-center gap-2">
@@ -1394,7 +1485,7 @@ function BewegungRezeptModal({ onClose }: { onClose: () => void }) {
               </span>
             </p>
 
-            <div className="mt-4 grid grid-cols-[1.1fr_0.7fr] gap-4">
+            <div className="mt-4 grid grid-cols-1 gap-4 sm:grid-cols-[1.1fr_0.7fr]">
               <WritableTextArea
                 label="Mitteilung der Übungsleitung an den*die Arzt*Ärztin:"
                 value={form.mitteilungUebungsleitung}
@@ -1419,7 +1510,7 @@ function BewegungRezeptModal({ onClose }: { onClose: () => void }) {
               onClick={() => console.log("REDCap-ready data:", form)}
               className="mt-6 rounded-2xl bg-sky-600 px-4 py-2 text-sm font-semibold text-white hover:bg-sky-700"
             >
-              Save form data
+              Formulardaten speichern
             </button>
           </section>
         </div>
@@ -1513,7 +1604,7 @@ function SDMScriptModal({ onClose }: { onClose: () => void }) {
   >
         <div className="mb-5 flex items-center justify-between gap-4">
           <h2 className="text-lg font-semibold text-slate-900">
-            Share Decision Making Script
+            Gesprächsleitfaden zur gemeinsamen Entscheidungsfindung
           </h2>
 
           <button
@@ -1683,122 +1774,124 @@ type NonPharmaOption = {
 
 const nonPharmaOptions: NonPharmaOption[] = [
   {
-    category: "Exercise",
-    name: "Aquatic exercise for knee and hip osteoarthritis",
+    category: "Bewegung",
+    name: "Wassergymnastik bei Knie- und Hüftarthrose",
     summary:
-      "Physical exercise while immersed in water, typically 32–36°C. The intervention comprises two to three 30–60 minute sessions per week, for a mean duration of 12 weeks.",
-    firstPublished: "Keine Angabe",
-    website: "Aquatic exercise for knee and hip osteoarthritis",
+      "Körperliche Übungen im Wasser, typischerweise bei 32–36 °C. Die Intervention umfasst zwei bis drei Sitzungen pro Woche von jeweils 30–60 Minuten über einen durchschnittlichen Zeitraum von 12 Wochen.",
+  firstPublished: "Keine Angabe",
+  website: "Wassergymnastik bei Knie- und Hüftarthrose",
     websiteUrl:
       "https://www.racgp.org.au/clinical-resources/clinical-guidelines/handi/handi-interventions/exercise/aquatic-exercise-for-knee-and-hip-osteoarthritis",
   },
+ {
+  category: "Bewegung",
+  name: "Bewegung bei akuten Schmerzen im unteren Rücken",
+  summary:
+    "Patientinnen und Patienten mit akuten Rückenschmerzen wird empfohlen, aktiv zu bleiben, anstatt Bettruhe einzuhalten. Aktiv bleiben bedeutet nicht zwingend die Durchführung spezieller Übungen.",
+  firstPublished: "Keine Angabe",
+  website: "Bewegung bei akuten Rückenschmerzen",
+  websiteUrl:
+    "https://www.racgp.org.au/clinical-resources/clinical-guidelines/handi/handi-interventions/exercise/exercise-for-acute-lower-back-pain",
+},
+
+{
+  category: "Bewegung",
+  name: "Bewegung bei chronischen Schmerzen im unteren Rücken",
+  summary:
+    "Bewegungstherapie gilt als wirksame Intervention bei chronischen Rückenschmerzen. Sie kann angeleitet, gruppenbasiert oder als selbstständiges Heimtraining durchgeführt werden.",
+  firstPublished: "2016",
+  website: "Bewegung bei chronischen Rückenschmerzen",
+  websiteUrl:
+    "https://www.racgp.org.au/clinical-resources/clinical-guidelines/handi/handi-interventions/exercise/exercise-for-chronic-low-back-pain",
+},
   {
-    category: "Exercise",
-    name: "Exercise for acute lower back pain",
-    summary:
-      "Advising patients with acute low-back pain to stay active, rather than to rest in bed. Staying active does not mean participating in any specific exercises.",
-    firstPublished: "Keine Angabe",
-    website: "Exercise for acute lower back pain",
-    websiteUrl:
-      "https://www.racgp.org.au/clinical-resources/clinical-guidelines/handi/handi-interventions/exercise/exercise-for-acute-lower-back-pain",
-  },
-  {
-    category: "Exercise",
-    name: "Exercise for chronic low back pain",
-    summary:
-      "Exercise therapy has been reported as an effective intervention for chronic low back pain. It can be supervised, group-based, or unsupervised home exercise.",
-    firstPublished: "2016",
-    website: "Exercise for chronic low back pain",
-    websiteUrl:
-      "https://www.racgp.org.au/clinical-resources/clinical-guidelines/handi/handi-interventions/exercise/exercise-for-chronic-low-back-pain",
-  },
-  {
-    category: "Exercise",
-    name: "Exercise for knee osteoarthritis",
-    summary:
-      "Regular land- or water-based therapeutic exercise for adults with knee osteoarthritis. Exercise programs may be delivered face to face or via the internet.",
-    firstPublished: "2014, updated 2017",
-    website: "Exercise for knee osteoarthritis",
+    category: "Bewegung",
+  name: "Bewegung bei Kniearthrose",
+  summary:
+    "Regelmäßige therapeutische Übungen an Land oder im Wasser für Erwachsene mit Kniearthrose. Die Programme können persönlich oder internetbasiert durchgeführt werden.",
+  firstPublished: "2014, aktualisiert 2017",
+  website: "Bewegung bei Kniearthrose",
     websiteUrl:
       "https://www.racgp.org.au/clinical-resources/clinical-guidelines/handi/handi-interventions/exercise/exercise-for-knee-osteoarthritis",
   },
   {
-    category: "Exercise",
-    name: "Exercise for patellofemoral pain syndrome",
-    summary:
-      "Hip and knee strengthening exercises can lead to improvement in pain and function.",
-    firstPublished: "2021",
-    website: "Hip and knee strengthening exercises for patellofemoral pain",
+    category: "Bewegung",
+    name: "Übungen bei patellofemoralem Schmerzsyndrom",
+  summary:
+    "Kräftigungsübungen für Hüfte und Knie können Schmerzen reduzieren und die Funktion verbessern.",
+  firstPublished: "2021",
+  website: "Übungen bei patellofemoralem Schmerzsyndrom",
     websiteUrl:
       "https://www.racgp.org.au/clinical-resources/clinical-guidelines/handi/handi-interventions/exercise/exercise-for-patellofemoral-pain-syndrome",
   },
   {
-    category: "Devices",
-    name: "Splints for the reduction of pain from hand osteoarthritis",
+    category: "Hilfsmittel",
+    name: "Schienen zur Linderung von Schmerzen bei Handarthrose",
     summary:
-      "Prefabricated or custom-made splints may be worn at night or during the day to support or immobilise affected joints.",
-    firstPublished: "2014",
-    website: "Splints for the reduction of pain from hand osteoarthritis",
+      "Fertigschienen oder maßgefertigte Schienen können nachts oder tagsüber getragen werden, um betroffene Gelenke zu stützen oder ruhigzustellen.",
+      firstPublished: "2014",
+    website: "Schienen zur Linderung von Schmerzen bei Handarthrose",
+
     websiteUrl:
       "https://www.racgp.org.au/clinical-resources/clinical-guidelines/handi/handi-interventions/device/splints-for-the-reduction-of-pain-from-hand-osteoa",
   },
   {
-    category: "Devices",
-    name: "Walking cane for knee osteoarthritis",
+    category: "Hilfsmittel",
+    name: "Gehstock bei Kniearthrose",
     summary:
-      "Daily use of a walking cane or stick to decrease the load through the affected knee and improve pain and function.",
+      "Tägliche Verwendung einer Gehhilfe oder eines Stocks, um die Belastung des betroffenen Kniegelenks zu verringern und Schmerzen sowie die Funktion zu verbessern.",
     firstPublished: "Keine Angabe",
-    website: "Walking cane for knee osteoarthritis",
+    website: "Gehhilfe für Kniearthrose",
     websiteUrl:
       "https://www.racgp.org.au/clinical-resources/clinical-guidelines/handi/handi-interventions/device/walking-cane-for-knee-osteoarthritis",
   },
   {
-    category: "Devices",
-    name: "Knee taping for osteoarthritis",
+    category: "Hilfsmittel",
+    name: "Knie-Taping bei Arthrose",
     summary:
-      "Strong adhesive tape or strapping is applied before painful activities to unload painful soft tissues.",
+      "Starker Klebeband oder Bandage wird vor schmerzhaften Aktivitäten aufgetragen, um die schmerzhaften weichen Gewebe zu entlasten.",
     firstPublished: "Keine Angabe",
-    website: "Knee taping for osteoarthritis",
+    website: "Knieverband für Arthrose",
     websiteUrl:
       "https://www.racgp.org.au/clinical-resources/clinical-guidelines/handi/handi-interventions/device/knee-taping-for-osteoarthritis",
   },
   {
-    category: "Procedures",
-    name: "Physiotherapy for tennis elbow",
+    category: "Verfahren",
+    name: "Physiotherapie bei Tennisellenbogen",
     summary:
-      "A physiotherapy program including exercise, elbow manipulation, self-manipulation, and progressive wrist extensor exercises.",
+      "Ein physiotherapeutisches Programm mit Übungen, Ellenbogenmobilisation, Eigenübungen und progressivem Training der Handgelenkstrecker.",
     firstPublished: "Keine Angabe",
-    website: "Physiotherapy for tennis elbow",
+    website: "Physiotherapie bei Tennisellenbogen",
     websiteUrl:
       "https://www.racgp.org.au/clinical-resources/clinical-guidelines/handi/handi-interventions/procedures/physiotherapy-for-tennis-elbow",
   },
   {
-    category: "Procedures",
-    name: "Compression for venous leg ulcers",
+    category: "Verfahren",
+    name: "Kompressionstherapie bei venösen Unterschenkelulzera",
     summary:
-      "Medical compression therapy applied externally to the lower leg to improve venous return and reduce oedema.",
+      "Medizinische Kompressionstherapie am Unterschenkel zur Verbesserung des venösen Rückflusses und zur Verringerung von Ödemen.",
     firstPublished: "2017",
-    website: "Compression for venous leg ulcers",
+    website: "Kompressionstherapie bei venösen Unterschenkelulzera",
     websiteUrl:
       "https://www.racgp.org.au/clinical-resources/clinical-guidelines/handi/handi-interventions/procedures/compression-for-venous-leg-ulcers",
   },
   {
-    category: "Cognitive and behavioural therapies",
-    name: "Mindfulness and CBT for chronic low back pain",
+    category: "Kognitive und verhaltenstherapeutische Verfahren",
+    name: "Achtsamkeitstraining und kognitive Verhaltenstherapie bei chronischen Rückenschmerzen",
     summary:
-      "Mindfulness-based stress reduction and cognitive behavioural therapy delivered in group format over 8 weeks with home practice.",
+      "Achtsamkeitsbasierte Stressreduktion und kognitive Verhaltenstherapie in Gruppensitzungen über acht Wochen mit zusätzlichen Übungen zu Hause.",
     firstPublished: "2017",
-    website: "Mindfulness and CBT for chronic low back pain",
+    website: "Achtsamkeit und kognitive Verhaltenstherapie bei chronischen Rückenschmerzen",
     websiteUrl:
       "https://www.racgp.org.au/clinical-resources/clinical-guidelines/handi/handi-interventions/cogntive-and-behavioural-therapies/mindfulness-and-cbt-for-chronic-low-back-pain",
   },
   {
-    category: "Other",
-    name: "Elevating the head of the bed for GERD",
+    category: "Sonstiges",
+    name: "Erhöhung des Kopfendes des Bettes bei GERD",
     summary:
-      "Elevating the head of the bed using blocks under the legs or wedge pillows. In the research, elevation was 20 cm.",
+      "Anheben des Kopfendes des Bettes durch Unterlegen von Blöcken oder die Verwendung eines Keilkissens. In den Studien betrug die Erhöhung 20 cm.",
     firstPublished: "2021",
-    website: "RACGP - Elevating the head of the bed for GERD",
+    website: "Erhöhung des Kopfendes des Bettes bei GERD",
     websiteUrl:
       "https://www.racgp.org.au/clinical-resources/clinical-guidelines/handi/conditions/gastroesophageal/elevating-the-head-of-the-bed-for-gerd",
   },
@@ -1806,20 +1899,20 @@ const nonPharmaOptions: NonPharmaOption[] = [
 
 function NonPharmaOptionsModal({ onClose }: { onClose: () => void }) {
   const [search, setSearch] = useState("");
-  const [category, setCategory] = useState<string>("All");
+  const [category, setCategory] = useState<string>("Alle");
   const [openCard, setOpenCard] = useState<string | null>(null);
 
   const categories = [
-    "All",
-    "Exercise",
-    "Devices",
-    "Procedures",
-    "Cognitive and behavioural therapies",
-    "Other",
-  ];
+  "Alle",
+  "Bewegung",
+  "Hilfsmittel",
+  "Verfahren",
+  "Kognitive und verhaltenstherapeutische Verfahren",
+  "Sonstiges",
+];
 
   const filteredOptions = nonPharmaOptions.filter((option) => {
-    const matchesCategory = category === "All" || option.category === category;
+    const matchesCategory = category === "Alle" || option.category === category;
     const searchText = search.toLowerCase();
 
     const matchesSearch =
@@ -1841,10 +1934,10 @@ function NonPharmaOptionsModal({ onClose }: { onClose: () => void }) {
   ><div className="mb-5 flex items-center justify-between gap-4">
           <div>
             <h2 className="text-lg font-semibold text-slate-900">
-              Options for non-pharmacological management of pain
+              Optionen zur nicht-medikamentösen Schmerzbehandlung
             </h2>
             <p className="mt-1 text-sm text-slate-500">
-              Search and filter alternatives by intervention type.
+              Alternativen nach Interventionsart suchen und filtern.
             </p>
           </div>
 
@@ -1853,7 +1946,7 @@ function NonPharmaOptionsModal({ onClose }: { onClose: () => void }) {
             onClick={onClose}
             className="rounded-2xl border border-slate-300 px-3 py-1.5 text-sm font-medium text-slate-700 hover:bg-slate-50"
           >
-            Close
+            Schließen
           </button>
         </div>
 
@@ -1862,7 +1955,7 @@ function NonPharmaOptionsModal({ onClose }: { onClose: () => void }) {
             type="text"
             value={search}
             onChange={(e) => setSearch(e.target.value)}
-            placeholder="Search e.g. knee, back pain, CBT, walking cane..."
+            placeholder="Suche z.B. Knie, Rückenschmerzen, CBT, Gehhilfe..."
             className="w-full rounded-2xl border border-slate-300 bg-white px-4 py-3 text-sm outline-none focus:border-sky-500"
           />
 
@@ -1937,7 +2030,7 @@ function NonPharmaOptionsModal({ onClose }: { onClose: () => void }) {
                     onClick={() => setOpenCard(isOpen ? null : option.name)}
                     className="rounded-2xl border border-slate-300 px-3 py-2 text-xs font-semibold text-slate-700 hover:bg-slate-50"
                   >
-                    {isOpen ? "Show less" : "Read summary"}
+                    {isOpen ? "Weniger anzeigen" : "Zusammenfassung lesen"}
                   </button>
 
                   <a
@@ -1956,7 +2049,7 @@ function NonPharmaOptionsModal({ onClose }: { onClose: () => void }) {
 
         {filteredOptions.length === 0 && (
           <div className="rounded-3xl border border-dashed border-slate-300 bg-slate-50 p-8 text-center text-sm text-slate-500">
-            No options found.
+             Keine Einträge gefunden..
           </div>
         )}
       </div>
@@ -1966,16 +2059,21 @@ function NonPharmaOptionsModal({ onClose }: { onClose: () => void }) {
 
 function getCategoryStyle(category: NonPharmaOption["category"]) {
   switch (category) {
-    case "Exercise":
+    case "Bewegung":
       return "bg-emerald-100 text-emerald-800";
-    case "Devices":
+
+    case "Hilfsmittel":
       return "bg-sky-100 text-sky-800";
-    case "Procedures":
+
+    case "Verfahren":
       return "bg-amber-100 text-amber-800";
-    case "Cognitive and behavioural therapies":
+
+    case "Kognitive und verhaltenstherapeutische Verfahren":
       return "bg-purple-100 text-purple-800";
-    case "Other":
+
+    case "Sonstiges":
       return "bg-slate-100 text-slate-800";
+
     default:
       return "bg-slate-100 text-slate-800";
   }
@@ -1983,16 +2081,21 @@ function getCategoryStyle(category: NonPharmaOption["category"]) {
 
 function getCategoryImage(category: NonPharmaOption["category"]) {
   switch (category) {
-    case "Exercise":
+    case "Bewegung":
       return "🏃";
-    case "Devices":
+
+    case "Hilfsmittel":
       return "🦯";
-    case "Procedures":
+
+    case "Verfahren":
       return "🩺";
-    case "Cognitive and behavioural therapies":
+
+    case "Kognitive und verhaltenstherapeutische Verfahren":
       return "🧠";
-    case "Other":
+
+    case "Sonstiges":
       return "💡";
+
     default:
       return "💡";
   }
@@ -2000,16 +2103,21 @@ function getCategoryImage(category: NonPharmaOption["category"]) {
 
 function getCategoryImageStyle(category: NonPharmaOption["category"]) {
   switch (category) {
-    case "Exercise":
+    case "Bewegung":
       return "bg-emerald-100 text-emerald-700";
-    case "Devices":
+
+    case "Hilfsmittel":
       return "bg-sky-100 text-sky-700";
-    case "Procedures":
+
+    case "Verfahren":
       return "bg-amber-100 text-amber-700";
-    case "Cognitive and behavioural therapies":
+
+    case "Kognitive und verhaltenstherapeutische Verfahren":
       return "bg-purple-100 text-purple-700";
-    case "Other":
+
+    case "Sonstiges":
       return "bg-slate-100 text-slate-700";
+
     default:
       return "bg-slate-100 text-slate-700";
   }
@@ -2022,7 +2130,7 @@ function NsaidRiskScriptModal({
   riskLevel: string;
   onClose: () => void;
 }) {
-  const isHighRisk = riskLevel === "High risk";
+  const isHighRisk = riskLevel === "Hohes Risiko";
 
   const highRiskSpecificText = `Bei hohem Risiko:
 

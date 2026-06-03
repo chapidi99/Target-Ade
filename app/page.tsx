@@ -130,7 +130,7 @@ export default function HomePage() {
     href="/target-app"
     className="inline-block rounded-2xl bg-sky-600 px-5 py-3 text-sm font-semibold text-white hover:bg-sky-700"
   >
-    Open TARGET App
+    TARGET-App öffnen
   </a>
 </div>
           </div>
