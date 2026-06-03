@@ -1760,11 +1760,11 @@ function ScriptSection({
 
 type NonPharmaOption = {
   category:
-    | "Exercise"
-    | "Devices"
-    | "Procedures"
-    | "Cognitive and behavioural therapies"
-    | "Other";
+    | "Bewegung"
+    | "Hilfsmittel"
+    | "Verfahren"
+    | "Kognitive und verhaltenstherapeutische Verfahren"
+    | "Sonstiges";
   name: string;
   summary: string;
   firstPublished: string;
