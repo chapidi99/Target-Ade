@@ -174,9 +174,9 @@ Falls eine NSAR-Therapie unvermeidbar ist, sollte ein COX-2-Hemmer in Kombinatio
     if (medications.antiplatelets === true) {
       boxes.push({
         title: "Antiplatelets",
-        text: `Antiplatelets (ASA, including low dose, and P2Y12 inhibitors, e.g. clopidogrel) is an independent factor for GI bleed; recommended to check indications.
+        text: `Thrombozytenaggregationshemmer (ASS, einschließlich niedrig dosierter ASS, sowie P2Y12-Inhibitoren wie z. B. Clopidogrel) sind ein unabhängiger Risikofaktor für gastrointestinale Blutungen; eine Überprüfung der Indikation wird empfohlen.
 
-Patients with a history of Gastric Antral Vascular Ectasia (GAVE) receiving either antiplatelets or anticoagulants are at increased risk for GI bleed (STOP criteria); monitoring for the signs of gastric toxicity is recommended.`,
+Patientinnen und Patienten mit einer Vorgeschichte einer gastralen antralen vaskulären Ektasie (GAVE), die Thrombozytenaggregationshemmer oder Antikoagulanzien erhalten, haben ein erhöhtes Risiko für gastrointestinale Blutungen (STOP-Kriterien). Es wird empfohlen, auf Anzeichen einer gastrointestinalen Toxizität zu achten.`,
       });
     }
 
@@ -523,7 +523,7 @@ description="Wählen Sie die zutreffende Option aus, um die Risikobewertung fort
              
                 
 
-                <div className="mt-4 space-y-3">
+                <div className="mt-4 flex flex-col items-stretch gap-3">
                   {takesNSAIDs === true && nsaidRiskResult && (
                     <>
                       <QuickAction>
@@ -537,7 +537,7 @@ description="Wählen Sie die zutreffende Option aus, um die Risikobewertung fort
                         <button
                           type="button"
                           onClick={() => setShowAlternativesModal(true)}
-                          className="font-semibold text-sky-700 underline underline-offset-2 hover:text-sky-900"
+                          className="block w-full text-left font-semibold text-sky-700 underline underline-offset-2 hover:text-sky-900"
                         >
                           Alternative Möglichkeiten zur Schmerzbehandlung
                         </button>
@@ -548,7 +548,7 @@ description="Wählen Sie die zutreffende Option aus, um die Risikobewertung fort
     onClick={() => setShowBewegungRezept(true)}
     className="font-semibold text-sky-700 underline underline-offset-2 hover:text-sky-900"
   >
-    Bewegungs recept
+    Bewegungsrezept
   </button>
 </QuickAction>
 
@@ -804,7 +804,7 @@ function MedicationRow({
 
 function QuickAction({ children }: { children: React.ReactNode }) {
   return (
-    <div className="rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3">
+    <div className="flex w-full items-start justify-start rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 text-left">
       {children}
     </div>
   );
@@ -870,11 +870,11 @@ function ImageModal({
 }) {
   return (
     <div
-  className="fixed inset-0 z-50 flex items-center justify-center bg-slate-950/70 p-4"
+  className="fixed inset-0 z-50 overflow-auto bg-slate-950/70 p-4"
   onClick={onClose}
 >
   <div
-    className="relative w-full max-w-4xl rounded-[28px] border border-slate-200 bg-white p-6 shadow-2xl"
+    className="mx-auto w-full max-w-4xl rounded-[28px] border border-slate-200 bg-white p-6 text-left shadow-2xl"
     onClick={(e) => e.stopPropagation()}
   >
         <div className="mb-4 flex items-center justify-between">
@@ -1010,7 +1010,7 @@ function PainScaleModal({
   return (
     <>
       <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-950/70 p-4">
-        <div className="relative w-full max-w-4xl rounded-[28px] border border-slate-200 bg-white p-6 shadow-2xl">
+        <div className="relative w-full max-w-4xl rounded-[28px] border border-slate-200 bg-white p-6 text-left shadow-2xl">
           <div className="mb-5 flex items-center justify-between gap-4">
             <h2 className="text-lg font-semibold text-slate-900">
               Alternative ways to manage pain
@@ -1026,7 +1026,7 @@ function PainScaleModal({
           </div>
 
           <div className={`rounded-3xl border p-6 ${current.bg} ${current.text}`}>
-            <div className="flex flex-col items-center text-center">
+            <div className="flex flex-col items-start text-left">
               <div className="text-7xl">{current.emoji}</div>
               <div className="mt-3 text-4xl font-bold">{pain}</div>
               <div className="mt-2 text-xl font-bold">{current.title}</div>
@@ -1103,7 +1103,7 @@ function PainScaleModal({
            onClick={onOpenBewegungRezept}
            className="block font-semibold text-sky-700 underline underline-offset-2 hover:text-sky-900"
            >
-            Bewegungs recept
+            Bewegungs rezept
           </button>
 
           <button
