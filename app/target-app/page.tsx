@@ -271,7 +271,7 @@ Es besteht das Risiko eines Wiederauftretens bzw. einer Verschlechterung von Ös
 return {
   emoji: "🩺",
   title: "Bewertung läuft",
-  subtitle: "Bitte beantworten Sie die Fragen, um Empfehlungen zu erhalten",
+  subtitle: "Bitte beantworten Sie die Fragen, um Empfehlungen zu erhalten.",
   className:
     "border-slate-200 bg-gradient-to-br from-slate-50 to-white text-slate-800",
   icon: Stethoscope,
@@ -312,7 +312,7 @@ return {
             className="inline-flex items-center gap-2 rounded-2xl border border-slate-300 bg-white px-4 py-2.5 text-sm font-semibold text-slate-700 shadow-sm transition hover:bg-slate-50"
           >
             <RefreshCw className="h-4 w-4" />
-            Reset assessment
+            Bewertung zurücksetzen
           </button>
         </div>
       </header>
@@ -494,7 +494,7 @@ description="Wählen Sie die zutreffende Option aus, um die Risikobewertung fort
                         <CheckCircle2 className="h-7 w-7 text-emerald-700" />
                       </div>
                       <div>
-                        <div className="text-lg font-bold">Low risk</div>
+                        <div className="text-lg font-bold">Niedriges Risiko</div>
                         <div className="text-sm text-emerald-800">
                           Keine gastrointestinalen Risikomedikamente ausgewählt.
                         </div>
@@ -590,7 +590,7 @@ description="Wählen Sie die zutreffende Option aus, um die Risikobewertung fort
                   </div>
 
                   <div className="mt-4 text-sm text-slate-600">
-                    Das aktuelle Ergebnis basiert auf den ausgewählten NSAID-bezogenen Risikofaktoren.
+                    Das aktuelle Ergebnis basiert auf den ausgewählten NSAR-bezogenen Risikofaktoren.
                   </div>
                 </Panel>
               )}
@@ -884,7 +884,7 @@ function ImageModal({
             onClick={onClose}
             className="rounded-2xl border border-slate-300 px-3 py-1.5 text-sm font-medium text-slate-700 hover:bg-slate-50"
           >
-            Close
+            Schließen
           </button>
         </div>
 
@@ -1013,7 +1013,7 @@ function PainScaleModal({
         <div className="relative w-full max-w-4xl rounded-[28px] border border-slate-200 bg-white p-6 text-left shadow-2xl">
           <div className="mb-5 flex items-center justify-between gap-4">
             <h2 className="text-lg font-semibold text-slate-900">
-              Alternative ways to manage pain
+              Alternative Möglichkeiten zur Schmerzbehandlung
             </h2>
 
             <button
@@ -1021,7 +1021,7 @@ function PainScaleModal({
               onClick={onClose}
               className="rounded-2xl border border-slate-300 px-3 py-1.5 text-sm font-medium text-slate-700 hover:bg-slate-50"
             >
-              Close
+              Schließen
             </button>
           </div>
 
@@ -1103,7 +1103,7 @@ function PainScaleModal({
            onClick={onOpenBewegungRezept}
            className="block font-semibold text-sky-700 underline underline-offset-2 hover:text-sky-900"
            >
-            Bewegungs rezept
+            Bewegungsrezept
           </button>
 
           <button
@@ -1178,7 +1178,7 @@ function BewegungRezeptModal({ onClose }: { onClose: () => void }) {
   >
         <div className="mb-4 flex items-center justify-between">
           <h2 className="text-lg font-semibold text-slate-900">
-            Bewegungs recept
+            Bewegungsrezept
           </h2>
 
           <button
@@ -1186,7 +1186,7 @@ function BewegungRezeptModal({ onClose }: { onClose: () => void }) {
             onClick={onClose}
             className="rounded-2xl border border-slate-300 px-3 py-1.5 text-sm font-medium text-slate-700 hover:bg-slate-50"
           >
-            Close
+            Schließen
           </button>
         </div>
 
@@ -1612,7 +1612,7 @@ function SDMScriptModal({ onClose }: { onClose: () => void }) {
             onClick={onClose}
             className="rounded-2xl border border-slate-300 px-3 py-1.5 text-sm font-medium text-slate-700 hover:bg-slate-50"
           >
-            Close
+            Schließen
           </button>
         </div>
 
@@ -2222,7 +2222,7 @@ Beurteilen Sie die Entscheidung Ihres Patienten:
             onClick={onClose}
             className="rounded-2xl border border-slate-300 px-3 py-1.5 text-sm font-medium text-slate-700 hover:bg-slate-50"
           >
-            Close
+            Schließen
           </button>
         </div>
 
