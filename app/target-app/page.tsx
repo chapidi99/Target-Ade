@@ -2148,54 +2148,88 @@ Wenn bei Ihnen weitere Risikofaktoren vorliegen – zum Beispiel eine frühere M
 
 „Mit zunehmendem Alter können körperliche Veränderungen ohne Symptome verlaufen. Das bedeutet auch, dass Blutungen manchmal ohne deutliche Warnsignale auftreten können. Wir können das Risiko, dass so eine Blutung überhaupt auftritt, senken, indem wir die Dosis des Medikaments reduzieren, das das Risiko erhöht, oder eine Alternative für das Medikament suchen, das ihnen ebenfalls bei ihren Schmerzen helfen kann.“`;
 
-  const commonText = `Sprechen Sie mit Ihrem Patienten über das Risiko einer GI-Blutung
+  const commonText = `
+# Sprechen Sie mit Ihrem Patienten über das Risiko einer GI-Blutung
 (aufgrund von NSARs wie Ibuprofen, Diclofenac, ASS, etc.)
 
-Modifiziert aus dem SHARE Approach, den Formulierungshilfen aus dem Tool Ariba MediQuit 2.0. und den Patientenbroschüren des Canadian Deprescribing Network (CaDeN)
+_Modifiziert aus dem SHARE Approach, den Formulierungshilfen aus dem Tool Ariba MediQuit 2.0. und den Patientenbroschüren des Canadian Deprescribing Network (CaDeN)_
 
-Helfen Sie Ihrem Patienten, die Vor- und Nachteile der Behandlungsoptionen abzuwägen.
+---
 
-Allgemeiner Teil (Für alle Patienten):
+## Helfen Sie Ihrem Patienten, die Vor- und Nachteile der Behandlungsoptionen abzuwägen.
 
-„Lassen Sie mich Ihnen sagen, was die Forschung über die Vorteile und Risiken ihrer Schmerzmittel/Entzündungshemmer sagt, die Sie einnehmen.“
+---
 
-„Das Risiko, eine Blutung im Magen- oder Darmtrakt zu erleiden, nimmt mit steigendem Alter zu, insbesondere, wenn man Schmerzmittel/Entzündungshemmer wie zum Beispiel [Name des spezifischen Medikaments] einnimmt.“
+## Allgemeiner Teil (Für alle Patienten)
 
-„Das bedeutet, selbst wenn Sie das Medikament in den letzten Monaten gut vertragen haben, kann eine Einnahme über Jahre durchaus zu Nebenwirkungen führen.“
+### Gesprächseinstieg
+
+> „Lassen Sie mich Ihnen sagen, was die Forschung über die Vorteile und Risiken ihrer Schmerzmittel/Entzündungshemmer sagt, die Sie einnehmen.“
+
+> „Das Risiko, eine Blutung im Magen- oder Darmtrakt zu erleiden, nimmt mit steigendem Alter zu, insbesondere, wenn man Schmerzmittel/Entzündungshemmer wie zum Beispiel [Name des spezifischen Medikaments] einnimmt.“
+
+> „Das bedeutet, selbst wenn Sie das Medikament in den letzten Monaten gut vertragen haben, kann eine Einnahme über Jahre durchaus zu Nebenwirkungen führen.“
+
+### Erklärung des Risikos
 
 Schmerz- und Entzündungsmedikamente wie Ibuprofen, Diclofenac, Naproxen oder Etoricoxib (NSAR) können die Schleimhäute in ihrem Magen und Darm reizen und das Risiko für eine Magen- oder Darm-Blutung erhöhen – vor allem bei höherer Dosierung und längerer Einnahme.
 
-„Sie können sich das wie eine wunde Stelle im Mund vorstellen, nur an der Innenwand des Magen oder Darms. Jedoch kann diese im Magen durch die Säure viel mehr Probleme bereiten.“
+### Veranschaulichung
+
+> „Sie können sich das wie eine wunde Stelle im Mund vorstellen, nur an der Innenwand des Magen oder Darms. Jedoch kann diese im Magen durch die Säure viel mehr Probleme bereiten.“
+
+---
+
+## Individuelles Risiko
 
 ${isHighRisk ? highRiskSpecificText : moderateRiskSpecificText}
 
-Nur wenn der Patient nach konkreten Zahlen fragt:
+---
+
+## Nur wenn der Patient nach konkreten Zahlen fragt
 
 Diese Schmerzmittel, NSAR (z. B. Ibuprofen oder Diclofenac), können das Risiko für Komplikationen etwas erhöhen. Das Risiko ist insgesamt niedrig, aber etwa 5-mal höher als bei Menschen, die keine NSAR einnehmen.
 
-Bei Menschen ab 75 Jahren ist der Risikoanstieg deutlicher: Ohne diese Medikamente haben etwa 3 von 1.000 Personen innerhalb eines Jahres eine Magen- oder Darm-Blutung. Mit NSAR sind es etwa 15 von 1.000 Personen innerhalb eines Jahres.
+Bei Menschen ab 75 Jahren ist der Risikoanstieg deutlicher:
 
-Also entwickeln etwa 12 zusätzliche Patientinnen und Patienten pro 1.000 innerhalb eines Jahres eine Magen- oder Darm-Blutung, wenn sie NSAR einnehmen.
+• Ohne diese Medikamente haben etwa 3 von 1.000 Personen innerhalb eines Jahres eine Magen- oder Darm-Blutung.
 
-Vorstellung von Entscheidungshilfen:
+• Mit NSAR sind es etwa 15 von 1.000 Personen innerhalb eines Jahres.
 
-„Dies ist eine Broschüre, die Magen- und Darm-Blutungen noch einmal genau erklärt. Sie soll Ihnen dabei helfen, die Vor- und Nachteile abzuwägen und eine Entscheidung zu treffen. Wir können gemeinsam darüber sprechen.“
+• Also entwickeln etwa 12 zusätzliche Patientinnen und Patienten pro 1.000 innerhalb eines Jahres eine Magen- oder Darm-Blutung, wenn sie NSAR einnehmen.
 
-Bitten Sie Ihren Patienten um Mithilfe:
+---
 
-„Nachdem wir nun das Problem erkannt haben, können wir über Ihre Optionen und die nächsten Schritte sprechen. Ich möchte Ihre Meinung dazu hören, was Sie für richtig halten.“
+## Vorstellung von Entscheidungshilfen
 
-„Bevor wir eine Entscheidung treffen, möchte ich gerne mehr darüber erfahren, was Ihnen wichtig ist.“
+> „Dies ist eine Broschüre, die Magen- und Darm-Blutungen noch einmal genau erklärt. Sie soll Ihnen dabei helfen, die Vor- und Nachteile abzuwägen und eine Entscheidung zu treffen. Wir können gemeinsam darüber sprechen.“
 
-Treffen Sie gemeinsam mit Ihrem Patienten eine Entscheidung:
+---
 
-„Es ist in Ordnung, sich mehr Zeit zu nehmen, um über die Behandlungsmöglichkeiten nachzudenken. Möchten Sie in Ruhe darüber nachdenken oder sich vorher mit Angehörigen austauschen, oder sind Sie bereit, eine Entscheidung zu treffen?“
+## Bitten Sie Ihren Patienten um Mithilfe
 
-„Welche weiteren Fragen haben Sie an mich, damit ich Ihnen bei Ihrer Entscheidung helfen kann?“
+> „Nachdem wir nun das Problem erkannt haben, können wir über Ihre Optionen und die nächsten Schritte sprechen. Ich möchte Ihre Meinung dazu hören, was Sie für richtig halten.“
 
-Beurteilen Sie die Entscheidung Ihres Patienten:
+> „Bevor wir eine Entscheidung treffen, möchte ich gerne mehr darüber erfahren, was Ihnen wichtig ist.“
 
-„Wenn Sie das Gefühl haben, dass dieser Plan für Sie nicht funktioniert, vereinbaren Sie bitte einen Folgetermin, damit wir ${isHighRisk ? "einen anderen Ansatz planen können" : "eine andere Möglichkeit finden können"}.“`;
+---
+
+## Treffen Sie gemeinsam mit Ihrem Patienten eine Entscheidung
+
+> „Es ist in Ordnung, sich mehr Zeit zu nehmen, um über die Behandlungsmöglichkeiten nachzudenken. Möchten Sie in Ruhe darüber nachdenken oder sich vorher mit Angehörigen austauschen, oder sind Sie bereit, eine Entscheidung zu treffen?“
+
+> „Welche weiteren Fragen haben Sie an mich, damit ich Ihnen bei Ihrer Entscheidung helfen kann?“
+
+---
+
+## Beurteilen Sie die Entscheidung Ihres Patienten
+
+> „Wenn Sie das Gefühl haben, dass dieser Plan für Sie nicht funktioniert, vereinbaren Sie bitte einen Folgetermin, damit wir ${
+  isHighRisk
+    ? "einen anderen Ansatz planen können"
+    : "eine andere Möglichkeit finden können"
+}.“
+`;
 
   return (
     <div
@@ -2233,9 +2267,67 @@ Beurteilen Sie die Entscheidung Ihres Patienten:
               : "border-amber-200 bg-amber-50"
           }`}
         >
-          <div className="whitespace-pre-line text-sm leading-7 text-slate-800">
-            {commonText}
-          </div>
+          <div className="space-y-6 text-sm leading-7 text-slate-800">
+  <ScriptBlock title="Sprechen Sie mit Ihrem Patienten über das Risiko einer GI-Blutung">
+    <p>(aufgrund von NSARs wie Ibuprofen, Diclofenac, ASS, etc.)</p>
+    <p className="text-xs text-slate-500">
+      Modifiziert aus dem SHARE Approach, den Formulierungshilfen aus dem Tool Ariba MediQuit 2.0. und den Patientenbroschüren des Canadian Deprescribing Network (CaDeN)
+    </p>
+    <p>
+      Helfen Sie Ihrem Patienten, die Vor- und Nachteile der Behandlungsoptionen abzuwägen.
+    </p>
+  </ScriptBlock>
+
+  <ScriptBlock title="Allgemeiner Teil (Für alle Patienten)">
+    <Quote>„Lassen Sie mich Ihnen sagen, was die Forschung über die Vorteile und Risiken ihrer Schmerzmittel/Entzündungshemmer sagt, die Sie einnehmen.“</Quote>
+    <Quote>„Das Risiko, eine Blutung im Magen- oder Darmtrakt zu erleiden, nimmt mit steigendem Alter zu, insbesondere, wenn man Schmerzmittel/Entzündungshemmer wie zum Beispiel [Name des spezifischen Medikaments] einnimmt.“</Quote>
+    <Quote>„Das bedeutet, selbst wenn Sie das Medikament in den letzten Monaten gut vertragen haben, kann eine Einnahme über Jahre durchaus zu Nebenwirkungen führen.“</Quote>
+
+    <p>
+      Schmerz- und Entzündungsmedikamente wie Ibuprofen, Diclofenac, Naproxen oder Etoricoxib (NSAR) können die Schleimhäute in ihrem Magen und Darm reizen und das Risiko für eine Magen- oder Darm-Blutung erhöhen – vor allem bei höherer Dosierung und längerer Einnahme.
+    </p>
+
+    <Quote>„Sie können sich das wie eine wunde Stelle im Mund vorstellen, nur an der Innenwand des Magen oder Darms. Jedoch kann diese im Magen durch die Säure viel mehr Probleme bereiten.“</Quote>
+  </ScriptBlock>
+
+  <ScriptBlock title="Individuelles Risiko">
+    <div className="whitespace-pre-line">
+      {isHighRisk ? highRiskSpecificText : moderateRiskSpecificText}
+    </div>
+  </ScriptBlock>
+
+  <ScriptBlock title="Nur wenn der Patient nach konkreten Zahlen fragt">
+    <p>
+      Diese Schmerzmittel, NSAR (z. B. Ibuprofen oder Diclofenac), können das Risiko für Komplikationen etwas erhöhen. Das Risiko ist insgesamt niedrig, aber etwa 5-mal höher als bei Menschen, die keine NSAR einnehmen.
+    </p>
+    <p>
+      Bei Menschen ab 75 Jahren ist der Risikoanstieg deutlicher: Ohne diese Medikamente haben etwa 3 von 1.000 Personen innerhalb eines Jahres eine Magen- oder Darm-Blutung. Mit NSAR sind es etwa 15 von 1.000 Personen innerhalb eines Jahres.
+    </p>
+    <p>
+      Also entwickeln etwa 12 zusätzliche Patientinnen und Patienten pro 1.000 innerhalb eines Jahres eine Magen- oder Darm-Blutung, wenn sie NSAR einnehmen.
+    </p>
+  </ScriptBlock>
+
+  <ScriptBlock title="Vorstellung von Entscheidungshilfen">
+    <Quote>„Dies ist eine Broschüre, die Magen- und Darm-Blutungen noch einmal genau erklärt. Sie soll Ihnen dabei helfen, die Vor- und Nachteile abzuwägen und eine Entscheidung zu treffen. Wir können gemeinsam darüber sprechen.“</Quote>
+  </ScriptBlock>
+
+  <ScriptBlock title="Bitten Sie Ihren Patienten um Mithilfe">
+    <Quote>„Nachdem wir nun das Problem erkannt haben, können wir über Ihre Optionen und die nächsten Schritte sprechen. Ich möchte Ihre Meinung dazu hören, was Sie für richtig halten.“</Quote>
+    <Quote>„Bevor wir eine Entscheidung treffen, möchte ich gerne mehr darüber erfahren, was Ihnen wichtig ist.“</Quote>
+  </ScriptBlock>
+
+  <ScriptBlock title="Treffen Sie gemeinsam mit Ihrem Patienten eine Entscheidung">
+    <Quote>„Es ist in Ordnung, sich mehr Zeit zu nehmen, um über die Behandlungsmöglichkeiten nachzudenken. Möchten Sie in Ruhe darüber nachdenken oder sich vorher mit Angehörigen austauschen, oder sind Sie bereit, eine Entscheidung zu treffen?“</Quote>
+    <Quote>„Welche weiteren Fragen haben Sie an mich, damit ich Ihnen bei Ihrer Entscheidung helfen kann?“</Quote>
+  </ScriptBlock>
+
+  <ScriptBlock title="Beurteilen Sie die Entscheidung Ihres Patienten">
+    <Quote>
+      „Wenn Sie das Gefühl haben, dass dieser Plan für Sie nicht funktioniert, vereinbaren Sie bitte einen Folgetermin, damit wir {isHighRisk ? "einen anderen Ansatz planen können" : "eine andere Möglichkeit finden können"}.“
+    </Quote>
+  </ScriptBlock>
+</div>
 
           <div className="mt-8 border-t border-slate-300 pt-4 text-xs leading-6 text-slate-600">
             <h4 className="mb-3 text-sm font-bold text-slate-800">Quellen:</h4>
@@ -2361,5 +2453,28 @@ Beurteilen Sie die Entscheidung Ihres Patienten:
         </div>
       </div>
     </div>
+  );
+}
+
+function ScriptBlock({
+  title,
+  children,
+}: {
+  title: string;
+  children: React.ReactNode;
+}) {
+  return (
+    <section className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
+      <h3 className="mb-3 text-sm font-bold text-slate-900">{title}</h3>
+      <div className="space-y-3">{children}</div>
+    </section>
+  );
+}
+
+function Quote({ children }: { children: React.ReactNode }) {
+  return (
+    <blockquote className="rounded-2xl border-l-4 border-sky-500 bg-sky-50 px-4 py-3 text-slate-800">
+      {children}
+    </blockquote>
   );
 }
