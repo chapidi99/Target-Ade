@@ -12,6 +12,7 @@ import {
   ShieldAlert,
   Stethoscope,
 } from "lucide-react";
+import { ClipboardList } from "lucide-react";
 
 type YesNo = boolean | null;
 
@@ -45,6 +46,7 @@ export default function TargetAppPage() {
   const [showAlternativesModal, setShowAlternativesModal] = useState(false);
 const [showBewegungRezept, setShowBewegungRezept] = useState(false);
 const [showNsaidRiskScript, setShowNsaidRiskScript] = useState(false);
+const [selectedMedicationBox, setSelectedMedicationBox] = useState<string | null>(null);
   const [riskFactors, setRiskFactors] = useState<Record<RiskFactorKey, boolean>>(
     {
       previousGIBleedingOrComplicatedUlcer: false,
@@ -207,9 +209,7 @@ Link zum Ausschleich-Tool.`,
 if (medications.corticosteroids === true) {
   boxes.push({
     title: "Kortikosteroide",
-    text: `Kortikosteroide stellen allein keinen unabhängigen Risikofaktor für GI-Blutungen dar. Das Risiko steigt jedoch bei gleichzeitiger Anwendung anderer gastrointestinal belastender Medikamente, insbesondere NSAR.
-
-Es wird empfohlen, eine strukturierte Medikationsanalyse durchzuführen und die Indikationen für Kortikosteroide sowie NSAR zu überprüfen.`,
+    text: `Kortikosteroide stellen allein keinen unabhängigen Risikofaktor für GI-Blutungen dar. Das Risiko steigt jedoch bei gleichzeitiger Anwendung anderer gastrointestinal belastender Medikamente. Es wird empfohlen, eine strukturierte Medikationsanalyse durchzuführen und die Indikationen für Kortikosteroide sowie für die anderen potenziell gastrointestinal belastenden Medikamente zu überprüfen.`,
   });
 }
 
@@ -297,7 +297,7 @@ return {
 
             <div>
               <h1 className="text-2xl font-bold tracking-tight">
-                TARGET App
+                TARGET - ADE App
               </h1>
 
               <p className="mt-1 text-sm text-slate-600">
@@ -321,8 +321,7 @@ return {
           <section className="space-y-6">
             <Panel>
               <SectionHeader
-                icon={<Pill className="h-5 w-5" />}
-               eyebrow="Schritt 1"
+                
 title="Nimmt Ihr Patient/Ihre Patientin NSAR ein?"
 description="Wählen Sie die zutreffende Option aus, um die Risikobewertung fortzusetzen."/>
 
@@ -334,8 +333,7 @@ description="Wählen Sie die zutreffende Option aus, um die Risikobewertung fort
             {takesNSAIDs === true && (
   <Panel>
     <SectionHeader
-      icon={<ShieldAlert className="h-5 w-5" />}
-      eyebrow="NSAR"
+      
       title="Risikofaktoren für GI-Blutungen"
       description="Bitte wählen Sie alle zutreffenden Faktoren aus."
     />
@@ -363,7 +361,7 @@ description="Wählen Sie die zutreffende Option aus, um die Risikobewertung fort
                     {/* <CategoryPill tone="amber">Moderate-risk factors</CategoryPill> */}
 
                     <RiskItem
-                      label="Alter >60-65 Jahre"
+                      label="Alter >60"
                       checked={riskFactors.ageOver60to65}
                       onChange={() => toggleRiskFactor("ageOver60to65")}
                     />
@@ -424,8 +422,7 @@ description="Wählen Sie die zutreffende Option aus, um die Risikobewertung fort
             {takesNSAIDs === false && (
   <Panel>
     <SectionHeader
-      icon={<Activity className="h-5 w-5" />}
-      eyebrow="Pfad ohne NSAR"
+     
       title="Nimmt Ihr Patient/Ihre Patientin mindestens eines der folgenden Medikamente ein?"
       description="Bitte geben Sie für jede Medikamentengruppe an, ob sie eingenommen wird."
     />
@@ -464,28 +461,7 @@ description="Wählen Sie die zutreffende Option aus, um die Risikobewertung fort
       />
     </div>
 
-               {showMultiMedicationWarning && (
-  <div className="mt-6">
-    <InfoCard
-      title="Warnhinweis bei Kombinationstherapie"
-      icon={<AlertTriangle className="h-4 w-4" />}
-      tone="amber"
-    >
-      Bei gleichzeitiger Einnahme von mehr als einem der oben genannten
-      Medikamente sollte die Kombination von Kortikosteroiden und
-      Thrombozytenaggregationshemmern sowie von
-      Thrombozytenaggregationshemmern und Antikoagulanzien bei Patientinnen
-      und Patienten mit einer Ulkusanamnese (auch bei unkompliziertem
-      Ulkus) möglichst vermieden werden.
-
-      Falls eine solche Kombination unvermeidbar ist, sollte eine
-      gastroprotektive Therapie (z. B. mit einem Protonenpumpenhemmer)
-      erwogen werden.
-
-      Link zum Algorithmus.
-    </InfoCard>
-  </div>
-)}
+               
 
                 {allFourCoreMedsNo && (
                   <div className="mt-6 rounded-3xl border border-emerald-200 bg-gradient-to-br from-emerald-50 to-white p-5 text-emerald-900">
@@ -508,103 +484,157 @@ description="Wählen Sie die zutreffende Option aus, um die Risikobewertung fort
 
           <aside className="lg:sticky lg:top-6 lg:self-start">
             <div className="space-y-4">
-              <div className={`rounded-3xl border p-5 shadow-sm ${statusCard.className}`}>
-                <div className="flex items-start gap-4">
-                  <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-white/70">
-                    <statusCard.icon className="h-7 w-7" />
-                  </div>
-                  <div>
-                    <div className="text-lg font-bold">{statusCard.title}</div>
-                    <div className="mt-1 text-sm opacity-90">{statusCard.subtitle}</div>
-                  </div>
-                </div>
-              </div>
+             {takesNSAIDs === false && showMultiMedicationWarning && (
+  <div className="mt-6">
+    <InfoCard
+      title="Warnhinweis bei Kombinationstherapie"
+      icon={<AlertTriangle className="h-4 w-4" />}
+      tone="amber"
+    >
+      Bei gleichzeitiger Einnahme von mehr als einem der oben genannten
+      Medikamente sollte die Kombination von Kortikosteroiden und
+      Thrombozytenaggregationshemmern sowie von
+      Thrombozytenaggregationshemmern und Antikoagulanzien bei Patientinnen
+      und Patienten mit einer Ulkusanamnese (auch bei unkompliziertem
+      Ulkus) möglichst vermieden werden.
+
+      Falls eine solche Kombination unvermeidbar ist, sollte eine
+      gastroprotektive Therapie (z. B. mit einem Protonenpumpenhemmer)
+      erwogen werden.
+
+      Link zum Algorithmus.
+    </InfoCard>
+  </div>
+)}
 
              
                 
 
-                <div className="mt-4 flex flex-col items-stretch gap-3">
-                  {takesNSAIDs === true && nsaidRiskResult && (
-                    <>
-                      <QuickAction>
-                        <TooltipLabel
-                          label="Allgemeine Empfehlungen"
-                          tooltipText={nsaidRiskResult.specificRecommendationsTooltip}
-                        />
-                      </QuickAction>
-                   
-                      <QuickAction>
-                        <button
-                          type="button"
-                          onClick={() => setShowAlternativesModal(true)}
-                          className="block w-full text-left font-semibold text-sky-700 underline underline-offset-2 hover:text-sky-900"
-                        >
-                          Alternative Möglichkeiten zur Schmerzbehandlung
-                        </button>
-                      </QuickAction>
-                      <QuickAction>
-  <button
-    type="button"
-    onClick={() => setShowBewegungRezept(true)}
-    className="font-semibold text-sky-700 underline underline-offset-2 hover:text-sky-900"
-  >
-    Bewegungsrezept
-  </button>
-</QuickAction>
+<div className="mt-4 flex flex-col items-stretch gap-3">
+  {takesNSAIDs === true && nsaidRiskResult && (
+    <>
+      <div
+        className={`rounded-3xl border p-5 shadow-sm ${nsaidRiskResult.panelClass}`}
+      >
+        <div className="flex items-start gap-4">
+          <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-white/70">
+            <nsaidRiskResult.icon className="h-7 w-7" />
+          </div>
 
-   {nsaidRiskResult.shortLevel !== "Niedriges Risiko" && (
-  <QuickAction>
-    <button
-      type="button"
-      onClick={() => setShowNsaidRiskScript(true)}
-      className="font-semibold text-sky-700 underline underline-offset-2 hover:text-sky-900"
-    >
-      Gespräch über NSAR-Risiko
-    </button>
-  </QuickAction>
-)}
-                    </>
-                  )}
+          <div>
+            <div className="text-lg font-bold">
+              {nsaidRiskResult.shortLevel}
+            </div>
 
-                  {takesNSAIDs === false &&
-                    medicationBoxes.length === 0 &&
-                    !allFourCoreMedsNo && (
-                      <div className="rounded-2xl border border-dashed border-slate-300 bg-slate-50 p-4 text-sm text-slate-500">
-                        Arzneimittelbezogene Empfehlungen werden hier angezeigt.
-                      </div>
-                    )}
-                </div>
+            <div className="mt-1 text-sm opacity-90">
+              {nsaidRiskResult.level}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <InfoCard
+        title="Allgemeine Empfehlungen"
+        icon={<ClipboardList className="h-4 w-4" />}
+      >
+        <div className="whitespace-pre-line">
+          {nsaidRiskResult.specificRecommendationsTooltip}
+        </div>
+      </InfoCard>
+
+      <QuickAction>
+        <button
+          type="button"
+          onClick={() => setShowAlternativesModal(true)}
+          className="block w-full text-left font-semibold text-sky-700 underline underline-offset-2 hover:text-sky-900"
+        >
+          Alternative Möglichkeiten zur Schmerzbehandlung
+        </button>
+      </QuickAction>
+
+      <QuickAction>
+        <button
+          type="button"
+          onClick={() => setShowBewegungRezept(true)}
+          className="block w-full text-left font-semibold text-sky-700 underline underline-offset-2 hover:text-sky-900"
+        >
+          Bewegungsrezept
+        </button>
+      </QuickAction>
+
+      {nsaidRiskResult.shortLevel !== "Niedriges Risiko" && (
+        <QuickAction>
+          <button
+            type="button"
+            onClick={() => setShowNsaidRiskScript(true)}
+            className="block w-full text-left font-semibold text-sky-700 underline underline-offset-2 hover:text-sky-900"
+          >
+            Gespräch über NSAR-Risiko
+          </button>
+        </QuickAction>
+      )}
+    </>
+  )}
+
+  {takesNSAIDs === false &&
+    medicationBoxes.length === 0 &&
+    !allFourCoreMedsNo && (
+      <div className="rounded-2xl border border-dashed border-slate-300 bg-slate-50 p-4 text-sm text-slate-500">
+        Arzneimittelbezogene Empfehlungen werden hier angezeigt.
+      </div>
+    )}
+</div>
             
 
-              {takesNSAIDs === true && nsaidRiskResult && (
-                <Panel className="bg-white">
-                  <div className="flex items-center justify-between gap-3">
-                    <div className="text-sm font-semibold uppercase tracking-[0.18em] text-slate-500">
-                      Aktuelles Risiko
-                    </div>
-                    <span
-                      className={`rounded-full border px-3 py-1 text-xs font-semibold ${nsaidRiskResult.badgeClass}`}
-                    >
-                      {nsaidRiskResult.shortLevel}
-                    </span>
-                  </div>
+             
 
-                  <div className="mt-4 text-sm text-slate-600">
-                    Das aktuelle Ergebnis basiert auf den ausgewählten NSAR-bezogenen Risikofaktoren.
-                  </div>
-                </Panel>
-              )}
+              {takesNSAIDs === false && medicationBoxes.length > 0 && (
+  <Panel className="bg-white">
+    <div className="mb-4">
+      <h2 className="text-sm font-semibold uppercase tracking-[0.18em] text-slate-500">
+        Arzneimittelbezogene Empfehlungen
+      </h2>
+      <p className="mt-1 text-sm text-slate-600">
+        Wählen Sie eine Medikamentengruppe aus, um die Empfehlung anzuzeigen.
+      </p>
+    </div>
 
-              {takesNSAIDs === false &&
-                medicationBoxes.map((box) => (
-                  <InfoCard
-                    key={box.title}
-                    title={box.title}
-                    icon={<Pill className="h-4 w-4" />}
-                  >
-                    <div className="whitespace-pre-line">{box.text}</div>
-                  </InfoCard>
-                ))}
+    <div className="space-y-2">
+      {medicationBoxes.map((box) => {
+        const isOpen = selectedMedicationBox === box.title;
+
+        return (
+          <div
+            key={box.title}
+            className="rounded-2xl border border-slate-200 bg-slate-50"
+          >
+            <button
+              type="button"
+              onClick={() =>
+                setSelectedMedicationBox(isOpen ? null : box.title)
+              }
+              className="flex w-full items-center justify-between gap-3 px-4 py-3 text-left"
+            >
+              <span className="font-semibold text-slate-900">
+                {box.title}
+              </span>
+
+              <span className="text-sm text-slate-500">
+                {isOpen ? "▲" : "▼"}
+              </span>
+            </button>
+
+            {isOpen && (
+              <div className="border-t border-slate-200 px-4 py-3 text-sm leading-6 text-slate-700">
+                <div className="whitespace-pre-line">{box.text}</div>
+              </div>
+            )}
+          </div>
+        );
+      })}
+    </div>
+  </Panel>
+)}
             </div>
           </aside>
         </div>
@@ -2142,7 +2172,7 @@ function NsaidRiskScriptModal({
 
 „Und wenn zusätzliche Risikofaktoren vorliegen – zum Beispiel früher oder aktuell ein Magengeschwür – kann das Risiko weiter steigen. Deshalb setzen wir diese Medikamente gezielt und vorsichtig ein und wägen gemeinsam Nutzen und Risiken ab.“
 
-Wenn bei Ihnen weitere Risikofaktoren vorliegen – zum Beispiel eine frühere Magen- oder Darmblutung, ein Magengeschwür, eine schwere chronische Erkrankung oder wenn Sie andere Medikamente einnehmen, die den Magen oder Darm belasten – dann kann das Risiko noch weiter ansteigen.`;
+„Wenn bei Ihnen weitere Risikofaktoren vorliegen – zum Beispiel eine frühere Magen- oder Darmblutung, ein Magengeschwür, eine schwere chronische Erkrankung oder wenn Sie andere Medikamente einnehmen, die den Magen oder Darm belasten – dann kann das Risiko noch weiter ansteigen.“`;
 
   const moderateRiskSpecificText = `Zusätzliche Informationen:
 
@@ -2188,16 +2218,15 @@ ${isHighRisk ? highRiskSpecificText : moderateRiskSpecificText}
 
 ## Nur wenn der Patient nach konkreten Zahlen fragt
 
-Diese Schmerzmittel, NSAR (z. B. Ibuprofen oder Diclofenac), können das Risiko für Komplikationen etwas erhöhen. Das Risiko ist insgesamt niedrig, aber etwa 5-mal höher als bei Menschen, die keine NSAR einnehmen.
+> „Diese Schmerzmittel, NSAR (z. B. Ibuprofen oder Diclofenac), können das Risiko für Komplikationen etwas erhöhen. Das Risiko ist insgesamt niedrig, aber etwa 5-mal höher als bei Menschen, die keine NSAR einnehmen.“
 
-Bei Menschen ab 75 Jahren ist der Risikoanstieg deutlicher:
+### Bei Menschen ab 75 Jahren ist der Risikoanstieg deutlicher
 
-• Ohne diese Medikamente haben etwa 3 von 1.000 Personen innerhalb eines Jahres eine Magen- oder Darm-Blutung.
+> „Ohne diese Medikamente haben etwa 3 von 1.000 Personen innerhalb eines Jahres eine Magen- oder Darm-Blutung.“
 
-• Mit NSAR sind es etwa 15 von 1.000 Personen innerhalb eines Jahres.
+> „Mit NSAR sind es etwa 15 von 1.000 Personen innerhalb eines Jahres.“
 
-• Also entwickeln etwa 12 zusätzliche Patientinnen und Patienten pro 1.000 innerhalb eines Jahres eine Magen- oder Darm-Blutung, wenn sie NSAR einnehmen.
-
+> „Also entwickeln etwa 12 zusätzliche Patientinnen und Patienten pro 1.000 innerhalb eines Jahres eine Magen- oder Darm-Blutung, wenn sie NSAR einnehmen.“
 ---
 
 ## Vorstellung von Entscheidungshilfen
@@ -2283,9 +2312,9 @@ Bei Menschen ab 75 Jahren ist der Risikoanstieg deutlicher:
     <Quote>„Das Risiko, eine Blutung im Magen- oder Darmtrakt zu erleiden, nimmt mit steigendem Alter zu, insbesondere, wenn man Schmerzmittel/Entzündungshemmer wie zum Beispiel [Name des spezifischen Medikaments] einnimmt.“</Quote>
     <Quote>„Das bedeutet, selbst wenn Sie das Medikament in den letzten Monaten gut vertragen haben, kann eine Einnahme über Jahre durchaus zu Nebenwirkungen führen.“</Quote>
 
-    <p>
-      Schmerz- und Entzündungsmedikamente wie Ibuprofen, Diclofenac, Naproxen oder Etoricoxib (NSAR) können die Schleimhäute in ihrem Magen und Darm reizen und das Risiko für eine Magen- oder Darm-Blutung erhöhen – vor allem bei höherer Dosierung und längerer Einnahme.
-    </p>
+      <Quote>
+    „Schmerz- und Entzündungsmedikamente wie Ibuprofen, Diclofenac, Naproxen oder Etoricoxib (NSAR) können die Schleimhäute in Ihrem Magen und Darm reizen und das Risiko für eine Magen- oder Darm-Blutung erhöhen – vor allem bei höherer Dosierung und längerer Einnahme.“
+  </Quote>
 
     <Quote>„Sie können sich das wie eine wunde Stelle im Mund vorstellen, nur an der Innenwand des Magen oder Darms. Jedoch kann diese im Magen durch die Säure viel mehr Probleme bereiten.“</Quote>
   </ScriptBlock>
@@ -2335,7 +2364,7 @@ Bei Menschen ab 75 Jahren ist der Risikoanstieg deutlicher:
             <div className="space-y-4">
               <div>
                 <p>
-                  1AHRQ. The SHARE Approach: Conversation Starters Pub. No.
+                  <sup>1</sup>AHRQ. The SHARE Approach: Conversation Starters Pub. No.
                   25-0005-2-EF, October 2024:
                 </p>
                 <a
@@ -2350,7 +2379,7 @@ Bei Menschen ab 75 Jahren ist der Risikoanstieg deutlicher:
 
               <div>
                 <p>
-                  1AHRQ. The SHARE Approach: Communicate numbers clearly Pub.
+                  <sup>1</sup>AHRQ. The SHARE Approach: Communicate numbers clearly Pub.
                   No. 25-0005-4-EF, October 2024:
                 </p>
                 <a
@@ -2364,11 +2393,11 @@ Bei Menschen ab 75 Jahren ist der Risikoanstieg deutlicher:
               </div>
 
               <div>
-                <p>2Ariba MediQuit 2.0</p>
+                <p><sup>2</sup>Ariba MediQuit 2.0</p>
               </div>
 
               <div>
-                <p>3Canadian Deprescribing Network (CaDeN)</p>
+                <p><sup>3</sup>Canadian Deprescribing Network (CaDeN)</p>
                 <a
                   href="https://www.deprescribingnetwork.ca/patient-handouts"
                   target="_blank"
@@ -2380,12 +2409,12 @@ Bei Menschen ab 75 Jahren ist der Risikoanstieg deutlicher:
               </div>
 
               <div>
-                <p>4 Selbst hinzugefügt</p>
+                <p><sup>4</sup>Selbst hinzugefügt</p>
               </div>
 
               <div>
                 <p>
-                  5Angel L, A review of the gastrointestinal safety data—a
+                  <sup>5</sup>Angel L, A review of the gastrointestinal safety data—a
                   gastroenterologist’s perspective, Rheumatology, Volume 49,
                   Issue suppl_2, May 2010, Pages ii3–ii10
                 </p>
@@ -2401,7 +2430,7 @@ Bei Menschen ab 75 Jahren ist der Risikoanstieg deutlicher:
 
               <div>
                 <p>
-                  6Tawfik AG, Gomez-Lumbreras A, Del Fiol G, Kawamoto K,
+                  <sup>6</sup>Tawfik AG, Gomez-Lumbreras A, Del Fiol G, Kawamoto K,
                   Trinkley KE, Reese T, Jones A, Malone DC. Nonsteroidal
                   Anti-Inflammatory Drugs and Risk of Gastrointestinal Bleeding:
                   A Systematic Review and Meta-Analysis. Clin Pharmacol Ther.
@@ -2419,7 +2448,7 @@ Bei Menschen ab 75 Jahren ist der Risikoanstieg deutlicher:
 
               <div>
                 <p>
-                  7Hallas J, Lauritsen J, Villadsen HD, Gram LF. Nonsteroidal
+                  <sup>7</sup>Hallas J, Lauritsen J, Villadsen HD, Gram LF. Nonsteroidal
                   anti-inflammatory drugs and upper gastrointestinal bleeding,
                   identifying high-risk groups by excess risk estimates. Scand J
                   Gastroenterol. 1995 May;30(5):438-44.
@@ -2436,7 +2465,7 @@ Bei Menschen ab 75 Jahren ist der Risikoanstieg deutlicher:
 
               <div>
                 <p>
-                  8Davis A und Robson J. The dangers of NSAIDs: look both ways.
+                  <sup>8</sup>Davis A und Robson J. The dangers of NSAIDs: look both ways.
                   British Journal of General Practice 2016; 66 (645):172-173.
                 </p>
                 <a
