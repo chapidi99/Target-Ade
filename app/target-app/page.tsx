@@ -674,21 +674,29 @@ function SectionHeader({
   title,
   description,
 }: {
-  icon: React.ReactNode;
-  eyebrow: string;
+  icon?: React.ReactNode;
+  eyebrow?: string;
   title: string;
   description?: string;
 }) {
   return (
     <div>
-      <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.18em] text-slate-500">
-        <span className="text-sky-600">{icon}</span>
-        <span>{eyebrow}</span>
-      </div>
+      {(icon || eyebrow) && (
+        <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.18em] text-slate-500">
+          {icon && <span className="text-sky-600">{icon}</span>}
+          {eyebrow && <span>{eyebrow}</span>}
+        </div>
+      )}
+
       <h2 className="mt-3 text-xl font-bold tracking-tight text-slate-900">
         {title}
       </h2>
-      {description && <p className="mt-2 text-sm text-slate-600">{description}</p>}
+
+      {description && (
+        <p className="mt-2 text-sm text-slate-600">
+          {description}
+        </p>
+      )}
     </div>
   );
 }
