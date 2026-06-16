@@ -13,6 +13,7 @@ import {
   Stethoscope,
 } from "lucide-react";
 import { ClipboardList } from "lucide-react";
+import { Printer } from "lucide-react";
 
 type YesNo = boolean | null;
 
@@ -338,84 +339,76 @@ description="Wählen Sie die zutreffende Option aus, um die Risikobewertung fort
       description="Bitte wählen Sie alle zutreffenden Faktoren aus."
     />
 
-                <div className="mt-6 grid gap-6 xl:grid-cols-2">
-                  <div className="space-y-3">
-                    {/* <CategoryPill tone="rose">High-risk factors</CategoryPill>*/}
+                <div className="mt-6 grid gap-3 md:grid-cols-2">
+  <RiskItem
+    label="Frühere gastrointestinale Blutungen oder komplizierter peptischer Ulkus (z. B. Perforation)"
+    checked={riskFactors.previousGIBleedingOrComplicatedUlcer}
+    onChange={() =>
+      toggleRiskFactor("previousGIBleedingOrComplicatedUlcer")
+    }
+  />
 
-                    <RiskItem
-                      label="Frühere gastrointestinale Blutungen oder komplizierter peptischer Ulkus (z. B. Perforation)"
-                      checked={riskFactors.previousGIBleedingOrComplicatedUlcer}
-                      onChange={() =>
-                        toggleRiskFactor("previousGIBleedingOrComplicatedUlcer")
-                      }
-                    />
+  <RiskItem
+    label="Aktiver peptischer Ulkus"
+    checked={riskFactors.activePepticUlcer}
+    onChange={() => toggleRiskFactor("activePepticUlcer")}
+  />
 
-                    <RiskItem
-                      label="Aktiver peptischer Ulkus"
-                      checked={riskFactors.activePepticUlcer}
-                      onChange={() => toggleRiskFactor("activePepticUlcer")}
-                    />
-                  </div>
+  <RiskItem
+    label="Alter >60"
+    checked={riskFactors.ageOver60to65}
+    onChange={() => toggleRiskFactor("ageOver60to65")}
+  />
 
-                  <div className="space-y-3">
-                    {/* <CategoryPill tone="amber">Moderate-risk factors</CategoryPill> */}
+  <RiskItem
+    label="Vorgeschichte eines peptischen Ulkus (PUD)"
+    checked={riskFactors.historyOfUncomplicatedPUD}
+    onChange={() => toggleRiskFactor("historyOfUncomplicatedPUD")}
+  />
 
-                    <RiskItem
-                      label="Alter >60"
-                      checked={riskFactors.ageOver60to65}
-                      onChange={() => toggleRiskFactor("ageOver60to65")}
-                    />
-                    <RiskItem
-                      label="Vorgeschichte eines peptischen Ulkus (PUD)"
-                      checked={riskFactors.historyOfUncomplicatedPUD}
-                      onChange={() => toggleRiskFactor("historyOfUncomplicatedPUD")}
-                    />
-                    <RiskItem
-                      label="Gleichzeitige Gabe von niedrig dosiertem ASS (Acetylsalicylsäure)"
-                      checked={riskFactors.concomitantLowDoseASA}
-                      onChange={() => toggleRiskFactor("concomitantLowDoseASA")}
-                    />
-                    <RiskItem
-                      label="Gleichzeitige Gabe anderer Thrombozytenaggregationshemmer (z. B. Clopidogrel)"
-                      checked={riskFactors.concomitantOtherAntiplatelet}
-                      onChange={() =>
-                        toggleRiskFactor("concomitantOtherAntiplatelet")
-                      }
-                    />
-                    <RiskItem
-                      label="Gleichzeitige Gabe von Antikoagulanzien (z. B. Rivaroxaban)"
-                      checked={riskFactors.concomitantAnticoagulant}
-                      onChange={() => toggleRiskFactor("concomitantAnticoagulant")}
-                    />
-                    <RiskItem
-                      label="Gleichzeitige Gabe von Glukokortikoiden (z. B. Prednison)"
-                      checked={riskFactors.concomitantGlucocorticoid}
-                      onChange={() =>
-                        toggleRiskFactor("concomitantGlucocorticoid")
-                      }
-                    />
+  <RiskItem
+    label="Gleichzeitige Gabe von niedrig dosiertem ASS (Acetylsalicylsäure)"
+    checked={riskFactors.concomitantLowDoseASA}
+    onChange={() => toggleRiskFactor("concomitantLowDoseASA")}
+  />
 
-                    <RiskItem
-                      label="Gleichzeitige SSRI-Therapie"
-                      checked={riskFactors.concomitantSSRI}
-                      onChange={() =>
-                        toggleRiskFactor("concomitantSSRI")
-                      }
-                     />
+  <RiskItem
+    label="Gleichzeitige Gabe anderer Thrombozytenaggregationshemmer (z. B. Clopidogrel)"
+    checked={riskFactors.concomitantOtherAntiplatelet}
+    onChange={() => toggleRiskFactor("concomitantOtherAntiplatelet")}
+  />
 
-                    <RiskItem
-                      label="Hochdosierte NSAR-Therapie"
-                      checked={riskFactors.highDoseNSAIDTherapy}
-                      onChange={() => toggleRiskFactor("highDoseNSAIDTherapy")}
-                      />
+  <RiskItem
+    label="Gleichzeitige Gabe von Antikoagulanzien (z. B. Rivaroxaban)"
+    checked={riskFactors.concomitantAnticoagulant}
+    onChange={() => toggleRiskFactor("concomitantAnticoagulant")}
+  />
 
-                    <RiskItem
-                      label="Schwere Begleiterkrankungen"
-                      checked={riskFactors.severeComorbidDiseases}
-                      onChange={() => toggleRiskFactor("severeComorbidDiseases")}
-                       />
-                  </div>
-                </div>
+  <RiskItem
+    label="Gleichzeitige Gabe von Glukokortikoiden (z. B. Prednison)"
+    checked={riskFactors.concomitantGlucocorticoid}
+    onChange={() => toggleRiskFactor("concomitantGlucocorticoid")}
+  />
+
+  <RiskItem
+    label="Gleichzeitige SSRI-Therapie"
+    checked={riskFactors.concomitantSSRI}
+    onChange={() => toggleRiskFactor("concomitantSSRI")}
+  />
+
+  <RiskItem
+    label="Hochdosierte NSAR-Therapie"
+    checked={riskFactors.highDoseNSAIDTherapy}
+    onChange={() => toggleRiskFactor("highDoseNSAIDTherapy")}
+  />
+
+  <RiskItem
+    label="Schwere Begleiterkrankungen"
+    checked={riskFactors.severeComorbidDiseases}
+    onChange={() => toggleRiskFactor("severeComorbidDiseases")}
+  />
+</div>
+             
               </Panel>
             )}
 
@@ -765,14 +758,17 @@ function RiskItem({
 }) {
   return (
     <label className="flex cursor-pointer items-start gap-3 rounded-2xl border border-slate-200 bg-slate-50 p-4 transition hover:border-slate-300 hover:bg-white">
-      <input
-        type="checkbox"
-        checked={checked}
-        onChange={onChange}
-        className="mt-1 h-4 w-4 rounded border-slate-300"
-      />
-      <span className="text-sm text-slate-800">{label}</span>
-    </label>
+  <input
+    type="checkbox"
+    checked={checked}
+    onChange={onChange}
+    className="mt-1 h-5 w-5 shrink-0 rounded border-slate-300 text-sky-600 focus:ring-sky-500"
+  />
+
+  <span className="flex-1 text-sm leading-6 text-slate-800">
+    {label}
+  </span>
+</label>
   );
 }
 
@@ -1169,6 +1165,7 @@ function PainScaleModal({
 
 function BewegungRezeptModal({ onClose }: { onClose: () => void }) {
   const [form, setForm] = useState({
+    studyId: "",
     krankenkasse: "",
     patientName: "",
     geburtsdatum: "",
@@ -1220,9 +1217,12 @@ function BewegungRezeptModal({ onClose }: { onClose: () => void }) {
           </button>
         </div>
 
-        <div className="grid gap-0 overflow-hidden rounded-2xl border border-neutral-800 bg-white text-neutral-950 lg:grid-cols-2">
-          {/* Left side */}
+        <div
+  id="bewegungsrezept-print-area"
+  className="grid gap-0 overflow-hidden rounded-2xl border border-neutral-800 bg-white text-neutral-950 lg:grid-cols-2"
+> {/* Left side */}
           <section className="border-b-2 border-dotted border-neutral-700 p-4 sm:p-6 lg:border-b-0 lg:border-r-2">
+            
             <div className="grid gap-5 xl:grid-cols-[1.1fr_0.9fr]">
               <div>
                 <div className="mb-5 border border-neutral-800">
@@ -1248,15 +1248,15 @@ function BewegungRezeptModal({ onClose }: { onClose: () => void }) {
                     />
                   </div>
 
-                  <div className="grid grid-cols-1 border-t border-neutral-800 sm:grid-cols-3">
-                    <WritableBox
-                      label="Kostenträgererkennung"
-                      value={form.kostentraegerkennung}
-                      onChange={(value) =>
-                        updateField("kostentraegerkennung", value)
-                      }
-                      className="border-r border-neutral-800"
-                    />
+                    <div className="grid grid-cols-1 border-t border-neutral-800 sm:grid-cols-[1.3fr_1.3fr_0.8fr]">
+    <WritableBox
+      label="Kostenträgererkennung"
+      value={form.kostentraegerkennung}
+      onChange={(value) =>
+        updateField("kostentraegerkennung", value)
+      }
+      className="sm:border-r sm:border-neutral-800"
+    />
 
                     <WritableBox
                       label="Versicherten-Nr."
@@ -1271,6 +1271,16 @@ function BewegungRezeptModal({ onClose }: { onClose: () => void }) {
                       onChange={(value) => updateField("status", value)}
                     />
                   </div>
+
+                    {/* Study ID */}
+  <div className="border-t border-neutral-800">
+    <WritableBox
+      label="Study ID"
+      value={form.studyId}
+      onChange={(value) => updateField("studyId", value)}
+      className="bg-sky-50"
+    />
+  </div>
 
                   <div className="grid grid-cols-1 border-t border-neutral-800 sm:grid-cols-3">
                     <WritableBox
@@ -1535,13 +1545,313 @@ function BewegungRezeptModal({ onClose }: { onClose: () => void }) {
               </div>
             </div>
 
-            <button
-              type="button"
-              onClick={() => console.log("REDCap-ready data:", form)}
-              className="mt-6 rounded-2xl bg-sky-600 px-4 py-2 text-sm font-semibold text-white hover:bg-sky-700"
-            >
-              Formulardaten speichern
-            </button>
+            <div className="mt-6 flex flex-wrap gap-3">
+  <button
+    type="button"
+    onClick={() => console.log("REDCap-ready data:", form)}
+    className="rounded-2xl bg-sky-600 px-4 py-2 text-sm font-semibold text-white hover:bg-sky-700"
+  >
+    Formulardaten speichern
+  </button>
+
+<button
+  type="button"
+  onClick={() => {
+    const printWindow = window.open("", "_blank", "width=1400,height=900");
+    if (!printWindow) return;
+
+    printWindow.document.write(`
+      <!doctype html>
+      <html>
+        <head>
+          <title>Bewegungsrezept</title>
+          <style>
+            @page { size: A4 landscape; margin: 5mm; }
+
+            html, body {
+              margin: 0;
+              padding: 0;
+              width: 297mm;
+              height: 210mm;
+              font-family: Arial, sans-serif;
+              color: #111;
+              overflow: hidden;
+            }
+
+            * { box-sizing: border-box; }
+
+            .page {
+              width: 287mm;
+              height: 200mm;
+              margin: 0 auto;
+              display: grid;
+              grid-template-columns: 1fr 1fr;
+              border: 1px solid #111;
+              overflow: hidden;
+              font-size: 10px;
+              line-height: 1.25;
+            }
+
+            .left, .right { padding: 7mm; }
+            .left { border-right: 2px dotted #111; }
+
+            .top-left {
+              display: grid;
+              grid-template-columns: 1.05fr 0.95fr;
+              gap: 7mm;
+            }
+
+            .fieldbox {
+              border: 1px solid #111;
+              display: grid;
+            }
+
+            .field {
+              min-height: 13mm;
+              border-top: 1px solid #111;
+              padding: 2mm;
+            }
+
+            .field:first-child { border-top: 0; }
+
+            .row-2 { display: grid; grid-template-columns: 1fr 35mm; }
+            .row-3 { display: grid; grid-template-columns: 1.2fr 1.2fr 0.8fr; }
+            .row-3b { display: grid; grid-template-columns: 1fr 1fr 1fr; }
+
+            .row-2 > .field,
+            .row-3 > .field,
+            .row-3b > .field {
+              border-top: 1px solid #111;
+              border-right: 1px solid #111;
+            }
+
+            .row-2 > .field:last-child,
+            .row-3 > .field:last-child,
+            .row-3b > .field:last-child {
+              border-right: 0;
+            }
+
+            .study { background: #eaf6fb; }
+
+            h1 {
+              font-size: 30px;
+              line-height: 0.95;
+              margin: 0 0 6mm;
+              font-weight: 900;
+            }
+
+            h2 {
+              font-size: 13px;
+              margin: 0 0 3mm;
+              font-weight: 800;
+            }
+
+            p { margin: 0 0 3mm; }
+
+            .checkbox-row {
+              display: flex;
+              gap: 2mm;
+              align-items: center;
+              margin-bottom: 2mm;
+            }
+
+            .checkbox {
+              width: 3mm;
+              height: 3mm;
+              border: 1px solid #111;
+            }
+
+            .textarea {
+              border: 1px solid #111;
+              min-height: 44mm;
+              padding: 2mm;
+              margin-top: 4mm;
+            }
+
+            .address {
+              border: 1px solid #111;
+              min-height: 28mm;
+              padding: 2mm;
+              margin-top: 7mm;
+            }
+
+            .big {
+              font-size: 28px;
+              font-weight: 900;
+              font-style: italic;
+            }
+
+            .rec-grid {
+              display: grid;
+              grid-template-columns: 25mm 38mm 1fr 35mm;
+              gap: 4mm;
+              align-items: center;
+              border-bottom: 1px solid #111;
+              padding: 3mm 0;
+            }
+
+            .bottom-grid {
+              display: grid;
+              grid-template-columns: 1fr 1fr;
+              border-bottom: 1px solid #111;
+            }
+
+            .bottom-grid > div {
+              padding: 3mm;
+              border-right: 1px solid #111;
+            }
+
+            .bottom-grid > div:last-child { border-right: 0; }
+
+            .club {
+              display: grid;
+              grid-template-columns: 1.1fr 0.8fr;
+              gap: 5mm;
+              margin-top: 5mm;
+            }
+
+            .club-box {
+              border: 1px solid #111;
+              min-height: 42mm;
+              padding: 2mm;
+            }
+
+            @media print {
+              body { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+            }
+          </style>
+        </head>
+
+        <body>
+          <div class="page">
+            <div class="left">
+              <div class="top-left">
+                <div>
+                  <div class="fieldbox">
+                    <div class="field">Krankenkasse bzw. Kostenträger<br>${form.krankenkasse}</div>
+
+                    <div class="row-2">
+                      <div class="field">Name, Vorname der*des Versicherten<br>${form.patientName}</div>
+                      <div class="field">geb. am<br>${form.geburtsdatum}</div>
+                    </div>
+
+                    <div class="row-3">
+                      <div class="field">Kostenträgererkennung<br>${form.kostentraegerkennung}</div>
+                      <div class="field">Versicherten-Nr.<br>${form.versichertenNr}</div>
+                      <div class="field">Status<br>${form.status}</div>
+                    </div>
+
+                    <div class="field study">Study ID<br>${form.studyId}</div>
+
+                    <div class="row-3b">
+                      <div class="field">Betriebsstätten-Nr.<br>${form.betriebsstaettenNr}</div>
+                      <div class="field">Arzt-Nr.<br>${form.arztNr}</div>
+                      <div class="field">Datum<br>${form.datum}</div>
+                    </div>
+                  </div>
+
+                  <h2 style="margin-top:7mm;">Ich empfehle Ihnen ein Training mit folgendem Schwerpunkt:</h2>
+
+                  <div class="checkbox-row"><span class="checkbox"></span> Herz-Kreislaufsystem</div>
+                  <div class="checkbox-row"><span class="checkbox"></span> Haltungs- und Bewegungssystem</div>
+                  <div class="checkbox-row"><span class="checkbox"></span> Stressbewältigung und Entspannung</div>
+                  <div class="checkbox-row"><span class="checkbox"></span> Allgemeines Gesundheitstraining</div>
+
+                  <div class="textarea">
+                    <b>Hinweise an die Übungsleitung:</b><br>
+                    ${form.hinweiseUebungsleitung}
+                  </div>
+                </div>
+
+                <div>
+                  <h1>REZEPT FÜR<br>BEWEGUNG</h1>
+
+                  <h2>Regelmäßige körperliche Aktivität tut Ihnen und Ihrer Gesundheit gut!</h2>
+
+                  <p>Bewegung kann Krankheiten des Herz-Kreislauf- und des Stoffwechselsystems sowie des Bewegungsapparates verhindern. Zudem reduziert Bewegung das Risiko für Krebs, Diabetes Typ II und Demenz und trägt zur Entspannung bei.</p>
+
+                  <p>Daher empfehle ich Ihnen die Teilnahme an einem Bewegungsangebot in einem Sportverein. Das kann ein Angebot sein, dass mit dem Qualitätssiegel <b>SPORT PRO GESUNDHEIT</b> zertifiziert ist.</p>
+
+                  <p><b>Darüber hinaus empfehle ich, täglich mehr Bewegung in Ihren Alltag zu integrieren!</b></p>
+
+                  <div class="address">
+                    <b>Adresse Arzt / Ärztin</b><br>
+                    ${form.adresseArzt}
+                  </div>
+
+                  <p style="margin-top:38mm;">Stempel und Unterschrift<br>Arzt*Ärztin</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="right">
+              <p>Sie haben die ärztliche Empfehlung, an einem Bewegungsangebot teilzunehmen. Sämtliche Angebote in Ihrer Nähe finden Sie im Internet unter:</p>
+              <h2>www.bewegungslandkarte.de</h2>
+
+              <p><b>Bei Fragen wenden Sie sich bitte an:</b></p>
+              <p><b>Deutscher Olympischer Sportbund</b><br>Ressort Breiten- und Gesundheitssport</p>
+              <p>E-Mail: gesundheit@dosb.de<br>Internet: gesundheit.dosb.de</p>
+
+              <h2>Wöchentliche Bewegungsempfehlungen für Erwachsene und ältere Erwachsene</h2>
+
+              <div class="rec-grid">
+                <div><b>Ausdauer</b><br>♥</div>
+                <div class="big">150–<br>300</div>
+                <div>Minuten pro Woche<br>Ausdauerorientierte Bewegung, die etwas anstrengend ist, z. B. Nordic Walking, Tanzen, Skilanglauf</div>
+                <div>⛷️ 🧘 🚣</div>
+              </div>
+
+              <div style="text-align:center; font-weight:bold; margin:2mm 0;">ODER EINE KOMBINATION</div>
+
+              <div class="rec-grid">
+                <div></div>
+                <div class="big">75–150</div>
+                <div>Minuten pro Woche<br>Ausdauerorientierte Bewegung, die anstrengend ist, z. B. Laufen, schnelles Rad fahren, schnelles Schwimmen</div>
+                <div>🏃 🚴 🏊</div>
+              </div>
+
+              <div class="bottom-grid">
+                <div><b>ZUSÄTZLICH</b><br><span class="big">2</span> Tage pro Woche<br>Muskelkräftigende Aktivitäten, z. B. funktionsgymnastische Übungen oder Bewegen von Lasten 🏋️</div>
+                <div><b>ZUSÄTZLICH</b><br><span class="big">3</span> Tage pro Woche<br>Gleichgewichtsübungen, für ältere Erwachsene ab 65 Jahren zur Sturzprävention ⚖️</div>
+              </div>
+
+              <p>Lange Sitzphasen vermeiden und Sitzen durch körperliche Aktivitäten unterbrechen – z. B. kleine Spaziergänge, Arbeiten im Stehen</p>
+
+              <div class="club">
+                <div class="club-box">
+                  <b>Mitteilung der Übungsleitung an den*die Arzt*Ärztin:</b><br>
+                  ${form.mitteilungUebungsleitung}
+                </div>
+
+                <div>
+                  <p style="margin-top:22mm;"><b>Ihr*e Patient*in hat an unserem Bewegungsangebot teilgenommen.</b></p>
+                  <p style="margin-top:20mm;">Stempel und Unterschrift des Vereins</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <script>
+            window.onload = function() {
+              setTimeout(function() {
+                window.print();
+                window.close();
+              }, 300);
+            };
+          </script>
+        </body>
+      </html>
+    `);
+
+    printWindow.document.close();
+  }}
+  className="rounded-2xl border border-slate-300 bg-white px-4 py-2 text-sm font-semibold text-slate-700 hover:bg-slate-50"
+>
+  🖨️ Formular drucken
+</button>
+</div>
+
+
           </section>
         </div>
       </div>
@@ -2016,12 +2326,12 @@ function NonPharmaOptionsModal({ onClose }: { onClose: () => void }) {
                 key={option.name}
                 className="rounded-3xl border border-slate-200 bg-white p-5 shadow-sm transition hover:border-sky-200 hover:shadow-md"
               >
-                <div className="mb-3 flex items-start gap-4">
+                <div className="mb-3 flex flex-col items-center text-center gap-4">
                   <div
-                    className={`flex h-16 w-16 shrink-0 items-center justify-center rounded-2xl text-3xl ${getCategoryImageStyle(
-                      option.category
-                    )}`}
-                  >
+  className={`mx-auto flex h-16 w-16 items-center justify-center rounded-2xl text-3xl ${getCategoryImageStyle(
+    option.category
+  )}`}
+>
                     {getCategoryImage(option.category)}
                   </div>
 
@@ -2507,3 +2817,48 @@ function Quote({ children }: { children: React.ReactNode }) {
     </blockquote>
   );
 }
+
+<style jsx global>{`
+
+@page {
+  size: A4 landscape;
+  margin: 5mm;
+  transform: scale(0.82);
+}
+  @media print {
+    body.print-bewegungsrezept * {
+      visibility: hidden !important;
+    }
+
+    body.print-bewegungsrezept #bewegungsrezept-print-area,
+    body.print-bewegungsrezept #bewegungsrezept-print-area * {
+      visibility: visible !important;
+    }
+
+   body.print-bewegungsrezept #bewegungsrezept-print-area {
+  position: absolute !important;
+  left: 0 !important;
+  top: 0 !important;
+
+  width: 100% !important;
+  max-width: 100% !important;
+
+  transform-origin: top left;
+  transform: scale(0.88);
+
+  box-shadow: none !important;
+}
+
+   body.print-bewegungsrezept #bewegungsrezept-print-area {
+  page-break-inside: avoid;
+}
+
+body.print-bewegungsrezept section {
+  page-break-inside: avoid;
+}
+
+body.print-bewegungsrezept {
+  font-size: 11px !important;
+}
+  }
+`}</style>
