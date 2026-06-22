@@ -40,6 +40,8 @@ type RiskFactorKey =
 type GuidanceBox = {
   title: string;
   text: string;
+  link?: string;
+  linkLabel?: string;
 };
 
 export default function TargetAppPage() {
@@ -176,24 +178,24 @@ Falls eine NSAR-Therapie unvermeidbar ist, sollte ein COX-2-Hemmer in Kombinatio
 
     if (medications.antiplatelets === true) {
       boxes.push({
-        title: "Antiplatelets",
+        title: "Thrombozytenaggregationshemmer",
         text: `Thrombozytenaggregationshemmer (ASS, einschließlich niedrig dosierter ASS, sowie P2Y12-Inhibitoren wie z. B. Clopidogrel) sind ein unabhängiger Risikofaktor für gastrointestinale Blutungen; eine Überprüfung der Indikation wird empfohlen.
 
-Patientinnen und Patienten mit einer Vorgeschichte einer gastralen antralen vaskulären Ektasie (GAVE), die Thrombozytenaggregationshemmer oder Antikoagulanzien erhalten, haben ein erhöhtes Risiko für gastrointestinale Blutungen (STOP-Kriterien). Es wird empfohlen, auf Anzeichen einer gastrointestinalen Toxizität zu achten.`,
+Patient*innen mit einer Vorgeschichte einer gastralen antralen vaskulären Ektasie (GAVE), die Thrombozytenaggregationshemmer oder Antikoagulanzien erhalten, haben ein erhöhtes Risiko für gastrointestinale Blutungen (STOP-Kriterien). Es wird empfohlen, auf Anzeichen einer gastrointestinalen Toxizität zu achten.`,
       });
     }
 
     if (medications.anticoagulants === true) {
   boxes.push({
-    title: "Antikoagulanzien",
-    text: `Antikoagulanzien sind ein unabhängiger Risikofaktor für GI-Blutungen. Es wird empfohlen, die Indikation regelmäßig zu überprüfen.
+  title: "Antikoagulanzien",
+  text: `Antikoagulanzien sind ein unabhängiger Risikofaktor für GI-Blutungen. Es wird empfohlen, die Indikation regelmäßig zu überprüfen.
 
 Der direkte Faktor-Xa-Inhibitor Rivaroxaban (DOAK), der häufig langfristig bei Vorhofflimmern (NVAF) und venösen Thromboembolien (VTE) eingesetzt wird, ist insbesondere im höheren Alter auch ohne gleichzeitige NSAR-Therapie mit einem erhöhten Risiko für GI-Blutungen verbunden. Eine Überwachung auf Anzeichen gastrointestinaler Toxizität wird empfohlen.
 
-Der direkte Faktor-IIa-Inhibitor bzw. direkte Thrombininhibitor Dabigatran (DOAK), der ebenfalls langfristig bei Vorhofflimmern (NVAF) und venösen Thromboembolien (VTE) eingesetzt wird, weist im Vergleich zu Warfarin und Apixaban ein höheres Risiko für GI-Blutungen auf. Es sollte geprüft werden, ob eine Umstellung auf risikoärmere Alternativen möglich ist. Zusätzlich wird eine Überwachung auf Anzeichen gastrointestinaler Toxizität empfohlen.
-
-Link zum Heidelberger Tool.`,
-  });
+Der direkte Faktor-IIa-Inhibitor bzw. direkte Thrombininhibitor Dabigatran (DOAK), der ebenfalls langfristig bei Vorhofflimmern (NVAF) und venösen Thromboembolien (VTE) eingesetzt wird, weist im Vergleich zu Warfarin und Apixaban ein höheres Risiko für GI-Blutungen auf. Es sollte geprüft werden, ob eine Umstellung auf risikoärmere Alternativen möglich ist. Zusätzlich wird eine Überwachung auf Anzeichen gastrointestinaler Toxizität empfohlen.`,
+  link: "https://www.easydoac.de/index.html#!",
+  linkLabel: "🔗 Zum Heidelberger Tool",
+});
 }
 
     if (medications.ssri === true) {
@@ -201,9 +203,9 @@ Link zum Heidelberger Tool.`,
     title: "SSRI oder SNRI (Venlafaxin)",
     text: `SSRI gelten gemäß der DGVS-S2k-Leitlinie 2023 als unabhängiger Risikofaktor für GI-Blutungen. Es wird empfohlen, die aktuelle Indikation zu überprüfen.
 
-Falls keine aktuelle Indikation mehr besteht, sollte ein Ausschleichen bzw. Absetzen (Deprescribing) erwogen werden.
-
-Link zum Ausschleich-Tool.`,
+Falls keine aktuelle Indikation mehr besteht, sollte ein Ausschleichen bzw. Absetzen (Deprescribing) erwogen werden.`,
+    link: "https://umed-partner-projekt.medizin.uni-bielefeld.de/shiny/Medikation/",
+    linkLabel: "🔗 Zum Ausschleich-Tool",
   });
 }
 
@@ -217,7 +219,7 @@ if (medications.corticosteroids === true) {
 if (medications.bisphosphonate === true) {
   boxes.push({
     title: "Bisphosphonate",
-    text: `Orale Bisphosphonate sollten bei Patientinnen und Patienten mit aktuellen oder kürzlich aufgetretenen Erkrankungen des oberen Gastrointestinaltrakts vermieden werden, z. B. Dysphagie, Ösophagitis, Gastritis, Duodenitis, peptisches Ulkus oder obere GI-Blutung.
+    text: `Orale Bisphosphonate sollten bei Patient*innen mit aktuellen oder kürzlich aufgetretenen Erkrankungen des oberen Gastrointestinaltrakts vermieden werden, z. B. Dysphagie, Ösophagitis, Gastritis, Duodenitis, peptisches Ulkus oder obere GI-Blutung.
 
 Es besteht das Risiko eines Wiederauftretens bzw. einer Verschlechterung von Ösophagitis, Ösophagusulzera oder Ösophagusstrikturen. Falls klinisch vertretbar, sollten Therapiepausen („Drug Holidays“) in Betracht gezogen werden.`,
   });
@@ -225,6 +227,56 @@ Es besteht das Risiko eines Wiederauftretens bzw. einer Verschlechterung von Ös
 
     return boxes;
   }, [medications]);
+
+
+  const nsaidMedicationBoxes = useMemo(() => {
+    const boxes: GuidanceBox[] = [];
+
+    if (
+      riskFactors.concomitantLowDoseASA ||
+      riskFactors.concomitantOtherAntiplatelet
+    ) {
+      boxes.push({
+        title: "Thrombozytenaggregationshemmer",
+        text: `Thrombozytenaggregationshemmer (ASS, einschließlich niedrig dosierter ASS, sowie P2Y12-Inhibitoren wie z. B. Clopidogrel) sind ein unabhängiger Risikofaktor für gastrointestinale Blutungen; eine Überprüfung der Indikation wird empfohlen.
+
+Patient*innen mit einer Vorgeschichte einer gastralen antralen vaskulären Ektasie (GAVE), die Thrombozytenaggregationshemmer oder Antikoagulanzien erhalten, haben ein erhöhtes Risiko für gastrointestinale Blutungen (STOP-Kriterien). Es wird empfohlen, auf Anzeichen einer gastrointestinalen Toxizität zu achten.`,
+      });
+    }
+
+   if (riskFactors.concomitantAnticoagulant) {
+  boxes.push({
+    title: "Antikoagulanzien",
+    text: `Antikoagulanzien sind ein unabhängiger Risikofaktor für GI-Blutungen. Es wird empfohlen, die Indikation regelmäßig zu überprüfen.
+
+Der direkte Faktor-Xa-Inhibitor Rivaroxaban (DOAK), der häufig langfristig bei Vorhofflimmern (NVAF) und venösen Thromboembolien (VTE) eingesetzt wird, ist insbesondere im höheren Alter auch ohne gleichzeitige NSAR-Therapie mit einem erhöhten Risiko für GI-Blutungen verbunden. Eine Überwachung auf Anzeichen gastrointestinaler Toxizität wird empfohlen.
+
+Der direkte Faktor-IIa-Inhibitor bzw. direkte Thrombininhibitor Dabigatran (DOAK), der ebenfalls langfristig bei Vorhofflimmern (NVAF) und venösen Thromboembolien (VTE) eingesetzt wird, weist im Vergleich zu Warfarin und Apixaban ein höheres Risiko für GI-Blutungen auf. Es sollte geprüft werden, ob eine Umstellung auf risikoärmere Alternativen möglich ist. Zusätzlich wird eine Überwachung auf Anzeichen gastrointestinaler Toxizität empfohlen.`,
+    link: "https://www.easydoac.de/index.html#!",
+    linkLabel: "🔗 Zum Heidelberger Tool",
+  });
+}
+
+    if (riskFactors.concomitantSSRI) {
+  boxes.push({
+    title: "SSRI oder SNRI (Venlafaxin)",
+    text: `SSRI gelten gemäß der DGVS-S2k-Leitlinie 2023 als unabhängiger Risikofaktor für GI-Blutungen. Es wird empfohlen, die aktuelle Indikation zu überprüfen.
+
+Falls keine aktuelle Indikation mehr besteht, sollte ein Ausschleichen bzw. Absetzen (Deprescribing) erwogen werden.`,
+    link: "https://umed-partner-projekt.medizin.uni-bielefeld.de/shiny/Medikation/",
+    linkLabel: "🔗 Zum Ausschleich-Tool",
+  });
+}
+
+    if (riskFactors.concomitantGlucocorticoid) {
+      boxes.push({
+        title: "Kortikosteroide",
+        text: `Kortikosteroide stellen allein keinen unabhängigen Risikofaktor für GI-Blutungen dar. Das Risiko steigt jedoch bei gleichzeitiger Anwendung anderer gastrointestinal belastender Medikamente. Es wird empfohlen, eine strukturierte Medikationsanalyse durchzuführen und die Indikationen für Kortikosteroide sowie für die anderen potenziell gastrointestinal belastenden Medikamente zu überprüfen.`,
+      });
+    }
+
+    return boxes;
+  }, [riskFactors]);
 
   const selectedCountAmongFour = useMemo(() => {
     return [
@@ -323,7 +375,7 @@ return {
             <Panel>
               <SectionHeader
                 
-title="Nimmt Ihr Patient/Ihre Patientin NSAR ein?"
+title="Nimmt Ihr/e Patient*in seit ≥3 Monaten NSAR ein?"
 description="Wählen Sie die zutreffende Option aus, um die Risikobewertung fortzusetzen."/>
 
               <div className="mt-5">
@@ -385,13 +437,13 @@ description="Wählen Sie die zutreffende Option aus, um die Risikobewertung fort
   />
 
   <RiskItem
-    label="Gleichzeitige Gabe von Glukokortikoiden (z. B. Prednison)"
+    label="Gleichzeitige Gabe von systemischen Glukokortikoiden (z. B. Prednisolon, Prednison, Dexamethason, Methylprednisolon)"
     checked={riskFactors.concomitantGlucocorticoid}
     onChange={() => toggleRiskFactor("concomitantGlucocorticoid")}
   />
 
   <RiskItem
-    label="Gleichzeitige SSRI-Therapie"
+    label="Gleichzeitige SSRI-Therapie seit ≥6 Monaten"
     checked={riskFactors.concomitantSSRI}
     onChange={() => toggleRiskFactor("concomitantSSRI")}
   />
@@ -416,7 +468,7 @@ description="Wählen Sie die zutreffende Option aus, um die Risikobewertung fort
   <Panel>
     <SectionHeader
      
-      title="Nimmt Ihr Patient/Ihre Patientin mindestens eines der folgenden Medikamente ein?"
+      title="Nimmt Ihr*e Patient*in mindestens eines der folgenden Medikamente ein?"
       description="Bitte geben Sie für jede Medikamentengruppe an, ob sie eingenommen wird."
     />
 
@@ -434,13 +486,13 @@ description="Wählen Sie die zutreffende Option aus, um die Risikobewertung fort
       />
 
       <MedicationRow
-        label="SSRI oder SNRI (z. B. Venlafaxin)"
+        label="SSRI oder SNRI (z. B. Venlafaxin) seit ≥6 Monaten"
         value={medications.ssri}
         onChange={(value) => setMedication("ssri", value)}
       />
 
       <MedicationRow
-        label="Kortikosteroide"
+        label="Systemische Glukokortikoide (z. B. Prednisolon, Prednison, Dexamethason, Methylprednisolon)"
         value={medications.corticosteroids}
         onChange={(value) =>
           setMedication("corticosteroids", value)
@@ -448,7 +500,7 @@ description="Wählen Sie die zutreffende Option aus, um die Risikobewertung fort
       />
 
       <MedicationRow
-        label="Bisphosphonate"
+        label="Bisphosphonate seit ≥3 Jahren"
         value={medications.bisphosphonate}
         onChange={(value) => setMedication("bisphosphonate", value)}
       />
@@ -487,8 +539,7 @@ description="Wählen Sie die zutreffende Option aus, um die Risikobewertung fort
       Bei gleichzeitiger Einnahme von mehr als einem der oben genannten
       Medikamente sollte die Kombination von Kortikosteroiden und
       Thrombozytenaggregationshemmern sowie von
-      Thrombozytenaggregationshemmern und Antikoagulanzien bei Patientinnen
-      und Patienten mit einer Ulkusanamnese (auch bei unkompliziertem
+      Thrombozytenaggregationshemmern und Antikoagulanzien bei Patient*innen mit einer Ulkusanamnese (auch bei unkompliziertem
       Ulkus) möglichst vermieden werden.
 
       Falls eine solche Kombination unvermeidbar ist, sollte eine
@@ -576,59 +627,79 @@ description="Wählen Sie die zutreffende Option aus, um die Risikobewertung fort
         Arzneimittelbezogene Empfehlungen werden hier angezeigt.
       </div>
     )}
-</div>
-            
 
-             
-
-              {takesNSAIDs === false && medicationBoxes.length > 0 && (
-  <Panel className="bg-white">
-    <div className="mb-4">
-      <h2 className="text-sm font-semibold uppercase tracking-[0.18em] text-slate-500">
-        Arzneimittelbezogene Empfehlungen
-      </h2>
-      <p className="mt-1 text-sm text-slate-600">
-        Wählen Sie eine Medikamentengruppe aus, um die Empfehlung anzuzeigen.
-      </p>
+  {takesNSAIDs === true && nsaidMedicationBoxes.length === 0 && (
+    <div className="rounded-2xl border border-dashed border-slate-300 bg-slate-50 p-4 text-sm text-slate-500">
+      Arzneimittelbezogene Empfehlungen werden hier angezeigt.
     </div>
+  )}
 
-    <div className="space-y-2">
-      {medicationBoxes.map((box) => {
-        const isOpen = selectedMedicationBox === box.title;
+  {takesNSAIDs === false && medicationBoxes.length > 0 && (
+    <Panel className="bg-white">
+      <div className="mb-4">
+        <h2 className="text-sm font-semibold uppercase tracking-[0.18em] text-slate-500">
+          Arzneimittelbezogene Empfehlungen
+        </h2>
+        <p className="mt-1 text-sm text-slate-600">
+          Wählen Sie eine Medikamentengruppe aus, um die Empfehlung anzuzeigen.
+        </p>
+      </div>
 
-        return (
-          <div
-            key={box.title}
-            className="rounded-2xl border border-slate-200 bg-slate-50"
-          >
-            <button
-              type="button"
-              onClick={() =>
-                setSelectedMedicationBox(isOpen ? null : box.title)
-              }
-              className="flex w-full items-center justify-between gap-3 px-4 py-3 text-left"
+      <div className="space-y-2">
+        {medicationBoxes.map((box) => {
+          const isOpen = selectedMedicationBox === box.title;
+
+          return (
+            <div
+              key={box.title}
+              className="rounded-2xl border border-slate-200 bg-slate-50"
             >
-              <span className="font-semibold text-slate-900">
-                {box.title}
-              </span>
+              <button
+                type="button"
+                onClick={() =>
+                  setSelectedMedicationBox(isOpen ? null : box.title)
+                }
+                className="flex w-full items-center justify-between gap-3 px-4 py-3 text-left"
+              >
+                <span className="font-semibold text-slate-900">
+                  {box.title}
+                </span>
 
-              <span className="text-sm text-slate-500">
-                {isOpen ? "▲" : "▼"}
-              </span>
-            </button>
+                <span className="text-sm text-slate-500">
+                  {isOpen ? "▲" : "▼"}
+                </span>
+              </button>
 
-            {isOpen && (
-              <div className="border-t border-slate-200 px-4 py-3 text-sm leading-6 text-slate-700">
-                <div className="whitespace-pre-line">{box.text}</div>
-              </div>
-            )}
-          </div>
-        );
-      })}
-    </div>
-  </Panel>
+              {isOpen && (
+                <div className="border-t border-slate-200 px-4 py-3 text-sm leading-6 text-slate-700">
+                  <div className="whitespace-pre-line">{box.text}</div>
+
+{box.link && (
+  <div className="mt-4">
+    <a
+      href={box.link}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="inline-flex items-center rounded-2xl bg-sky-600 px-4 py-2 text-sm font-semibold text-white shadow-sm hover:bg-sky-700"
+    >
+      {box.linkLabel ?? "Link öffnen"}
+    </a>
+  </div>
 )}
+                </div>
+              )}
             </div>
+          );
+        })}
+      </div>
+    </Panel>
+  )}
+
+  {takesNSAIDs === true && nsaidMedicationBoxes.length > 0 && (
+    <MedicationAccordion boxes={nsaidMedicationBoxes} />
+  )}
+            </div>
+          </div>
           </aside>
         </div>
       </div>
@@ -871,6 +942,71 @@ function InfoCard({
   );
 }
 
+function MedicationAccordion({ boxes }: { boxes: GuidanceBox[] }) {
+  const [selectedMedicationBox, setSelectedMedicationBox] =
+    useState<string | null>(null);
+
+  return (
+    <Panel className="bg-white">
+      <div className="mb-4">
+        <h2 className="text-sm font-semibold uppercase tracking-[0.18em] text-slate-500">
+          Arzneimittelbezogene Empfehlungen
+        </h2>
+        <p className="mt-1 text-sm text-slate-600">
+          Wählen Sie eine Medikamentengruppe aus, um die Empfehlung anzuzeigen.
+        </p>
+      </div>
+
+      <div className="space-y-2">
+        {boxes.map((box) => {
+          const isOpen = selectedMedicationBox === box.title;
+
+          return (
+            <div
+              key={box.title}
+              className="rounded-2xl border border-slate-200 bg-slate-50"
+            >
+              <button
+                type="button"
+                onClick={() =>
+                  setSelectedMedicationBox(isOpen ? null : box.title)
+                }
+                className="flex w-full items-center justify-between gap-3 px-4 py-3 text-left"
+              >
+                <span className="font-semibold text-slate-900">
+                  {box.title}
+                </span>
+
+                <span className="text-sm text-slate-500">
+                  {isOpen ? "▲" : "▼"}
+                </span>
+              </button>
+
+              {isOpen && (
+                <div className="border-t border-slate-200 px-4 py-3 text-sm leading-6 text-slate-700">
+                  <div className="whitespace-pre-line">{box.text}</div>
+
+                  {box.link && (
+                    <div className="mt-4">
+                      <a
+                        href={box.link}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center rounded-2xl bg-sky-600 px-4 py-2 text-sm font-semibold text-white shadow-sm hover:bg-sky-700"
+                      >
+                        {box.linkLabel ?? "Link öffnen"}
+                      </a>
+                    </div>
+                  )}
+                </div>
+              )}
+            </div>
+          );
+        })}
+      </div>
+    </Panel>
+  );
+}
 function TooltipLabel({
   label,
   tooltipText,
@@ -1967,21 +2103,21 @@ function SDMScriptModal({ onClose }: { onClose: () => void }) {
         <div className="rounded-3xl border border-slate-200 bg-slate-50 p-5">
           <div className="space-y-5 text-sm leading-7 text-slate-800">
             <h3 className="text-base font-bold">
-              Gespräche mit Patienten über nicht-medikamentöse Therapien zur
+              Gespräche mit Patient*innen über nicht-medikamentöse Therapien zur
               Schmerzbehandlung
             </h3>
 
             <p>
-              Ärzte können Patienten dabei helfen, nicht-medikamentöse Therapien
+              Ärzt*innen können Patient*innen dabei helfen, nicht-medikamentöse Therapien
               in Betracht zu ziehen, indem sie offene und kooperative Gespräche
               führen. Eine klare Kommunikation und die aktive Beteiligung der
-              Patienten sind entscheidend für den Aufbau einer vertrauensvollen
-              Beziehung und helfen den Patienten dabei, nicht-medikamentöse
+              Patient*innen sind entscheidend für den Aufbau einer vertrauensvollen
+              Beziehung und helfen den Patient*innen dabei, nicht-medikamentöse
               Therapien zur Schmerzbehandlung in Betracht zu ziehen.
             </p>
 
             <p>
-              Schaffen Sie ein Umfeld, in dem Patienten gemeinsam mit Ihnen
+              Schaffen Sie ein Umfeld, in dem Patient*innen gemeinsam mit Ihnen
               nichtmedikamentöse Therapien erkunden und fundierte Entscheidungen
               treffen können, die ihren individuellen Bedürfnissen und
               Präferenzen entsprechen.
@@ -2006,7 +2142,7 @@ function SDMScriptModal({ onClose }: { onClose: () => void }) {
             </ScriptSection>
 
             <p className="font-semibold">
-              Beziehen Sie Patienten in Entscheidungen und Zielsetzungen mit
+              Beziehen Sie Patient*innen in Entscheidungen und Zielsetzungen mit
               ein.
             </p>
 
@@ -2033,7 +2169,7 @@ function SDMScriptModal({ onClose }: { onClose: () => void }) {
 
             <p className="font-semibold">
               Gehen Sie auf die Bedenken oder falschen Vorstellungen der
-              Patienten hinsichtlich nicht-medikamentöser Therapien ein und
+              Patient*innen hinsichtlich nicht-medikamentöser Therapien ein und
               fördern Sie ein offenes Gespräch.
             </p>
 
@@ -2047,7 +2183,7 @@ function SDMScriptModal({ onClose }: { onClose: () => void }) {
             </ScriptSection>
 
             <p className="font-semibold">
-              Bitten Sie den Patienten um seine Fragen, Meinungen und sonstigen
+              Bitten Sie den Patient*innen um seine Fragen, Meinungen und sonstigen
               Beiträge, um ihn in den Entscheidungsprozess einzubeziehen.
             </p>
 
@@ -2135,7 +2271,7 @@ const nonPharmaOptions: NonPharmaOption[] = [
   category: "Bewegung",
   name: "Bewegung bei akuten Schmerzen im unteren Rücken",
   summary:
-    "Patientinnen und Patienten mit akuten Rückenschmerzen wird empfohlen, aktiv zu bleiben, anstatt Bettruhe einzuhalten. Aktiv bleiben bedeutet nicht zwingend die Durchführung spezieller Übungen.",
+    "Patient*innen mit akuten Rückenschmerzen wird empfohlen, aktiv zu bleiben, anstatt Bettruhe einzuhalten. Aktiv bleiben bedeutet nicht zwingend die Durchführung spezieller Übungen.",
   firstPublished: "Keine Angabe",
   website: "Bewegung bei akuten Rückenschmerzen",
   websiteUrl:
@@ -2497,7 +2633,7 @@ function NsaidRiskScriptModal({
 „Mit zunehmendem Alter können körperliche Veränderungen ohne Symptome verlaufen. Das bedeutet auch, dass Blutungen manchmal ohne deutliche Warnsignale auftreten können. Wir können das Risiko, dass so eine Blutung überhaupt auftritt, senken, indem wir die Dosis des Medikaments reduzieren, das das Risiko erhöht, oder eine Alternative für das Medikament suchen, das ihnen ebenfalls bei ihren Schmerzen helfen kann.“`;
 
   const commonText = `
-# Sprechen Sie mit Ihrem Patienten über das Risiko einer GI-Blutung
+# Sprechen Sie mit Ihrem Patient*innen über das Risiko einer GI-Blutung
 (aufgrund von NSARs wie Ibuprofen, Diclofenac, ASS, etc.)
 
 _Modifiziert aus dem SHARE Approach, den Formulierungshilfen aus dem Tool Ariba MediQuit 2.0. und den Patientenbroschüren des Canadian Deprescribing Network (CaDeN)_
@@ -2544,7 +2680,7 @@ ${isHighRisk ? highRiskSpecificText : moderateRiskSpecificText}
 
 > „Mit NSAR sind es etwa 15 von 1.000 Personen innerhalb eines Jahres.“
 
-> „Also entwickeln etwa 12 zusätzliche Patientinnen und Patienten pro 1.000 innerhalb eines Jahres eine Magen- oder Darm-Blutung, wenn sie NSAR einnehmen.“
+> „Also entwickeln etwa 12 zusätzliche Patient*innen pro 1.000 innerhalb eines Jahres eine Magen- oder Darm-Blutung, wenn sie NSAR einnehmen.“
 ---
 
 ## Vorstellung von Entscheidungshilfen
@@ -2553,7 +2689,7 @@ ${isHighRisk ? highRiskSpecificText : moderateRiskSpecificText}
 
 ---
 
-## Bitten Sie Ihren Patienten um Mithilfe
+## Bitten Sie Ihren Patient*innen um Mithilfe
 
 > „Nachdem wir nun das Problem erkannt haben, können wir über Ihre Optionen und die nächsten Schritte sprechen. Ich möchte Ihre Meinung dazu hören, was Sie für richtig halten.“
 
@@ -2561,7 +2697,7 @@ ${isHighRisk ? highRiskSpecificText : moderateRiskSpecificText}
 
 ---
 
-## Treffen Sie gemeinsam mit Ihrem Patienten eine Entscheidung
+## Treffen Sie gemeinsam mit Ihrem Patient*innen eine Entscheidung
 
 > „Es ist in Ordnung, sich mehr Zeit zu nehmen, um über die Behandlungsmöglichkeiten nachzudenken. Möchten Sie in Ruhe darüber nachdenken oder sich vorher mit Angehörigen austauschen, oder sind Sie bereit, eine Entscheidung zu treffen?“
 
@@ -2615,7 +2751,7 @@ ${isHighRisk ? highRiskSpecificText : moderateRiskSpecificText}
           }`}
         >
           <div className="space-y-6 text-sm leading-7 text-slate-800">
-  <ScriptBlock title="Sprechen Sie mit Ihrem Patienten über das Risiko einer GI-Blutung">
+  <ScriptBlock title="Sprechen Sie mit Ihrem Patient*innen über das Risiko einer GI-Blutung">
     <p>(aufgrund von NSARs wie Ibuprofen, Diclofenac, ASS, etc.)</p>
     <p className="text-xs text-slate-500">
       Modifiziert aus dem SHARE Approach, den Formulierungshilfen aus dem Tool Ariba MediQuit 2.0. und den Patientenbroschüren des Canadian Deprescribing Network (CaDeN)
@@ -2625,7 +2761,7 @@ ${isHighRisk ? highRiskSpecificText : moderateRiskSpecificText}
     </p>
   </ScriptBlock>
 
-  <ScriptBlock title="Allgemeiner Teil (Für alle Patienten)">
+  <ScriptBlock title="Allgemeiner Teil (Für alle Patient*innen)">
     <Quote>„Lassen Sie mich Ihnen sagen, was die Forschung über die Vorteile und Risiken ihrer Schmerzmittel/Entzündungshemmer sagt, die Sie einnehmen.“</Quote>
     <Quote>„Das Risiko, eine Blutung im Magen- oder Darmtrakt zu erleiden, nimmt mit steigendem Alter zu, insbesondere, wenn man Schmerzmittel/Entzündungshemmer wie zum Beispiel [Name des spezifischen Medikaments] einnimmt.“</Quote>
     <Quote>„Das bedeutet, selbst wenn Sie das Medikament in den letzten Monaten gut vertragen haben, kann eine Einnahme über Jahre durchaus zu Nebenwirkungen führen.“</Quote>
@@ -2651,7 +2787,7 @@ ${isHighRisk ? highRiskSpecificText : moderateRiskSpecificText}
       Bei Menschen ab 75 Jahren ist der Risikoanstieg deutlicher: Ohne diese Medikamente haben etwa 3 von 1.000 Personen innerhalb eines Jahres eine Magen- oder Darm-Blutung. Mit NSAR sind es etwa 15 von 1.000 Personen innerhalb eines Jahres.
     </p>
     <p>
-      Also entwickeln etwa 12 zusätzliche Patientinnen und Patienten pro 1.000 innerhalb eines Jahres eine Magen- oder Darm-Blutung, wenn sie NSAR einnehmen.
+      Also entwickeln etwa 12 zusätzliche Patient*innen pro 1.000 innerhalb eines Jahres eine Magen- oder Darm-Blutung, wenn sie NSAR einnehmen.
     </p>
   </ScriptBlock>
 
@@ -2659,19 +2795,20 @@ ${isHighRisk ? highRiskSpecificText : moderateRiskSpecificText}
     <Quote>„Dies ist eine Broschüre, die Magen- und Darm-Blutungen noch einmal genau erklärt. Sie soll Ihnen dabei helfen, die Vor- und Nachteile abzuwägen und eine Entscheidung zu treffen. Wir können gemeinsam darüber sprechen.“</Quote>
   </ScriptBlock>
 
-  <ScriptBlock title="Bitten Sie Ihren Patienten um Mithilfe">
+  <ScriptBlock title="Bitten Sie Ihren Patient*innen um Mithilfe">
     <Quote>„Nachdem wir nun das Problem erkannt haben, können wir über Ihre Optionen und die nächsten Schritte sprechen. Ich möchte Ihre Meinung dazu hören, was Sie für richtig halten.“</Quote>
     <Quote>„Bevor wir eine Entscheidung treffen, möchte ich gerne mehr darüber erfahren, was Ihnen wichtig ist.“</Quote>
   </ScriptBlock>
 
-  <ScriptBlock title="Treffen Sie gemeinsam mit Ihrem Patienten eine Entscheidung">
+  <ScriptBlock title="Treffen Sie gemeinsam mit Ihrem Patient*innen eine Entscheidung">
     <Quote>„Es ist in Ordnung, sich mehr Zeit zu nehmen, um über die Behandlungsmöglichkeiten nachzudenken. Möchten Sie in Ruhe darüber nachdenken oder sich vorher mit Angehörigen austauschen, oder sind Sie bereit, eine Entscheidung zu treffen?“</Quote>
     <Quote>„Welche weiteren Fragen haben Sie an mich, damit ich Ihnen bei Ihrer Entscheidung helfen kann?“</Quote>
   </ScriptBlock>
 
   <ScriptBlock title="Beurteilen Sie die Entscheidung Ihres Patienten">
     <Quote>
-      „Wenn Sie das Gefühl haben, dass dieser Plan für Sie nicht funktioniert, vereinbaren Sie bitte einen Folgetermin, damit wir {isHighRisk ? "einen anderen Ansatz planen können" : "eine andere Möglichkeit finden können"}.“
+      „Wenn Sie das Gefühl haben, dass dieser Plan für Sie nicht funktioniert, vereinbaren Sie bitte einen Folgetermin, damit wir{" "}
+      {isHighRisk ? "einen anderen Ansatz planen können" : "eine andere Möglichkeit finden können"}.“
     </Quote>
   </ScriptBlock>
 </div>
@@ -2682,7 +2819,7 @@ ${isHighRisk ? highRiskSpecificText : moderateRiskSpecificText}
             <div className="space-y-4">
               <div>
                 <p>
-                  <sup>1</sup>AHRQ. The SHARE Approach: Conversation Starters Pub. No.
+                  AHRQ. The SHARE Approach: Conversation Starters Pub. No.
                   25-0005-2-EF, October 2024:
                 </p>
                 <a
@@ -2697,7 +2834,7 @@ ${isHighRisk ? highRiskSpecificText : moderateRiskSpecificText}
 
               <div>
                 <p>
-                  <sup>1</sup>AHRQ. The SHARE Approach: Communicate numbers clearly Pub.
+                  AHRQ. The SHARE Approach: Communicate numbers clearly Pub.
                   No. 25-0005-4-EF, October 2024:
                 </p>
                 <a
@@ -2711,11 +2848,11 @@ ${isHighRisk ? highRiskSpecificText : moderateRiskSpecificText}
               </div>
 
               <div>
-                <p><sup>2</sup>Ariba MediQuit 2.0</p>
+                <p>Ariba MediQuit 2.0</p>
               </div>
 
               <div>
-                <p><sup>3</sup>Canadian Deprescribing Network (CaDeN)</p>
+                <p>Canadian Deprescribing Network (CaDeN)</p>
                 <a
                   href="https://www.deprescribingnetwork.ca/patient-handouts"
                   target="_blank"
@@ -2726,13 +2863,11 @@ ${isHighRisk ? highRiskSpecificText : moderateRiskSpecificText}
                 </a>
               </div>
 
-              <div>
-                <p><sup>4</sup>Selbst hinzugefügt</p>
-              </div>
+             
 
               <div>
                 <p>
-                  <sup>5</sup>Angel L, A review of the gastrointestinal safety data—a
+                  Angel L, A review of the gastrointestinal safety data—a
                   gastroenterologist’s perspective, Rheumatology, Volume 49,
                   Issue suppl_2, May 2010, Pages ii3–ii10
                 </p>
@@ -2748,7 +2883,7 @@ ${isHighRisk ? highRiskSpecificText : moderateRiskSpecificText}
 
               <div>
                 <p>
-                  <sup>6</sup>Tawfik AG, Gomez-Lumbreras A, Del Fiol G, Kawamoto K,
+                  Tawfik AG, Gomez-Lumbreras A, Del Fiol G, Kawamoto K,
                   Trinkley KE, Reese T, Jones A, Malone DC. Nonsteroidal
                   Anti-Inflammatory Drugs and Risk of Gastrointestinal Bleeding:
                   A Systematic Review and Meta-Analysis. Clin Pharmacol Ther.
@@ -2766,7 +2901,7 @@ ${isHighRisk ? highRiskSpecificText : moderateRiskSpecificText}
 
               <div>
                 <p>
-                  <sup>7</sup>Hallas J, Lauritsen J, Villadsen HD, Gram LF. Nonsteroidal
+                  Hallas J, Lauritsen J, Villadsen HD, Gram LF. Nonsteroidal
                   anti-inflammatory drugs and upper gastrointestinal bleeding,
                   identifying high-risk groups by excess risk estimates. Scand J
                   Gastroenterol. 1995 May;30(5):438-44.
@@ -2783,7 +2918,7 @@ ${isHighRisk ? highRiskSpecificText : moderateRiskSpecificText}
 
               <div>
                 <p>
-                  <sup>8</sup>Davis A und Robson J. The dangers of NSAIDs: look both ways.
+                  Davis A und Robson J. The dangers of NSAIDs: look both ways.
                   British Journal of General Practice 2016; 66 (645):172-173.
                 </p>
                 <a
