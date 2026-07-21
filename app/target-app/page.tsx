@@ -375,7 +375,7 @@ return {
             <Panel>
               <SectionHeader
                 
-title="Nimmt Ihr/e Patient*in seit ≥3 Monaten NSAR ein?"
+title="Hat Ihr/e Patient*in innerhalb der letzten 3 Monate NSAR eingenommen?"
 description="Wählen Sie die zutreffende Option aus, um die Risikobewertung fortzusetzen."/>
 
               <div className="mt-5">
@@ -597,6 +597,17 @@ description="Wählen Sie die zutreffende Option aus, um die Risikobewertung fort
       </QuickAction>
 
       <QuickAction>
+  <a
+    href="https://www.uni-bielefeld.de/fakultaeten/medizin/fakultaet/arbeitsgruppen/allgemeinmedizin/forschung/target/Absetzhilfe-bei-Verdacht-auf-PIM-TARGET.pdf"
+    target="_blank"
+    rel="noopener noreferrer"
+    className="block w-full text-left font-semibold text-sky-700 underline underline-offset-2 hover:text-sky-900"
+  >
+    Absetzhilfe 
+  </a>
+</QuickAction>
+
+     {/* <QuickAction>
         <button
           type="button"
           onClick={() => setShowBewegungRezept(true)}
@@ -604,7 +615,7 @@ description="Wählen Sie die zutreffende Option aus, um die Risikobewertung fort
         >
           Bewegungsrezept
         </button>
-      </QuickAction>
+      </QuickAction> */}
 
       {nsaidRiskResult.shortLevel !== "Niedriges Risiko" && (
         <QuickAction>
@@ -1083,6 +1094,8 @@ function PainScaleModal({
   const [pain, setPain] = useState(0);
   const [showSDMScript, setShowSDMScript] = useState(false);
   const [showNonPharmaOptions, setShowNonPharmaOptions] = useState(false);
+  const [showDecisionSupportMenu, setShowDecisionSupportMenu] =
+  useState(false);
 
  const painData = [
   {
@@ -1268,21 +1281,57 @@ function PainScaleModal({
           </div>
 
           <div className="mt-6 space-y-3 border-t border-slate-200 pt-4">
-           <button
+           {/*<button
            type="button"
            onClick={onOpenBewegungRezept}
            className="block font-semibold text-sky-700 underline underline-offset-2 hover:text-sky-900"
            >
             Bewegungsrezept
-          </button>
+          </button> */}
 
-          <button
-           type="button"
-           onClick={() => setShowSDMScript(true)}
-           className="block font-semibold text-sky-700 underline underline-offset-2 hover:text-sky-900"
-         >
-           Gemeinsame Entscheidungsfindung
-        </button>
+          <div className="rounded-2xl border border-slate-200 bg-slate-50">
+  <button
+    type="button"
+    onClick={() =>
+      setShowDecisionSupportMenu((currentValue) => !currentValue)
+    }
+    aria-expanded={showDecisionSupportMenu}
+    className="flex w-full items-center justify-between gap-3 rounded-2xl px-4 py-3 text-left font-semibold text-sky-700 transition hover:bg-slate-100 hover:text-sky-900"
+  >
+    <span>Gemeinsame Entscheidungsfindung</span>
+
+    <span
+      aria-hidden="true"
+      className="text-sm text-slate-500"
+    >
+      {showDecisionSupportMenu ? "▲" : "▼"}
+    </span>
+  </button>
+
+  {showDecisionSupportMenu && (
+    <div className="space-y-2 border-t border-slate-200 p-3">
+      <button
+        type="button"
+        onClick={() => {
+          setShowSDMScript(true);
+          setShowDecisionSupportMenu(false);
+        }}
+        className="block w-full rounded-xl border border-slate-200 bg-white px-4 py-3 text-left text-sm font-semibold text-slate-700 transition hover:border-sky-300 hover:bg-sky-50 hover:text-sky-800"
+      >
+        Gesprächsleitfaden zur gemeinsamen Entscheidungsfindung
+      </button>
+
+      <a
+        href="https://www.uni-bielefeld.de/fakultaeten/medizin/fakultaet/arbeitsgruppen/allgemeinmedizin/forschung/target/Absetzhilfe-bei-Verdacht-auf-PIM-TARGET.pdf"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="block w-full rounded-xl border border-slate-200 bg-white px-4 py-3 text-left text-sm font-semibold text-slate-700 transition hover:border-sky-300 hover:bg-sky-50 hover:text-sky-800"
+      >
+        Absetzhilfe 
+      </a>
+    </div>
+  )}
+</div>
 
         <button
   type="button"
