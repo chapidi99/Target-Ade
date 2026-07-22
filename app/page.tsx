@@ -125,13 +125,25 @@ export default function HomePage() {
               unserer Unterlagen kennenzulernen.
             </p>
 
-            <div className="mt-4">
-  <a
+  <div className="mt-6 flex flex-wrap gap-4">
+  <Link
     href="/target-app"
-    className="inline-block rounded-2xl bg-sky-600 px-5 py-3 text-sm font-semibold text-white hover:bg-sky-700"
+    className="inline-flex items-center rounded-2xl bg-sky-600 px-6 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-sky-700 hover:shadow-md"
   >
     TARGET-App öffnen
-  </a>
+  </Link>
+
+  <button
+    type="button"
+    disabled
+    className="inline-flex cursor-not-allowed items-center rounded-2xl border border-slate-300 bg-slate-100 px-6 py-3 text-sm font-semibold text-slate-500"
+  >
+    
+
+    <span className="ml-3 rounded-full bg-amber-100 px-2 py-1 text-xs font-semibold text-amber-700">
+      In Vorbereitung
+    </span>
+  </button>
 </div>
           </div>
         </div>
