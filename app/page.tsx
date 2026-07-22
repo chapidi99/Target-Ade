@@ -141,7 +141,7 @@ export default function HomePage() {
     
 
     <span className="ml-3 rounded-full bg-amber-100 px-2 py-1 text-xs font-semibold text-amber-700">
-      In Vorbereitung
+      Zur Target Platform
     </span>
   </button>
 </div>
