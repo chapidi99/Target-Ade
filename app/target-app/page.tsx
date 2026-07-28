@@ -2291,6 +2291,11 @@ function ScriptSection({
   );
 }
 
+type NonPharmaPdf = {
+  label: string;
+  url: string;
+};
+
 type NonPharmaOption = {
   category:
     | "Bewegung"
@@ -2303,19 +2308,26 @@ type NonPharmaOption = {
   firstPublished: string;
   website: string;
   websiteUrl: string;
+  pdfs?: NonPharmaPdf[];
 };
 
 const nonPharmaOptions: NonPharmaOption[] = [
   {
-    category: "Bewegung",
-    name: "Wassergymnastik bei Knie- und Hüftarthrose",
-    summary:
-      "Körperliche Übungen im Wasser, typischerweise bei 32–36 °C. Die Intervention umfasst zwei bis drei Sitzungen pro Woche von jeweils 30–60 Minuten über einen durchschnittlichen Zeitraum von 12 Wochen.",
+  category: "Bewegung",
+  name: "Wassergymnastik bei Knie- und Hüftarthrose",
+  summary:
+    "Körperliche Übungen im Wasser, typischerweise bei 32–36 °C. Die Intervention umfasst zwei bis drei Sitzungen pro Woche von jeweils 30–60 Minuten über einen durchschnittlichen Zeitraum von 12 Wochen.",
   firstPublished: "Keine Angabe",
   website: "Wassergymnastik bei Knie- und Hüftarthrose",
-    websiteUrl:
-      "https://www.racgp.org.au/clinical-resources/clinical-guidelines/handi/handi-interventions/exercise/aquatic-exercise-for-knee-and-hip-osteoarthritis",
-  },
+  websiteUrl:
+    "https://www.racgp.org.au/clinical-resources/clinical-guidelines/handi/handi-interventions/exercise/aquatic-exercise-for-knee-and-hip-osteoarthritis",
+  pdfs: [
+    {
+      label: "Bewegungsrezept drucken",
+      url: "https://www.uni-bielefeld.de/fakultaeten/medizin/fakultaet/arbeitsgruppen/allgemeinmedizin/forschung/target/Wassergymnastik-bei-Knie-und-Huftarthrose.pdf",
+    },
+  ],
+},
  {
   category: "Bewegung",
   name: "Bewegung bei akuten Schmerzen im unteren Rücken",
@@ -2336,17 +2348,29 @@ const nonPharmaOptions: NonPharmaOption[] = [
   website: "Bewegung bei chronischen Rückenschmerzen",
   websiteUrl:
     "https://www.racgp.org.au/clinical-resources/clinical-guidelines/handi/handi-interventions/exercise/exercise-for-chronic-low-back-pain",
+  pdfs: [
+    {
+      label: "Bewegungsrezept drucken",
+      url: "https://www.uni-bielefeld.de/fakultaeten/medizin/fakultaet/arbeitsgruppen/allgemeinmedizin/forschung/target/Bewegung-bei-chronischen-Schmerzen-im-unteren-Rucken.pdf",
+    },
+  ],
 },
   {
-    category: "Bewegung",
+  category: "Bewegung",
   name: "Bewegung bei Kniearthrose",
   summary:
     "Regelmäßige therapeutische Übungen an Land oder im Wasser für Erwachsene mit Kniearthrose. Die Programme können persönlich oder internetbasiert durchgeführt werden.",
   firstPublished: "2014, aktualisiert 2017",
   website: "Bewegung bei Kniearthrose",
-    websiteUrl:
-      "https://www.racgp.org.au/clinical-resources/clinical-guidelines/handi/handi-interventions/exercise/exercise-for-knee-osteoarthritis",
-  },
+  websiteUrl:
+    "https://www.racgp.org.au/clinical-resources/clinical-guidelines/handi/handi-interventions/exercise/exercise-for-knee-osteoarthritis",
+  pdfs: [
+    {
+      label: "Bewegungsrezept drucken",
+      url: "https://www.uni-bielefeld.de/fakultaeten/medizin/fakultaet/arbeitsgruppen/allgemeinmedizin/forschung/target/Bewegung-bei-Kniearthrose.pdf",
+    },
+  ],
+},
   {
     category: "Bewegung",
     name: "Übungen bei patellofemoralem Schmerzsyndrom",
@@ -2358,26 +2382,37 @@ const nonPharmaOptions: NonPharmaOption[] = [
       "https://www.racgp.org.au/clinical-resources/clinical-guidelines/handi/handi-interventions/exercise/exercise-for-patellofemoral-pain-syndrome",
   },
   {
-    category: "Hilfsmittel",
-    name: "Schienen zur Linderung von Schmerzen bei Handarthrose",
-    summary:
-      "Fertigschienen oder maßgefertigte Schienen können nachts oder tagsüber getragen werden, um betroffene Gelenke zu stützen oder ruhigzustellen.",
-      firstPublished: "2014",
-    website: "Schienen zur Linderung von Schmerzen bei Handarthrose",
-
-    websiteUrl:
-      "https://www.racgp.org.au/clinical-resources/clinical-guidelines/handi/handi-interventions/device/splints-for-the-reduction-of-pain-from-hand-osteoa",
-  },
-  {
-    category: "Hilfsmittel",
-    name: "Gehstock bei Kniearthrose",
-    summary:
-      "Tägliche Verwendung einer Gehhilfe oder eines Stocks, um die Belastung des betroffenen Kniegelenks zu verringern und Schmerzen sowie die Funktion zu verbessern.",
-    firstPublished: "Keine Angabe",
-    website: "Gehhilfe für Kniearthrose",
-    websiteUrl:
-      "https://www.racgp.org.au/clinical-resources/clinical-guidelines/handi/handi-interventions/device/walking-cane-for-knee-osteoarthritis",
-  },
+  category: "Hilfsmittel",
+  name: "Schienen zur Linderung von Schmerzen bei Handarthrose",
+  summary:
+    "Fertigschienen oder maßgefertigte Schienen können nachts oder tagsüber getragen werden, um betroffene Gelenke zu stützen oder ruhigzustellen.",
+  firstPublished: "2014",
+  website: "Schienen zur Linderung von Schmerzen bei Handarthrose",
+  websiteUrl:
+    "https://www.racgp.org.au/clinical-resources/clinical-guidelines/handi/handi-interventions/device/splints-for-the-reduction-of-pain-from-hand-osteoa",
+  pdfs: [
+    {
+      label: "Bewegungsrezept drucken",
+      url: "https://www.uni-bielefeld.de/fakultaeten/medizin/fakultaet/arbeitsgruppen/allgemeinmedizin/forschung/target/Schienen-zur-Linderung-von-Schmerzen-bei-Handarthrose.pdf",
+    },
+  ],
+},
+ {
+  category: "Hilfsmittel",
+  name: "Gehstock bei Kniearthrose",
+  summary:
+    "Tägliche Verwendung einer Gehhilfe oder eines Stocks, um die Belastung des betroffenen Kniegelenks zu verringern und Schmerzen sowie die Funktion zu verbessern.",
+  firstPublished: "Keine Angabe",
+  website: "Gehhilfe für Kniearthrose",
+  websiteUrl:
+    "https://www.racgp.org.au/clinical-resources/clinical-guidelines/handi/handi-interventions/device/walking-cane-for-knee-osteoarthritis",
+  pdfs: [
+    {
+      label: "Bewegungsrezept drucken",
+      url: "https://www.uni-bielefeld.de/fakultaeten/medizin/fakultaet/arbeitsgruppen/allgemeinmedizin/forschung/target/Gehstock-bei-Kniearthrose.pdf",
+    },
+  ],
+},
   {
     category: "Hilfsmittel",
     name: "Knie-Taping bei Arthrose",
@@ -2389,15 +2424,21 @@ const nonPharmaOptions: NonPharmaOption[] = [
       "https://www.racgp.org.au/clinical-resources/clinical-guidelines/handi/handi-interventions/device/knee-taping-for-osteoarthritis",
   },
   {
-    category: "Verfahren",
-    name: "Physiotherapie bei Tennisellenbogen",
-    summary:
-      "Ein physiotherapeutisches Programm mit Übungen, Ellenbogenmobilisation, Eigenübungen und progressivem Training der Handgelenkstrecker.",
-    firstPublished: "Keine Angabe",
-    website: "Physiotherapie bei Tennisellenbogen",
-    websiteUrl:
-      "https://www.racgp.org.au/clinical-resources/clinical-guidelines/handi/handi-interventions/procedures/physiotherapy-for-tennis-elbow",
-  },
+  category: "Verfahren",
+  name: "Physiotherapie bei Tennisellenbogen",
+  summary:
+    "Ein physiotherapeutisches Programm mit Übungen, Ellenbogenmobilisation, Eigenübungen und progressivem Training der Handgelenkstrecker.",
+  firstPublished: "Keine Angabe",
+  website: "Physiotherapie bei Tennisellenbogen",
+  websiteUrl:
+    "https://www.racgp.org.au/clinical-resources/clinical-guidelines/handi/handi-interventions/procedures/physiotherapy-for-tennis-elbow",
+  pdfs: [
+    {
+      label: "Bewegungsrezept drucken",
+      url: "https://www.uni-bielefeld.de/fakultaeten/medizin/fakultaet/arbeitsgruppen/allgemeinmedizin/forschung/target/Physiotherapie-bei-Tennisellenbogen.pdf",
+    },
+  ],
+},
   {
     category: "Verfahren",
     name: "Kompressionstherapie bei venösen Unterschenkelulzera",
@@ -2409,15 +2450,26 @@ const nonPharmaOptions: NonPharmaOption[] = [
       "https://www.racgp.org.au/clinical-resources/clinical-guidelines/handi/handi-interventions/procedures/compression-for-venous-leg-ulcers",
   },
   {
-    category: "Kognitive und verhaltenstherapeutische Verfahren",
-    name: "Achtsamkeitstraining und kognitive Verhaltenstherapie bei chronischen Rückenschmerzen",
-    summary:
-      "Achtsamkeitsbasierte Stressreduktion und kognitive Verhaltenstherapie in Gruppensitzungen über acht Wochen mit zusätzlichen Übungen zu Hause.",
-    firstPublished: "2017",
-    website: "Achtsamkeit und kognitive Verhaltenstherapie bei chronischen Rückenschmerzen",
-    websiteUrl:
-      "https://www.racgp.org.au/clinical-resources/clinical-guidelines/handi/handi-interventions/cogntive-and-behavioural-therapies/mindfulness-and-cbt-for-chronic-low-back-pain",
-  },
+  category: "Kognitive und verhaltenstherapeutische Verfahren",
+  name: "Achtsamkeitstraining und kognitive Verhaltenstherapie bei chronischen Rückenschmerzen",
+  summary:
+    "Achtsamkeitsbasierte Stressreduktion und kognitive Verhaltenstherapie in Gruppensitzungen über acht Wochen mit zusätzlichen Übungen zu Hause.",
+  firstPublished: "2017",
+  website:
+    "Achtsamkeit und kognitive Verhaltenstherapie bei chronischen Rückenschmerzen",
+  websiteUrl:
+    "https://www.racgp.org.au/clinical-resources/clinical-guidelines/handi/handi-interventions/cogntive-and-behavioural-therapies/mindfulness-and-cbt-for-chronic-low-back-pain",
+  pdfs: [
+    {
+      label: "Kognitive Verhaltenstherapie drucken",
+      url: "https://www.uni-bielefeld.de/fakultaeten/medizin/fakultaet/arbeitsgruppen/allgemeinmedizin/forschung/target/Kognitive-Verhaltenstherapie_chron.-Schmerzen.pdf",
+    },
+    {
+      label: "Achtsamkeitstraining drucken",
+      url: "https://www.uni-bielefeld.de/fakultaeten/medizin/fakultaet/arbeitsgruppen/allgemeinmedizin/forschung/target/Achtsamkeit_chron.-Schmerzen-im-Rucken.pdf",
+    },
+  ],
+},
   {
     category: "Sonstiges",
     name: "Erhöhung des Kopfendes des Bettes bei GERD",
@@ -2558,23 +2610,35 @@ function NonPharmaOptionsModal({ onClose }: { onClose: () => void }) {
                 </p>
 
                 <div className="mt-4 flex flex-wrap gap-3">
-                  <button
-                    type="button"
-                    onClick={() => setOpenCard(isOpen ? null : option.name)}
-                    className="rounded-2xl border border-slate-300 px-3 py-2 text-xs font-semibold text-slate-700 hover:bg-slate-50"
-                  >
-                    {isOpen ? "Weniger anzeigen" : "Zusammenfassung lesen"}
-                  </button>
+  <button
+    type="button"
+    onClick={() => setOpenCard(isOpen ? null : option.name)}
+    className="rounded-2xl border border-slate-300 px-3 py-2 text-xs font-semibold text-slate-700 hover:bg-slate-50"
+  >
+    {isOpen ? "Weniger anzeigen" : "Zusammenfassung lesen"}
+  </button>
 
-                  <a
-  href={option.websiteUrl}
-  target="_blank"
-  rel="noopener noreferrer"
-  className="rounded-2xl bg-sky-600 px-3 py-2 text-xs font-semibold text-white hover:bg-sky-700"
->
-  Website
-</a>
-                </div>
+  <a
+    href={option.websiteUrl}
+    target="_blank"
+    rel="noopener noreferrer"
+    className="rounded-2xl bg-sky-600 px-3 py-2 text-xs font-semibold text-white hover:bg-sky-700"
+  >
+    Website
+  </a>
+
+  {option.pdfs?.map((pdf) => (
+    <a
+      key={pdf.url}
+      href={pdf.url}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="inline-flex items-center rounded-2xl border border-emerald-300 bg-emerald-50 px-3 py-2 text-xs font-semibold text-emerald-700 transition hover:bg-emerald-100"
+    >
+      📄 {pdf.label}
+    </a>
+  ))}
+</div>
               </div>
             );
           })}
