@@ -47,7 +47,7 @@ type GuidanceBox = {
 export default function TargetAppPage() {
   const [takesNSAIDs, setTakesNSAIDs] = useState<YesNo>(null);
   const [showAlternativesModal, setShowAlternativesModal] = useState(false);
-const [showBewegungRezept, setShowBewegungRezept] = useState(false);
+
 const [showNsaidRiskScript, setShowNsaidRiskScript] = useState(false);
 const [selectedMedicationBox, setSelectedMedicationBox] = useState<string | null>(null);
   const [riskFactors, setRiskFactors] = useState<Record<RiskFactorKey, boolean>>(
@@ -77,7 +77,7 @@ const [selectedMedicationBox, setSelectedMedicationBox] = useState<string | null
   function resetAssessment() {
     setTakesNSAIDs(null);
     setShowAlternativesModal(false);
-    setShowBewegungRezept(false);
+    
     setShowNsaidRiskScript(false);
     setRiskFactors({
       previousGIBleedingOrComplicatedUlcer: false,
@@ -289,15 +289,31 @@ Falls keine aktuelle Indikation mehr besteht, sollte ein Ausschleichen bzw. Abse
 
   const showMultiMedicationWarning = selectedCountAmongFour > 1;
 
-  const allFourCoreMedsNo = useMemo(() => {
-    return (
-      takesNSAIDs === false &&
-      medications.anticoagulants === false &&
-      medications.antiplatelets === false &&
-      medications.corticosteroids === false &&
-      medications.ssri === false
-    );
-  }, [medications, takesNSAIDs]);
+ const showAbsetzhilfe = useMemo(() => {
+  return (
+    takesNSAIDs === false &&
+    (
+      medications.antiplatelets === false ||
+      medications.anticoagulants === false ||
+      medications.ssri === false ||
+      medications.corticosteroids === false ||
+      medications.bisphosphonate === false
+    )
+  );
+}, [medications, takesNSAIDs]);
+
+
+const allFourCoreMedsNo = useMemo(() => {
+  return (
+    takesNSAIDs === false &&
+    medications.antiplatelets === false &&
+    medications.anticoagulants === false &&
+    medications.ssri === false &&
+    medications.corticosteroids === false &&
+    medications.bisphosphonate === false
+  );
+}, [medications, takesNSAIDs]);
+
 
   const statusCard = useMemo(() => {
     if (takesNSAIDs === true && nsaidRiskResult) {
@@ -486,7 +502,7 @@ description="Wählen Sie die zutreffende Option aus, um die Risikobewertung fort
       />
 
       <MedicationRow
-        label="SSRI oder SNRI (z. B. Venlafaxin) seit ≥6 Monaten"
+        label="SSRI oder SNRI Venlafaxin seit ≥6 Monaten"
         value={medications.ssri}
         onChange={(value) => setMedication("ssri", value)}
       />
@@ -639,6 +655,19 @@ description="Wählen Sie die zutreffende Option aus, um die Risikobewertung fort
       </div>
     )}
 
+    {showAbsetzhilfe && (
+  <QuickAction>
+    <a
+      href="https://www.uni-bielefeld.de/fakultaeten/medizin/fakultaet/arbeitsgruppen/allgemeinmedizin/forschung/target/Absetzhilfe-bei-Verdacht-auf-PIM-TARGET.pdf"
+      target="_blank"
+      rel="noopener noreferrer"
+      className="block w-full text-left font-semibold text-sky-700 underline underline-offset-2 hover:text-sky-900"
+    >
+      Absetzhilfe
+    </a>
+  </QuickAction>
+)}
+
   {takesNSAIDs === true && nsaidMedicationBoxes.length === 0 && (
     <div className="rounded-2xl border border-dashed border-slate-300 bg-slate-50 p-4 text-sm text-slate-500">
       Arzneimittelbezogene Empfehlungen werden hier angezeigt.
@@ -718,13 +747,11 @@ description="Wählen Sie die zutreffende Option aus, um die Risikobewertung fort
       {showAlternativesModal && (
   <PainScaleModal
     onClose={() => setShowAlternativesModal(false)}
-    onOpenBewegungRezept={() => setShowBewegungRezept(true)}
+    
   />
 )}
 
-{showBewegungRezept && (
-  <BewegungRezeptModal onClose={() => setShowBewegungRezept(false)} />
-)}
+
 
 {showNsaidRiskScript && nsaidRiskResult && (
   <NsaidRiskScriptModal
@@ -1086,10 +1113,8 @@ function ImageModal({
 
 function PainScaleModal({
   onClose,
-  onOpenBewegungRezept,
 }: {
   onClose: () => void;
-  onOpenBewegungRezept: () => void;
 }) {
   const [pain, setPain] = useState(0);
   const [showSDMScript, setShowSDMScript] = useState(false);
@@ -1356,701 +1381,7 @@ function PainScaleModal({
   );
 }
 
-function BewegungRezeptModal({ onClose }: { onClose: () => void }) {
-  const [form, setForm] = useState({
-    studyId: "",
-    krankenkasse: "",
-    patientName: "",
-    geburtsdatum: "",
-    kostentraegerkennung: "",
-    versichertenNr: "",
-    status: "",
-    betriebsstaettenNr: "",
-    arztNr: "",
-    datum: "",
-    trainingHerzKreislauf: false,
-    trainingHaltungBewegung: false,
-    trainingStressEntspannung: false,
-    trainingAllgemein: false,
-    hinweiseUebungsleitung: "",
-    adresseArzt: "",
-    mitteilungUebungsleitung: "",
-  });
 
-  function updateField(
-    field: keyof typeof form,
-    value: string | boolean
-  ) {
-    setForm((prev) => ({
-      ...prev,
-      [field]: value,
-    }));
-  }
-
-  return (
-    <div
-  className="fixed inset-0 z-[60] overflow-auto bg-slate-950/80 p-2 sm:p-4"
-  onClick={onClose}
->
-  <div
-    className="mx-auto w-full max-w-[1220px] rounded-3xl bg-white p-3 shadow-2xl sm:p-4"
-    onClick={(e) => e.stopPropagation()}
-  >
-        <div className="mb-4 flex items-center justify-between">
-          <h2 className="text-lg font-semibold text-slate-900">
-            Bewegungsrezept
-          </h2>
-
-          <button
-            type="button"
-            onClick={onClose}
-            className="rounded-2xl border border-slate-300 px-3 py-1.5 text-sm font-medium text-slate-700 hover:bg-slate-50"
-          >
-            Schließen
-          </button>
-        </div>
-
-        <div
-  id="bewegungsrezept-print-area"
-  className="grid gap-0 overflow-hidden rounded-2xl border border-neutral-800 bg-white text-neutral-950 lg:grid-cols-2"
-> {/* Left side */}
-          <section className="border-b-2 border-dotted border-neutral-700 p-4 sm:p-6 lg:border-b-0 lg:border-r-2">
-            
-            <div className="grid gap-5 xl:grid-cols-[1.1fr_0.9fr]">
-              <div>
-                <div className="mb-5 border border-neutral-800">
-                  <WritableBox
-                    label="Krankenkasse bzw. Kostenträger"
-                    value={form.krankenkasse}
-                    onChange={(value) => updateField("krankenkasse", value)}
-                  />
-
-                  <div className="grid grid-cols-1 border-t border-neutral-800 sm:grid-cols-[1fr_120px]">
-                    <WritableBox
-                      label="Name, Vorname der*des Versicherten"
-                      value={form.patientName}
-                      onChange={(value) => updateField("patientName", value)}
-                      className="border-r border-neutral-800"
-                    />
-
-                    <WritableBox
-                      label="geb. am"
-                      value={form.geburtsdatum}
-                      onChange={(value) => updateField("geburtsdatum", value)}
-                      type="date"
-                    />
-                  </div>
-
-                    <div className="grid grid-cols-1 border-t border-neutral-800 sm:grid-cols-[1.3fr_1.3fr_0.8fr]">
-    <WritableBox
-      label="Kostenträgererkennung"
-      value={form.kostentraegerkennung}
-      onChange={(value) =>
-        updateField("kostentraegerkennung", value)
-      }
-      className="sm:border-r sm:border-neutral-800"
-    />
-
-                    <WritableBox
-                      label="Versicherten-Nr."
-                      value={form.versichertenNr}
-                      onChange={(value) => updateField("versichertenNr", value)}
-                      className="border-r border-neutral-800"
-                    />
-
-                    <WritableBox
-                      label="Status"
-                      value={form.status}
-                      onChange={(value) => updateField("status", value)}
-                    />
-                  </div>
-
-                    {/* Study ID */}
-  <div className="border-t border-neutral-800">
-    <WritableBox
-      label="Study ID"
-      value={form.studyId}
-      onChange={(value) => updateField("studyId", value)}
-      className="bg-sky-50"
-    />
-  </div>
-
-                  <div className="grid grid-cols-1 border-t border-neutral-800 sm:grid-cols-3">
-                    <WritableBox
-                      label="Betriebsstätten-Nr."
-                      value={form.betriebsstaettenNr}
-                      onChange={(value) =>
-                        updateField("betriebsstaettenNr", value)
-                      }
-                      className="border-r border-neutral-800"
-                    />
-
-                    <WritableBox
-                      label="Arzt-Nr."
-                      value={form.arztNr}
-                      onChange={(value) => updateField("arztNr", value)}
-                      className="border-r border-neutral-800"
-                    />
-
-                    <WritableBox
-                      label="Datum"
-                      value={form.datum}
-                      onChange={(value) => updateField("datum", value)}
-                      type="date"
-                    />
-                  </div>
-                </div>
-
-                <p className="mb-2 text-[12px] font-semibold">
-                  Ich empfehle Ihnen ein Training mit folgendem Schwerpunkt:
-                </p>
-
-                <div className="space-y-2 text-[11px]">
-                  <WritableCheckBox
-                    label="Herz-Kreislaufsystem"
-                    checked={form.trainingHerzKreislauf}
-                    onChange={(value) =>
-                      updateField("trainingHerzKreislauf", value)
-                    }
-                  />
-
-                  <WritableCheckBox
-                    label="Haltungs- und Bewegungssystem"
-                    checked={form.trainingHaltungBewegung}
-                    onChange={(value) =>
-                      updateField("trainingHaltungBewegung", value)
-                    }
-                  />
-
-                  <WritableCheckBox
-                    label="Stressbewältigung und Entspannung"
-                    checked={form.trainingStressEntspannung}
-                    onChange={(value) =>
-                      updateField("trainingStressEntspannung", value)
-                    }
-                  />
-
-                  <WritableCheckBox
-                    label="Allgemeines Gesundheitstraining"
-                    checked={form.trainingAllgemein}
-                    onChange={(value) =>
-                      updateField("trainingAllgemein", value)
-                    }
-                  />
-                </div>
-
-                <WritableTextArea
-                  label="Hinweise an die Übungsleitung:"
-                  value={form.hinweiseUebungsleitung}
-                  onChange={(value) =>
-                    updateField("hinweiseUebungsleitung", value)
-                  }
-                  className="mt-5 h-56"
-                />
-              </div>
-
-              <div className="flex flex-col">
-                <h1 className="text-[34px] font-black uppercase leading-[0.95] tracking-tight">
-                  Rezept für
-                  <br />
-                  Bewegung
-                </h1>
-
-                <p className="mt-4 text-[13px] font-extrabold leading-tight">
-                  Regelmäßige körperliche Aktivität tut Ihnen und Ihrer
-                  Gesundheit gut!
-                </p>
-
-                <p className="mt-4 text-[12px] leading-[1.45]">
-                  Bewegung kann Krankheiten des Herz-Kreislauf- und des
-                  Stoffwechselsystems sowie des Bewegungsapparates verhindern.
-                  Zudem reduziert Bewegung das Risiko für Krebs, Diabetes Typ II
-                  und Demenz und trägt zur Entspannung bei.
-                </p>
-
-                <p className="mt-3 text-[12px] leading-[1.45]">
-                  Daher empfehle ich Ihnen die Teilnahme an einem
-                  Bewegungsangebot in einem Sportverein. Das kann ein Angebot
-                  sein, dass mit dem Qualitätssiegel{" "}
-                  <b>SPORT PRO GESUNDHEIT</b> zertifiziert ist.
-                </p>
-
-                <p className="mt-3 text-[12px] font-bold leading-[1.45]">
-                  Darüber hinaus empfehle ich, täglich mehr Bewegung in Ihren
-                  Alltag zu integrieren!
-                </p>
-
-                <WritableTextArea
-                  label="Adresse Arzt / Ärztin"
-                  value={form.adresseArzt}
-                  onChange={(value) => updateField("adresseArzt", value)}
-                  className="mt-6 h-24"
-                />
-
-                <div className="mt-auto pt-10 text-[10px] leading-tight">
-                  Stempel und Unterschrift
-                  <br />
-                  Arzt*Ärztin
-                </div>
-              </div>
-            </div>
-          </section>
-
-          {/* Right side */}
-          <section className="p-4 sm:p-6">
-            <p className="text-[13px] leading-tight">
-              Sie haben die ärztliche Empfehlung, an einem Bewegungsangebot
-              teilzunehmen. Sämtliche Angebote in Ihrer Nähe finden Sie im
-              Internet unter:
-            </p>
-
-            <p className="mt-1 text-[14px] font-bold">
-              www.bewegungslandkarte.de
-            </p>
-
-            <div className="mt-5 grid grid-cols-1 gap-3 text-[12px] leading-tight sm:grid-cols-[1fr_1.1fr]">
-              <div>
-                <p className="font-bold">Bei Fragen wenden Sie sich bitte an:</p>
-                <p className="mt-2 font-bold">
-                  Deutscher Olympischer Sportbund
-                </p>
-                <p>Ressort Breiten- und Gesundheitssport</p>
-              </div>
-
-              <div className="pt-7">
-                <p>
-                  E-Mail: <span className="ml-8">gesundheit@dosb.de</span>
-                </p>
-                <p>
-                  Internet: <span className="ml-7">gesundheit.dosb.de</span>
-                </p>
-              </div>
-            </div>
-
-            <h2 className="mt-5 text-[14px] font-black">
-              Wöchentliche Bewegungsempfehlungen für Erwachsene und ältere
-              Erwachsene
-            </h2>
-
-            <div className="mt-3 border-b border-neutral-800 pb-3">
-              <div className="grid grid-cols-1 items-center gap-3 sm:grid-cols-[70px_120px_1fr_140px]">
-                <div className="text-[11px] font-bold">
-                  Ausdauer
-                  <br />
-                  <span className="text-2xl">♥</span>
-                </div>
-
-                <div className="text-3xl font-black italic">150–300</div>
-
-                <p className="text-[11px] leading-tight">
-                  Minuten pro Woche
-                  <br />
-                  <span className="text-[10px]">
-                    Ausdauerorientierte Bewegung, die etwas anstrengend ist,
-                    z. B. Nordic Walking, Tanzen, Skilanglauf
-                  </span>
-                </p>
-
-                <div className="flex justify-around text-3xl">⛷︎ 🧘 🚣</div>
-              </div>
-
-              <div className="my-2 text-center text-[10px] font-bold">
-                ODER EINE KOMBINATION
-              </div>
-
-              <div className="grid grid-cols-[70px_120px_1fr_140px] items-center gap-3">
-                <div />
-                <div className="text-3xl font-black italic">75–150</div>
-
-                <p className="text-[11px] leading-tight">
-                  Minuten pro Woche
-                  <br />
-                  <span className="text-[10px]">
-                    Ausdauerorientierte Bewegung, die anstrengend ist, z. B.
-                    Laufen, schnelles Rad fahren, schnelles Schwimmen
-                  </span>
-                </p>
-
-                <div className="flex justify-around text-3xl">🏃 🚴 🏊</div>
-              </div>
-            </div>
-
-            <div className="grid grid-cols-1 border-b border-neutral-800 sm:grid-cols-2">
-              <div className="border-r border-neutral-800 p-3">
-                <p className="text-[10px] font-bold uppercase">Zusätzlich</p>
-                <div className="grid grid-cols-[70px_1fr_36px] items-center gap-2">
-                  <div className="text-3xl font-black italic">2</div>
-                  <p className="text-[10px] leading-tight">
-                    <b>Tage pro Woche</b>
-                    <br />
-                    Muskelkräftigende Aktivitäten, z. B. funktionsgymnastische
-                    Übungen oder Bewegen von Lasten
-                  </p>
-                  <div className="text-2xl">🏋</div>
-                </div>
-              </div>
-
-              <div className="p-3">
-                <p className="text-[10px] font-bold uppercase">Zusätzlich</p>
-                <div className="grid grid-cols-[70px_1fr_36px] items-center gap-2">
-                  <div className="text-3xl font-black italic">3</div>
-                  <p className="text-[10px] leading-tight">
-                    <b>Tage pro Woche</b>
-                    <br />
-                    Gleichgewichtsübungen, für ältere Erwachsene ab 65 Jahren
-                    zur Sturzprävention
-                  </p>
-                  <div className="text-2xl">⚖</div>
-                </div>
-              </div>
-            </div>
-
-            <p className="mt-2 text-[10px] leading-tight">
-              Lange Sitzphasen vermeiden und Sitzen durch körperliche
-              Aktivitäten unterbrechen – z. B. kleine Spaziergänge, Arbeiten im
-              Stehen
-            </p>
-
-            <p className="mt-1 text-[8px] leading-tight">
-              Quelle: modifiziert nach WHO: Bull et al., 2020
-              <span className="float-right">
-                Piktogramme: © DOSB/Sportdeutschland
-              </span>
-            </p>
-
-            <div className="mt-4 grid grid-cols-1 gap-4 sm:grid-cols-[1.1fr_0.7fr]">
-              <WritableTextArea
-                label="Mitteilung der Übungsleitung an den*die Arzt*Ärztin:"
-                value={form.mitteilungUebungsleitung}
-                onChange={(value) =>
-                  updateField("mitteilungUebungsleitung", value)
-                }
-                className="h-52"
-              />
-
-              <div className="flex flex-col justify-end pb-4 text-[12px] font-semibold leading-tight">
-                <p>
-                  Ihr*e Patient*in hat an unserem Bewegungsangebot teilgenommen.
-                </p>
-                <p className="mt-16 text-[10px] font-normal">
-                  Stempel und Unterschrift des Vereins
-                </p>
-              </div>
-            </div>
-
-            <div className="mt-6 flex flex-wrap gap-3">
-  <button
-    type="button"
-    onClick={() => console.log("REDCap-ready data:", form)}
-    className="rounded-2xl bg-sky-600 px-4 py-2 text-sm font-semibold text-white hover:bg-sky-700"
-  >
-    Formulardaten speichern
-  </button>
-
-<button
-  type="button"
-  onClick={() => {
-    const printWindow = window.open("", "_blank", "width=1400,height=900");
-    if (!printWindow) return;
-
-    printWindow.document.write(`
-      <!doctype html>
-      <html>
-        <head>
-          <title>Bewegungsrezept</title>
-          <style>
-            @page { size: A4 landscape; margin: 5mm; }
-
-            html, body {
-              margin: 0;
-              padding: 0;
-              width: 297mm;
-              height: 210mm;
-              font-family: Arial, sans-serif;
-              color: #111;
-              overflow: hidden;
-            }
-
-            * { box-sizing: border-box; }
-
-            .page {
-              width: 287mm;
-              height: 200mm;
-              margin: 0 auto;
-              display: grid;
-              grid-template-columns: 1fr 1fr;
-              border: 1px solid #111;
-              overflow: hidden;
-              font-size: 10px;
-              line-height: 1.25;
-            }
-
-            .left, .right { padding: 7mm; }
-            .left { border-right: 2px dotted #111; }
-
-            .top-left {
-              display: grid;
-              grid-template-columns: 1.05fr 0.95fr;
-              gap: 7mm;
-            }
-
-            .fieldbox {
-              border: 1px solid #111;
-              display: grid;
-            }
-
-            .field {
-              min-height: 13mm;
-              border-top: 1px solid #111;
-              padding: 2mm;
-            }
-
-            .field:first-child { border-top: 0; }
-
-            .row-2 { display: grid; grid-template-columns: 1fr 35mm; }
-            .row-3 { display: grid; grid-template-columns: 1.2fr 1.2fr 0.8fr; }
-            .row-3b { display: grid; grid-template-columns: 1fr 1fr 1fr; }
-
-            .row-2 > .field,
-            .row-3 > .field,
-            .row-3b > .field {
-              border-top: 1px solid #111;
-              border-right: 1px solid #111;
-            }
-
-            .row-2 > .field:last-child,
-            .row-3 > .field:last-child,
-            .row-3b > .field:last-child {
-              border-right: 0;
-            }
-
-            .study { background: #eaf6fb; }
-
-            h1 {
-              font-size: 30px;
-              line-height: 0.95;
-              margin: 0 0 6mm;
-              font-weight: 900;
-            }
-
-            h2 {
-              font-size: 13px;
-              margin: 0 0 3mm;
-              font-weight: 800;
-            }
-
-            p { margin: 0 0 3mm; }
-
-            .checkbox-row {
-              display: flex;
-              gap: 2mm;
-              align-items: center;
-              margin-bottom: 2mm;
-            }
-
-            .checkbox {
-              width: 3mm;
-              height: 3mm;
-              border: 1px solid #111;
-            }
-
-            .textarea {
-              border: 1px solid #111;
-              min-height: 44mm;
-              padding: 2mm;
-              margin-top: 4mm;
-            }
-
-            .address {
-              border: 1px solid #111;
-              min-height: 28mm;
-              padding: 2mm;
-              margin-top: 7mm;
-            }
-
-            .big {
-              font-size: 28px;
-              font-weight: 900;
-              font-style: italic;
-            }
-
-            .rec-grid {
-              display: grid;
-              grid-template-columns: 25mm 38mm 1fr 35mm;
-              gap: 4mm;
-              align-items: center;
-              border-bottom: 1px solid #111;
-              padding: 3mm 0;
-            }
-
-            .bottom-grid {
-              display: grid;
-              grid-template-columns: 1fr 1fr;
-              border-bottom: 1px solid #111;
-            }
-
-            .bottom-grid > div {
-              padding: 3mm;
-              border-right: 1px solid #111;
-            }
-
-            .bottom-grid > div:last-child { border-right: 0; }
-
-            .club {
-              display: grid;
-              grid-template-columns: 1.1fr 0.8fr;
-              gap: 5mm;
-              margin-top: 5mm;
-            }
-
-            .club-box {
-              border: 1px solid #111;
-              min-height: 42mm;
-              padding: 2mm;
-            }
-
-            @media print {
-              body { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
-            }
-          </style>
-        </head>
-
-        <body>
-          <div class="page">
-            <div class="left">
-              <div class="top-left">
-                <div>
-                  <div class="fieldbox">
-                    <div class="field">Krankenkasse bzw. Kostenträger<br>${form.krankenkasse}</div>
-
-                    <div class="row-2">
-                      <div class="field">Name, Vorname der*des Versicherten<br>${form.patientName}</div>
-                      <div class="field">geb. am<br>${form.geburtsdatum}</div>
-                    </div>
-
-                    <div class="row-3">
-                      <div class="field">Kostenträgererkennung<br>${form.kostentraegerkennung}</div>
-                      <div class="field">Versicherten-Nr.<br>${form.versichertenNr}</div>
-                      <div class="field">Status<br>${form.status}</div>
-                    </div>
-
-                    <div class="field study">Study ID<br>${form.studyId}</div>
-
-                    <div class="row-3b">
-                      <div class="field">Betriebsstätten-Nr.<br>${form.betriebsstaettenNr}</div>
-                      <div class="field">Arzt-Nr.<br>${form.arztNr}</div>
-                      <div class="field">Datum<br>${form.datum}</div>
-                    </div>
-                  </div>
-
-                  <h2 style="margin-top:7mm;">Ich empfehle Ihnen ein Training mit folgendem Schwerpunkt:</h2>
-
-                  <div class="checkbox-row"><span class="checkbox"></span> Herz-Kreislaufsystem</div>
-                  <div class="checkbox-row"><span class="checkbox"></span> Haltungs- und Bewegungssystem</div>
-                  <div class="checkbox-row"><span class="checkbox"></span> Stressbewältigung und Entspannung</div>
-                  <div class="checkbox-row"><span class="checkbox"></span> Allgemeines Gesundheitstraining</div>
-
-                  <div class="textarea">
-                    <b>Hinweise an die Übungsleitung:</b><br>
-                    ${form.hinweiseUebungsleitung}
-                  </div>
-                </div>
-
-                <div>
-                  <h1>REZEPT FÜR<br>BEWEGUNG</h1>
-
-                  <h2>Regelmäßige körperliche Aktivität tut Ihnen und Ihrer Gesundheit gut!</h2>
-
-                  <p>Bewegung kann Krankheiten des Herz-Kreislauf- und des Stoffwechselsystems sowie des Bewegungsapparates verhindern. Zudem reduziert Bewegung das Risiko für Krebs, Diabetes Typ II und Demenz und trägt zur Entspannung bei.</p>
-
-                  <p>Daher empfehle ich Ihnen die Teilnahme an einem Bewegungsangebot in einem Sportverein. Das kann ein Angebot sein, dass mit dem Qualitätssiegel <b>SPORT PRO GESUNDHEIT</b> zertifiziert ist.</p>
-
-                  <p><b>Darüber hinaus empfehle ich, täglich mehr Bewegung in Ihren Alltag zu integrieren!</b></p>
-
-                  <div class="address">
-                    <b>Adresse Arzt / Ärztin</b><br>
-                    ${form.adresseArzt}
-                  </div>
-
-                  <p style="margin-top:38mm;">Stempel und Unterschrift<br>Arzt*Ärztin</p>
-                </div>
-              </div>
-            </div>
-
-            <div class="right">
-              <p>Sie haben die ärztliche Empfehlung, an einem Bewegungsangebot teilzunehmen. Sämtliche Angebote in Ihrer Nähe finden Sie im Internet unter:</p>
-              <h2>www.bewegungslandkarte.de</h2>
-
-              <p><b>Bei Fragen wenden Sie sich bitte an:</b></p>
-              <p><b>Deutscher Olympischer Sportbund</b><br>Ressort Breiten- und Gesundheitssport</p>
-              <p>E-Mail: gesundheit@dosb.de<br>Internet: gesundheit.dosb.de</p>
-
-              <h2>Wöchentliche Bewegungsempfehlungen für Erwachsene und ältere Erwachsene</h2>
-
-              <div class="rec-grid">
-                <div><b>Ausdauer</b><br>♥</div>
-                <div class="big">150–<br>300</div>
-                <div>Minuten pro Woche<br>Ausdauerorientierte Bewegung, die etwas anstrengend ist, z. B. Nordic Walking, Tanzen, Skilanglauf</div>
-                <div>⛷️ 🧘 🚣</div>
-              </div>
-
-              <div style="text-align:center; font-weight:bold; margin:2mm 0;">ODER EINE KOMBINATION</div>
-
-              <div class="rec-grid">
-                <div></div>
-                <div class="big">75–150</div>
-                <div>Minuten pro Woche<br>Ausdauerorientierte Bewegung, die anstrengend ist, z. B. Laufen, schnelles Rad fahren, schnelles Schwimmen</div>
-                <div>🏃 🚴 🏊</div>
-              </div>
-
-              <div class="bottom-grid">
-                <div><b>ZUSÄTZLICH</b><br><span class="big">2</span> Tage pro Woche<br>Muskelkräftigende Aktivitäten, z. B. funktionsgymnastische Übungen oder Bewegen von Lasten 🏋️</div>
-                <div><b>ZUSÄTZLICH</b><br><span class="big">3</span> Tage pro Woche<br>Gleichgewichtsübungen, für ältere Erwachsene ab 65 Jahren zur Sturzprävention ⚖️</div>
-              </div>
-
-              <p>Lange Sitzphasen vermeiden und Sitzen durch körperliche Aktivitäten unterbrechen – z. B. kleine Spaziergänge, Arbeiten im Stehen</p>
-
-              <div class="club">
-                <div class="club-box">
-                  <b>Mitteilung der Übungsleitung an den*die Arzt*Ärztin:</b><br>
-                  ${form.mitteilungUebungsleitung}
-                </div>
-
-                <div>
-                  <p style="margin-top:22mm;"><b>Ihr*e Patient*in hat an unserem Bewegungsangebot teilgenommen.</b></p>
-                  <p style="margin-top:20mm;">Stempel und Unterschrift des Vereins</p>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <script>
-            window.onload = function() {
-              setTimeout(function() {
-                window.print();
-                window.close();
-              }, 300);
-            };
-          </script>
-        </body>
-      </html>
-    `);
-
-    printWindow.document.close();
-  }}
-  className="rounded-2xl border border-slate-300 bg-white px-4 py-2 text-sm font-semibold text-slate-700 hover:bg-slate-50"
->
-  🖨️ Formular drucken
-</button>
-</div>
-
-
-          </section>
-        </div>
-      </div>
-    </div>
-  );
-}
 
 function WritableBox({
   label,
@@ -2126,30 +1457,205 @@ function WritableCheckBox({
 }
 
 function SDMScriptModal({ onClose }: { onClose: () => void }) {
+function handlePrintSDM() {
+  const printContent = document.getElementById("sdm-print-content");
+
+  if (!printContent) {
+    console.error("SDM print content was not found.");
+    return;
+  }
+
+  const printFrame = document.createElement("iframe");
+
+  printFrame.style.position = "fixed";
+  printFrame.style.right = "0";
+  printFrame.style.bottom = "0";
+  printFrame.style.width = "0";
+  printFrame.style.height = "0";
+  printFrame.style.border = "0";
+  printFrame.style.visibility = "hidden";
+
+  document.body.appendChild(printFrame);
+
+  const frameDocument =
+    printFrame.contentDocument || printFrame.contentWindow?.document;
+
+  if (!frameDocument) {
+    document.body.removeChild(printFrame);
+    console.error("Print frame could not be created.");
+    return;
+  }
+
+  frameDocument.open();
+
+  frameDocument.write(`
+    <!doctype html>
+    <html lang="de">
+      <head>
+        <meta charset="utf-8" />
+
+        <title>
+          Gesprächsleitfaden zur gemeinsamen Entscheidungsfindung
+        </title>
+
+        <style>
+          @page {
+            size: A4 portrait;
+            margin: 15mm;
+          }
+
+          * {
+            box-sizing: border-box;
+          }
+
+          body {
+            margin: 0;
+            background: white;
+            color: #1e293b;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 11pt;
+            line-height: 1.55;
+          }
+
+          h1,
+          h2,
+          h3,
+          h4 {
+            color: #0f172a;
+            break-after: avoid;
+          }
+
+          h2 {
+            margin: 0 0 20px;
+            font-size: 20px;
+          }
+
+          h3 {
+            margin: 18px 0 8px;
+            font-size: 15px;
+          }
+
+          p {
+            margin: 0 0 12px;
+          }
+
+          ul {
+            margin: 8px 0 16px;
+            padding-left: 24px;
+          }
+
+          li {
+            margin-bottom: 8px;
+          }
+
+          blockquote {
+            margin: 12px 0;
+            padding: 10px 14px;
+            border-left: 4px solid #0ea5e9;
+            background: #f0f9ff;
+          }
+
+          section {
+            margin-bottom: 14px;
+            padding: 12px;
+            border: 1px solid #cbd5e1;
+            border-radius: 8px;
+            break-inside: avoid;
+          }
+
+          a {
+            color: black;
+            text-decoration: underline;
+            overflow-wrap: anywhere;
+          }
+
+          h2,
+          h3,
+          h4,
+          p,
+          li,
+          blockquote {
+            break-inside: avoid;
+          }
+
+          @media print {
+            body {
+              -webkit-print-color-adjust: exact;
+              print-color-adjust: exact;
+            }
+          }
+        </style>
+      </head>
+
+      <body>
+        <h2>
+          Gesprächsleitfaden zur gemeinsamen Entscheidungsfindung
+        </h2>
+
+        ${printContent.innerHTML}
+      </body>
+    </html>
+  `);
+
+  frameDocument.close();
+
+  setTimeout(() => {
+    const frameWindow = printFrame.contentWindow;
+
+    if (!frameWindow) {
+      document.body.removeChild(printFrame);
+      return;
+    }
+
+    frameWindow.focus();
+    frameWindow.print();
+
+    setTimeout(() => {
+      if (document.body.contains(printFrame)) {
+        document.body.removeChild(printFrame);
+      }
+    }, 1000);
+  }, 300);
+}
   return (
     <div
   className="fixed inset-0 z-[70] overflow-auto bg-slate-950/80 p-4"
   onClick={onClose}
 >
   <div
+    id="sdm-print-area"
     className="mx-auto max-w-4xl rounded-3xl bg-white p-6 shadow-2xl"
     onClick={(e) => e.stopPropagation()}
   >
-        <div className="mb-5 flex items-center justify-between gap-4">
-          <h2 className="text-lg font-semibold text-slate-900">
-            Gesprächsleitfaden zur gemeinsamen Entscheidungsfindung
-          </h2>
+        <div className="mb-5 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+  <h2 className="text-lg font-semibold text-slate-900">
+    Gesprächsleitfaden zur gemeinsamen Entscheidungsfindung
+  </h2>
 
-          <button
-            type="button"
-            onClick={onClose}
-            className="rounded-2xl border border-slate-300 px-3 py-1.5 text-sm font-medium text-slate-700 hover:bg-slate-50"
-          >
-            Schließen
-          </button>
-        </div>
+  <div className="flex flex-wrap gap-2 print:hidden">
+    <button
+      type="button"
+      onClick={handlePrintSDM}
+      className="inline-flex items-center gap-2 rounded-2xl border border-indigo-300 bg-indigo-50 px-4 py-2 text-sm font-semibold text-indigo-700 transition hover:bg-indigo-100"
+    >
+      <Printer className="h-4 w-4" />
+      Drucken
+    </button>
 
-        <div className="rounded-3xl border border-slate-200 bg-slate-50 p-5">
+    <button
+      type="button"
+      onClick={onClose}
+      className="rounded-2xl border border-slate-300 px-3 py-1.5 text-sm font-medium text-slate-700 hover:bg-slate-50"
+    >
+      Schließen
+    </button>
+  </div>
+</div>
+
+        <div
+             id="sdm-print-content"
+            className="rounded-3xl border border-slate-200 bg-slate-50 p-5"
+>
           <div className="space-y-5 text-sm leading-7 text-slate-800">
             <h3 className="text-base font-bold">
               Gespräche mit Patient*innen über nicht-medikamentöse Therapien zur
@@ -2833,9 +2339,10 @@ ${isHighRisk ? highRiskSpecificText : moderateRiskSpecificText}
   onClick={onClose}
 >
   <div
+    id="nsaid-risk-print-area"
     className="mx-auto max-w-5xl rounded-3xl bg-white p-6 shadow-2xl"
     onClick={(e) => e.stopPropagation()}
-  ><div className="mb-5 flex items-center justify-between gap-4">
+  ><div className="mb-5 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
   <div>
     <h2 className="text-lg font-semibold text-slate-900">
       Gespräch über NSAR-Risiko –{" "}
@@ -2847,14 +2354,32 @@ ${isHighRisk ? highRiskSpecificText : moderateRiskSpecificText}
     </p>
   </div>
 
-          <button
-            type="button"
-            onClick={onClose}
-            className="rounded-2xl border border-slate-300 px-3 py-1.5 text-sm font-medium text-slate-700 hover:bg-slate-50"
-          >
-            Schließen
-          </button>
-        </div>
+  <div className="flex flex-wrap gap-2 print:hidden">
+    <button
+      type="button"
+      onClick={() => {
+        document.body.classList.add("print-nsaid-risk");
+        window.print();
+
+        setTimeout(() => {
+          document.body.classList.remove("print-nsaid-risk");
+        }, 500);
+      }}
+      className="inline-flex items-center gap-2 rounded-2xl border border-indigo-300 bg-indigo-50 px-4 py-2 text-sm font-semibold text-indigo-700 transition hover:bg-indigo-100"
+    >
+      <Printer className="h-4 w-4" />
+      Gespräch drucken
+    </button>
+
+    <button
+      type="button"
+      onClick={onClose}
+      className="rounded-2xl border border-slate-300 px-3 py-1.5 text-sm font-medium text-slate-700 hover:bg-slate-50"
+    >
+      Schließen
+    </button>
+  </div>
+</div>
 
         <div
           className={`rounded-3xl border p-5 ${
@@ -3075,46 +2600,78 @@ function Quote({ children }: { children: React.ReactNode }) {
 }
 
 <style jsx global>{`
-
-@page {
-  size: A4 landscape;
-  margin: 5mm;
-  transform: scale(0.82);
-}
   @media print {
-    body.print-bewegungsrezept * {
+    body.print-sdm * {
       visibility: hidden !important;
     }
 
-    body.print-bewegungsrezept #bewegungsrezept-print-area,
-    body.print-bewegungsrezept #bewegungsrezept-print-area * {
+    body.print-sdm #sdm-print-area,
+    body.print-sdm #sdm-print-area * {
       visibility: visible !important;
     }
 
-   body.print-bewegungsrezept #bewegungsrezept-print-area {
-  position: absolute !important;
-  left: 0 !important;
-  top: 0 !important;
+    body.print-sdm #sdm-print-area {
+      position: absolute !important;
+      left: 0 !important;
+      top: 0 !important;
+      width: 100% !important;
+      max-width: none !important;
+      padding: 12mm !important;
+      margin: 0 !important;
+      border: none !important;
+      border-radius: 0 !important;
+      box-shadow: none !important;
+      background: white !important;
+    }
 
-  width: 100% !important;
-  max-width: 100% !important;
+    body.print-sdm .print-hidden {
+      display: none !important;
+    }
 
-  transform-origin: top left;
-  transform: scale(0.88);
+    body.print-sdm a {
+      color: black !important;
+      text-decoration: underline !important;
+    }
 
-  box-shadow: none !important;
-}
-
-   body.print-bewegungsrezept #bewegungsrezept-print-area {
-  page-break-inside: avoid;
-}
-
-body.print-bewegungsrezept section {
-  page-break-inside: avoid;
-}
-
-body.print-bewegungsrezept {
-  font-size: 11px !important;
-}
+    body.print-sdm h2,
+    body.print-sdm h3,
+    body.print-sdm p,
+    body.print-sdm li {
+      break-inside: avoid;
+    }
   }
+
+  @media print {
+  body.print-nsaid-risk * {
+    visibility: hidden !important;
+  }
+
+  body.print-nsaid-risk #nsaid-risk-print-area,
+  body.print-nsaid-risk #nsaid-risk-print-area * {
+    visibility: visible !important;
+  }
+
+  body.print-nsaid-risk #nsaid-risk-print-area {
+    position: absolute !important;
+    left: 0 !important;
+    top: 0 !important;
+    width: 100% !important;
+    max-width: none !important;
+    padding: 12mm !important;
+    margin: 0 !important;
+    border: none !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    background: white !important;
+  }
+
+  body.print-nsaid-risk .print\:hidden {
+    display: none !important;
+  }
+
+  body.print-nsaid-risk a {
+    color: black !important;
+    text-decoration: underline !important;
+  }
+}
 `}</style>
