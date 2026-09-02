@@ -1829,7 +1829,7 @@ const nonPharmaOptions: NonPharmaOption[] = [
     "https://www.racgp.org.au/clinical-resources/clinical-guidelines/handi/handi-interventions/exercise/aquatic-exercise-for-knee-and-hip-osteoarthritis",
   pdfs: [
     {
-      label: "Bewegungsrezept drucken",
+      label: "Rezepte für nichtmedikamentöse Maßnahmen",
       url: "https://www.uni-bielefeld.de/fakultaeten/medizin/fakultaet/arbeitsgruppen/allgemeinmedizin/forschung/target/Wassergymnastik-bei-Knie-und-Huftarthrose.pdf",
     },
   ],
@@ -1856,7 +1856,7 @@ const nonPharmaOptions: NonPharmaOption[] = [
     "https://www.racgp.org.au/clinical-resources/clinical-guidelines/handi/handi-interventions/exercise/exercise-for-chronic-low-back-pain",
   pdfs: [
     {
-      label: "Bewegungsrezept drucken",
+      label: "Rezepte für nichtmedikamentöse Maßnahmen",
       url: "https://www.uni-bielefeld.de/fakultaeten/medizin/fakultaet/arbeitsgruppen/allgemeinmedizin/forschung/target/Bewegung-bei-chronischen-Schmerzen-im-unteren-Rucken.pdf",
     },
   ],
@@ -1872,7 +1872,7 @@ const nonPharmaOptions: NonPharmaOption[] = [
     "https://www.racgp.org.au/clinical-resources/clinical-guidelines/handi/handi-interventions/exercise/exercise-for-knee-osteoarthritis",
   pdfs: [
     {
-      label: "Bewegungsrezept drucken",
+      label: "Rezepte für nichtmedikamentöse Maßnahmen",
       url: "https://www.uni-bielefeld.de/fakultaeten/medizin/fakultaet/arbeitsgruppen/allgemeinmedizin/forschung/target/Bewegung-bei-Kniearthrose.pdf",
     },
   ],
@@ -1898,7 +1898,7 @@ const nonPharmaOptions: NonPharmaOption[] = [
     "https://www.racgp.org.au/clinical-resources/clinical-guidelines/handi/handi-interventions/device/splints-for-the-reduction-of-pain-from-hand-osteoa",
   pdfs: [
     {
-      label: "Bewegungsrezept drucken",
+      label: "Rezepte für nichtmedikamentöse Maßnahmen",
       url: "https://www.uni-bielefeld.de/fakultaeten/medizin/fakultaet/arbeitsgruppen/allgemeinmedizin/forschung/target/Schienen-zur-Linderung-von-Schmerzen-bei-Handarthrose.pdf",
     },
   ],
@@ -1914,7 +1914,7 @@ const nonPharmaOptions: NonPharmaOption[] = [
     "https://www.racgp.org.au/clinical-resources/clinical-guidelines/handi/handi-interventions/device/walking-cane-for-knee-osteoarthritis",
   pdfs: [
     {
-      label: "Bewegungsrezept drucken",
+      label: "Rezepte für nichtmedikamentöse Maßnahmen",
       url: "https://www.uni-bielefeld.de/fakultaeten/medizin/fakultaet/arbeitsgruppen/allgemeinmedizin/forschung/target/Gehstock-bei-Kniearthrose.pdf",
     },
   ],
@@ -1940,7 +1940,7 @@ const nonPharmaOptions: NonPharmaOption[] = [
     "https://www.racgp.org.au/clinical-resources/clinical-guidelines/handi/handi-interventions/procedures/physiotherapy-for-tennis-elbow",
   pdfs: [
     {
-      label: "Bewegungsrezept drucken",
+      label: "Rezepte für nichtmedikamentöse Maßnahmen",
       url: "https://www.uni-bielefeld.de/fakultaeten/medizin/fakultaet/arbeitsgruppen/allgemeinmedizin/forschung/target/Physiotherapie-bei-Tennisellenbogen.pdf",
     },
   ],

@@ -133,17 +133,12 @@ export default function HomePage() {
     TARGET-App öffnen
   </Link>
 
-  <button
-    type="button"
-    disabled
-    className="inline-flex cursor-not-allowed items-center rounded-2xl border border-slate-300 bg-slate-100 px-6 py-3 text-sm font-semibold text-slate-500"
-  >
-    
-
-    <span className="ml-3 rounded-full bg-amber-100 px-2 py-1 text-xs font-semibold text-amber-700">
-      Zur Target Platform
-    </span>
-  </button>
+  <Link
+  href="/target-platform"
+  className="inline-flex items-center rounded-2xl border border-sky-600 bg-white px-6 py-3 text-sm font-semibold text-sky-700 shadow-sm transition hover:bg-sky-50 hover:shadow-md"
+>
+  Zur TARGET Platform
+</Link>
 </div>
           </div>
         </div>
