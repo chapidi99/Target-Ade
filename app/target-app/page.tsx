@@ -1810,7 +1810,7 @@ type NonPharmaOption = {
     | "Kognitive und verhaltenstherapeutische Verfahren"
     | "Sonstiges";
   name: string;
-  summary: string;
+  summary: React.ReactNode;
   firstPublished: string;
   website: string;
   websiteUrl: string;
