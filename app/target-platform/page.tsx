@@ -5,6 +5,7 @@ import {
   ArrowRight,
   Home,
   Sparkles,
+  ExternalLink,
 } from "lucide-react";
 
 export default function TargetPlatformPage() {
@@ -57,88 +58,208 @@ export default function TargetPlatformPage() {
         </div>
 
         {/* Main Feature Cards */}
-        <div className="grid gap-8 lg:grid-cols-2">
+        <div className="grid items-start gap-8 lg:grid-cols-2">
 
-          {/* Vorbereitung */}
-          <div className="group relative overflow-hidden rounded-[2rem] border border-blue-100 bg-white p-8 shadow-[0_18px_50px_rgba(15,23,42,0.08)] transition duration-300 hover:-translate-y-1 hover:shadow-[0_24px_70px_rgba(15,23,42,0.12)]">
-            <div className="absolute right-0 top-0 h-40 w-40 rounded-bl-[5rem] bg-blue-50" />
+         {/* Vorbereitung */}
+<div className="relative overflow-hidden rounded-[2rem] border border-blue-100 bg-white p-8 shadow-[0_18px_50px_rgba(15,23,42,0.08)]">
+  <div className="absolute right-0 top-0 h-40 w-40 rounded-bl-[5rem] bg-blue-50" />
 
-            <div className="relative">
-              <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-blue-100 text-blue-700">
-                <ClipboardCheck className="h-8 w-8" />
-              </div>
+  <div className="relative">
+    <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-blue-100 text-blue-700">
+      <ClipboardCheck className="h-8 w-8" />
+    </div>
 
-              <div className="mt-6">
-                <span className="text-xs font-semibold uppercase tracking-[0.18em] text-blue-600">
-                  Bereich 01
-                </span>
+    <div className="mt-6">
+      <h3 className="mt-2 text-2xl font-bold text-slate-900">
+        Vorbereitung
+      </h3>
 
-                <h3 className="mt-2 text-2xl font-bold text-slate-900">
-                  Vorbereitung
-                </h3>
+      <p className="mt-3 text-sm leading-6 text-slate-600">
+        Materialien zur Vorbereitung auf die TARGET-ADE Studie,
+        einschließlich relevanter Informationen und Unterlagen für die
+        Durchführung.
+      </p>
+    </div>
 
-                <p className="mt-3 max-w-lg text-sm leading-6 text-slate-600">
-                  Materialien zur Vorbereitung auf die TARGET-ADE Studie,
-                  einschließlich relevanter Informationen, Arbeitsunterlagen
-                  und unterstützender Dokumente für die Durchführung.
-                </p>
-              </div>
+    {/* PDF Links */}
+    <div className="mt-7 space-y-3">
 
-              <div className="mt-8 flex items-center justify-between border-t border-slate-100 pt-5">
-                <span className="text-sm font-medium text-slate-500">
-                  Studienvorbereitung
-                </span>
+      {/* Flyer Patientenrekrutierung */}
+      <a
+        href="/Vorbereitung/Flyer_Patientenrekrutierung.pdf"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="group flex items-center justify-between rounded-2xl border border-slate-200 bg-slate-50 px-4 py-4 transition hover:border-blue-300 hover:bg-blue-50"
+      >
+        <div className="flex items-center gap-3">
+          <FileText className="h-5 w-5 shrink-0 text-blue-600" />
 
-                <button
-                  type="button"
-                  className="inline-flex items-center gap-2 rounded-2xl bg-blue-600 px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-blue-700"
-                >
-                  Materialien anzeigen
-                  <ArrowRight className="h-4 w-4" />
-                </button>
-              </div>
-            </div>
-          </div>
+          <span className="text-sm font-semibold text-slate-700">
+            Flyer zur Patientenrekrutierung
+          </span>
+        </div>
 
-          {/* Patientenmaterialien */}
-          <div className="group relative overflow-hidden rounded-[2rem] border border-emerald-100 bg-white p-8 shadow-[0_18px_50px_rgba(15,23,42,0.08)] transition duration-300 hover:-translate-y-1 hover:shadow-[0_24px_70px_rgba(15,23,42,0.12)]">
-            <div className="absolute right-0 top-0 h-40 w-40 rounded-bl-[5rem] bg-emerald-50" />
+        <ExternalLink className="h-4 w-4 shrink-0 text-slate-400 transition group-hover:text-blue-600" />
+      </a>
 
-            <div className="relative">
-              <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-emerald-100 text-emerald-700">
-                <FileText className="h-8 w-8" />
-              </div>
+      {/* Infoblatt Studienteilnahme */}
+      <a
+        href="/Vorbereitung/Infoblatt_Studienteilnahme_Wartezimmer.pdf"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="group flex items-center justify-between rounded-2xl border border-slate-200 bg-slate-50 px-4 py-4 transition hover:border-blue-300 hover:bg-blue-50"
+      >
+        <div className="flex items-center gap-3">
+          <FileText className="h-5 w-5 shrink-0 text-blue-600" />
 
-              <div className="mt-6">
-                <span className="text-xs font-semibold uppercase tracking-[0.18em] text-emerald-600">
-                  Bereich 02
-                </span>
+          <span className="text-sm font-semibold text-slate-700">
+            Infoblatt zur Studienteilnahme
+          </span>
+        </div>
 
-                <h3 className="mt-2 text-2xl font-bold text-slate-900">
-                  Patientenmaterialien
-                </h3>
+        <ExternalLink className="h-4 w-4 shrink-0 text-slate-400 transition group-hover:text-blue-600" />
+      </a>
 
-                <p className="mt-3 max-w-lg text-sm leading-6 text-slate-600">
-                  Informations- und Unterstützungsmaterialien für Patient*innen,
-                  die im Rahmen der TARGET-ADE Studie eingesetzt werden können.
-                </p>
-              </div>
+      {/* Patienten-Einverständniserklärung */}
+      <a
+        href="/Vorbereitung/Patienten_Einverstaendniserklaerung.pdf"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="group flex items-center justify-between rounded-2xl border border-slate-200 bg-slate-50 px-4 py-4 transition hover:border-blue-300 hover:bg-blue-50"
+      >
+        <div className="flex items-center gap-3">
+          <FileText className="h-5 w-5 shrink-0 text-blue-600" />
 
-              <div className="mt-8 flex items-center justify-between border-t border-slate-100 pt-5">
-                <span className="text-sm font-medium text-slate-500">
-                  Informationen für Patient*innen
-                </span>
+          <span className="text-sm font-semibold text-slate-700">
+            Patienten-Einverständniserklärung
+          </span>
+        </div>
 
-                <button
-                  type="button"
-                  className="inline-flex items-center gap-2 rounded-2xl bg-emerald-600 px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-emerald-700"
-                >
-                  Materialien anzeigen
-                  <ArrowRight className="h-4 w-4" />
-                </button>
-              </div>
-            </div>
-          </div>
+        <ExternalLink className="h-4 w-4 shrink-0 text-slate-400 transition group-hover:text-blue-600" />
+      </a>
+
+    </div>
+
+    <p className="mt-5 text-xs leading-5 text-slate-400">
+      Die Dokumente werden als PDF in einem neuen Browser-Tab geöffnet.
+    </p>
+  </div>
+</div>
+
+        {/* Patientenmaterialien */}
+<div className="relative overflow-hidden rounded-[2rem] border border-emerald-100 bg-white p-8 shadow-[0_18px_50px_rgba(15,23,42,0.08)]">
+  <div className="absolute right-0 top-0 h-40 w-40 rounded-bl-[5rem] bg-emerald-50" />
+
+  <div className="relative">
+    <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-emerald-100 text-emerald-700">
+      <FileText className="h-8 w-8" />
+    </div>
+
+    <div className="mt-6">
+      <span className="text-xs font-semibold uppercase tracking-[0.18em] text-emerald-600">
+       
+      </span>
+
+      <h3 className="mt-2 text-2xl font-bold text-slate-900">
+        Patientenmaterialien
+      </h3>
+
+      <p className="mt-3 text-sm leading-6 text-slate-600">
+        Informations- und Unterstützungsmaterialien für Patient*innen
+        im Rahmen der TARGET-ADE Studie.
+      </p>
+    </div>
+
+    {/* PDF Links */}
+    <div className="mt-7 space-y-3">
+
+      <a
+        href="/Patientenmaterialien/Broschuere_Gastrointestinale_Blutung.pdf"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="group flex items-center justify-between rounded-2xl border border-slate-200 bg-slate-50 px-4 py-4 transition hover:border-emerald-300 hover:bg-emerald-50"
+      >
+        <div className="flex items-center gap-3">
+          <FileText className="h-5 w-5 shrink-0 text-emerald-600" />
+          <span className="text-sm font-semibold text-slate-700">
+            Broschüre – Gastrointestinale Blutung
+          </span>
+        </div>
+
+        <ExternalLink className="h-4 w-4 shrink-0 text-slate-400 transition group-hover:text-emerald-600" />
+      </a>
+
+      <a
+        href="/Patientenmaterialien/Broschuere_Wie_kommt_es_zur_Multimedikation.pdf"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="group flex items-center justify-between rounded-2xl border border-slate-200 bg-slate-50 px-4 py-4 transition hover:border-emerald-300 hover:bg-emerald-50"
+      >
+        <div className="flex items-center gap-3">
+          <FileText className="h-5 w-5 shrink-0 text-emerald-600" />
+          <span className="text-sm font-semibold text-slate-700">
+            Broschüre – Wie kommt es zur Multimedikation?
+          </span>
+        </div>
+
+        <ExternalLink className="h-4 w-4 shrink-0 text-slate-400 transition group-hover:text-emerald-600" />
+      </a>
+
+      <a
+        href="/Patientenmaterialien/Medikamente_richtig_einnehmen_Techniken.pdf"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="group flex items-center justify-between rounded-2xl border border-slate-200 bg-slate-50 px-4 py-4 transition hover:border-emerald-300 hover:bg-emerald-50"
+      >
+        <div className="flex items-center gap-3">
+          <FileText className="h-5 w-5 shrink-0 text-emerald-600" />
+          <span className="text-sm font-semibold text-slate-700">
+            Medikamente richtig einnehmen – Techniken
+          </span>
+        </div>
+
+        <ExternalLink className="h-4 w-4 shrink-0 text-slate-400 transition group-hover:text-emerald-600" />
+      </a>
+
+      <a
+        href="/Patientenmaterialien/Notfallplan_Patienten.pdf"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="group flex items-center justify-between rounded-2xl border border-slate-200 bg-slate-50 px-4 py-4 transition hover:border-emerald-300 hover:bg-emerald-50"
+      >
+        <div className="flex items-center gap-3">
+          <FileText className="h-5 w-5 shrink-0 text-emerald-600" />
+          <span className="text-sm font-semibold text-slate-700">
+            Notfallplan für Patient*innen
+          </span>
+        </div>
+
+        <ExternalLink className="h-4 w-4 shrink-0 text-slate-400 transition group-hover:text-emerald-600" />
+      </a>
+
+      <a
+        href="/Patientenmaterialien/Verhalten_bei_akuter_Erkrankung.pdf"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="group flex items-center justify-between rounded-2xl border border-slate-200 bg-slate-50 px-4 py-4 transition hover:border-emerald-300 hover:bg-emerald-50"
+      >
+        <div className="flex items-center gap-3">
+          <FileText className="h-5 w-5 shrink-0 text-emerald-600" />
+          <span className="text-sm font-semibold text-slate-700">
+            Verhalten bei akuter Erkrankung
+          </span>
+        </div>
+
+        <ExternalLink className="h-4 w-4 shrink-0 text-slate-400 transition group-hover:text-emerald-600" />
+      </a>
+
+    </div>
+
+    <p className="mt-5 text-xs leading-5 text-slate-400">
+      Die Dokumente werden als PDF in einem neuen Browser-Tab geöffnet.
+    </p>
+  </div>
+</div>
         </div>
 
         {/* Hint Section */}
