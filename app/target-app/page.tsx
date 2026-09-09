@@ -2386,9 +2386,10 @@ function NonPharmaOptionsModal({ onClose }: { onClose: () => void }) {
     const searchText = search.toLowerCase();
 
     const matchesSearch =
-      option.name.toLowerCase().includes(searchText) ||
-      option.summary.toLowerCase().includes(searchText) ||
-      option.category.toLowerCase().includes(searchText);
+  option.name.toLowerCase().includes(searchText) ||
+  (typeof option.summary === "string" &&
+    option.summary.toLowerCase().includes(searchText)) ||
+  option.category.toLowerCase().includes(searchText);
 
     return matchesCategory && matchesSearch;
   });
