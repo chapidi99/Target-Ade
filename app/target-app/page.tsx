@@ -1817,6 +1817,7 @@ type NonPharmaOption = {
   pdfs?: NonPharmaPdf[];
 };
 
+
 const nonPharmaOptions: NonPharmaOption[] = [
   {
   category: "Bewegung",
