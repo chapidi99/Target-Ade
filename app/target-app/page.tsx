@@ -2487,13 +2487,15 @@ function NonPharmaOptionsModal({ onClose }: { onClose: () => void }) {
                   </div>
                 </div>
 
-                <p className="text-sm leading-6 text-slate-600">
-                  {isOpen
-                    ? option.summary
-                    : option.summary.length > 150
-                    ? `${option.summary.slice(0, 150)}...`
-                    : option.summary}
-                </p>
+                <div className="mt-2 text-sm leading-6 text-slate-600">
+  {isOpen
+    ? option.summary
+    : typeof option.summary === "string"
+    ? option.summary.length > 150
+      ? `${option.summary.slice(0, 150)}...`
+      : option.summary
+    : option.summary}
+</div>
 
                 <div className="mt-4 flex flex-wrap gap-3">
   <button
