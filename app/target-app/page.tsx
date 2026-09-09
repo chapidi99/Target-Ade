@@ -1821,9 +1821,41 @@ const nonPharmaOptions: NonPharmaOption[] = [
   {
   category: "Bewegung",
   name: "Wassergymnastik bei Knie- und Hüftarthrose",
-  summary:
-    "Körperliche Übungen im Wasser, typischerweise bei 32–36 °C. Die Intervention umfasst zwei bis drei Sitzungen pro Woche von jeweils 30–60 Minuten über einen durchschnittlichen Zeitraum von 12 Wochen.",
-  firstPublished: "Keine Angabe",
+  summary: (
+  <div className="space-y-4">
+    <p>
+      Körperliche Bewegung im Wasser, um Schmerzen und
+      Funktionsbeeinträchtigungen zu lindern und die Lebensqualität zu
+      verbessern. Verbesserungen werden durch eine Steigerung der Muskelkraft,
+      des Gleichgewichts, der Koordination und der Gelenkbeweglichkeit erreicht.
+    </p>
+
+    <div>
+      <p className="font-semibold text-slate-900">Indikation:</p>
+      <p className="mt-1">
+        Arthrose im Knie oder in der Hüfte.
+      </p>
+    </div>
+
+    <div>
+      <p className="font-semibold text-slate-900">Kontraindikation:</p>
+      <p className="mt-1">
+        Das Training im Wasser ist möglicherweise für Patienten mit offenen
+        Wunden nicht geeignet. Weitere Vorsichtsmaßnahmen bei Herz- und
+        Lungenerkrankungen sollten von Fall zu Fall geprüft werden.
+      </p>
+    </div>
+
+    <div>
+      <p className="font-semibold text-slate-900">Sicherheit:</p>
+      <p className="mt-1">
+        Wassergymnastik kann auch von Menschen ausgeübt werden, die nicht
+        schwimmen können.
+      </p>
+    </div>
+  </div>
+),
+firstPublished: "Keine Angabe",
   website: "Wassergymnastik bei Knie- und Hüftarthrose",
   websiteUrl:
     "https://www.racgp.org.au/clinical-resources/clinical-guidelines/handi/handi-interventions/exercise/aquatic-exercise-for-knee-and-hip-osteoarthritis",
@@ -1837,9 +1869,50 @@ const nonPharmaOptions: NonPharmaOption[] = [
  {
   category: "Bewegung",
   name: "Bewegung bei akuten Schmerzen im unteren Rücken",
-  summary:
-    "Patient*innen mit akuten Rückenschmerzen wird empfohlen, aktiv zu bleiben, anstatt Bettruhe einzuhalten. Aktiv bleiben bedeutet nicht zwingend die Durchführung spezieller Übungen.",
-  firstPublished: "Keine Angabe",
+  summary: (
+  <div className="space-y-4">
+    <p>
+      Aktiv bleiben, anstatt im Bett zu ruhen, verringert die Schmerzintensität
+      und verbessert die Funktionsfähigkeit.
+    </p>
+
+    <div>
+      <p className="font-semibold text-slate-900">
+        Indikation:
+      </p>
+      <p className="mt-1">
+        Rückenschmerzen, die seit weniger als sechs Wochen bestehen, bei
+        Patienten ohne neurologische Ausfälle.
+      </p>
+    </div>
+
+    <div>
+      <p className="font-semibold text-slate-900">
+        Kontraindikationen:
+      </p>
+      <p className="mt-1">
+        Bei Patienten mit klinischen Anzeichen einer Infektion, einer
+        bösartigen Erkrankung und einer Vorgeschichte von Traumata sowie bei
+        einer Verschlimmerung oder anhaltenden, ohne Besserung verlaufenden
+        Schmerzen sollten spezifische Diagnosen in Betracht gezogen werden.
+      </p>
+    </div>
+
+    <div>
+      <p className="font-semibold text-slate-900">
+        Sicherheit:
+      </p>
+      <p className="mt-1">
+        Patienten befürchten oft, dass Schmerzen ein Anzeichen für eine
+        Verschlechterung des Zustands und weitere Schäden sind. Sie brauchen
+        möglicherweise die Gewissheit, dass die Schmerzen wahrscheinlich
+        nachlassen werden und dass anhaltende Schmerzen wahrscheinlich keine
+        weiteren Schäden verursachen.
+      </p>
+    </div>
+  </div>
+),
+firstPublished: "Keine Angabe",
   website: "Bewegung bei akuten Rückenschmerzen",
   websiteUrl:
     "https://www.racgp.org.au/clinical-resources/clinical-guidelines/handi/handi-interventions/exercise/exercise-for-acute-lower-back-pain",
@@ -1848,9 +1921,49 @@ const nonPharmaOptions: NonPharmaOption[] = [
 {
   category: "Bewegung",
   name: "Bewegung bei chronischen Schmerzen im unteren Rücken",
-  summary:
-    "Bewegungstherapie gilt als wirksame Intervention bei chronischen Rückenschmerzen. Sie kann angeleitet, gruppenbasiert oder als selbstständiges Heimtraining durchgeführt werden.",
-  firstPublished: "2016",
+  summary: (
+  <div className="space-y-4">
+    <p>
+      Bewegungstherapie zum Management von chronischen Schmerzen im unteren
+      Rücken. Sie kann angeleitet, gruppenbasiert oder als selbstständiges
+      Heimtraining durchgeführt werden.
+    </p>
+
+    <div>
+      <p className="font-semibold text-slate-900">
+        Indikation:
+      </p>
+      <p className="mt-1">
+        Chronische Schmerzen im unteren Rückenbereich.
+      </p>
+    </div>
+
+    <div>
+      <p className="font-semibold text-slate-900">
+        Kontraindikation:
+      </p>
+      <p className="mt-1">
+        Patienten, bei denen eine schwerwiegende Erkrankung die Ursache für die
+        Lendenwirbelsäulenschmerzen ist (Krebs, Fraktur, Infektion,
+        Cauda-equina-Syndrom).
+      </p>
+    </div>
+
+    <div>
+      <p className="font-semibold text-slate-900">
+        Sicherheit:
+      </p>
+      <p className="mt-1">
+        Bewegung gilt als sichere Maßnahme. Bei einer Minderheit der Betroffenen
+        können jedoch leichte Nebenwirkungen auftreten (z. B. verstärkte
+        Schmerzen im unteren Rückenbereich, steife und schmerzende Muskeln in
+        den Gliedmaßen). Dies ist oft eine natürliche Reaktion auf den Beginn
+        eines Trainingsprogramms.
+      </p>
+    </div>
+  </div>
+),
+ firstPublished: "2016",
   website: "Bewegung bei chronischen Rückenschmerzen",
   websiteUrl:
     "https://www.racgp.org.au/clinical-resources/clinical-guidelines/handi/handi-interventions/exercise/exercise-for-chronic-low-back-pain",
@@ -1864,9 +1977,47 @@ const nonPharmaOptions: NonPharmaOption[] = [
   {
   category: "Bewegung",
   name: "Bewegung bei Kniearthrose",
-  summary:
-    "Regelmäßige therapeutische Übungen an Land oder im Wasser für Erwachsene mit Kniearthrose. Die Programme können persönlich oder internetbasiert durchgeführt werden.",
-  firstPublished: "2014, aktualisiert 2017",
+  summary: (
+  <div className="space-y-4">
+    <p>
+      Regelmäßige therapeutische Übungen an Land oder im Wasser, um Schmerzen
+      zu lindern und die Funktionsfähigkeit des Knies zu verbessern.
+    </p>
+
+    <div>
+      <p className="font-semibold text-slate-900">
+        Indikation:
+      </p>
+      <p className="mt-1">
+        In allen klinischen Leitlinien wird Bewegung als zentrale
+        Behandlungsmaßnahme bei Arthrose empfohlen, unabhängig vom Alter der
+        Patient*innen, dem Ausmaß der Schmerzen oder dem Schweregrad der
+        Erkrankung.
+      </p>
+    </div>
+
+    <div>
+      <p className="font-semibold text-slate-900">
+        Kontraindikationen:
+      </p>
+      <p className="mt-1">
+        Begleiterkrankungen wie Herz-Kreislauf-Erkrankungen, Asthma und Diabetes
+        sollten berücksichtigt werden.
+      </p>
+    </div>
+
+    <div>
+      <p className="font-semibold text-slate-900">
+        Sicherheit:
+      </p>
+      <p className="mt-1">
+        Weisen Sie den Patienten an, sich bei Übungen im Stehen an einem Stuhl
+        oder einer Bank abzustützen.
+      </p>
+    </div>
+  </div>
+),
+firstPublished: "2014, aktualisiert 2017",
   website: "Bewegung bei Kniearthrose",
   websiteUrl:
     "https://www.racgp.org.au/clinical-resources/clinical-guidelines/handi/handi-interventions/exercise/exercise-for-knee-osteoarthritis",
@@ -1880,9 +2031,35 @@ const nonPharmaOptions: NonPharmaOption[] = [
   {
     category: "Bewegung",
     name: "Übungen bei patellofemoralem Schmerzsyndrom",
-  summary:
-    "Kräftigungsübungen für Hüfte und Knie können Schmerzen reduzieren und die Funktion verbessern.",
-  firstPublished: "2021",
+  summary: (
+  <div className="space-y-4">
+    <p>
+      Kräftigungsübungen für Hüfte und Knie können Schmerzen reduzieren und
+      die Funktion verbessern.
+    </p>
+
+    <div>
+      <p className="font-semibold text-slate-900">
+        Indikation:
+      </p>
+      <p className="mt-1">
+        Patellofemoralen Schmerz bei Kniebelastungen wie dem Treppensteigen,
+        Hocken oder längerem Sitzen.
+      </p>
+    </div>
+
+    <div>
+      <p className="font-semibold text-slate-900">
+        Kontraindikationen:
+      </p>
+      <p className="mt-1">
+        Andere Differentialdiagnosen von Patellarschmerzen müssen berücksichtigt
+        werden.
+      </p>
+    </div>
+  </div>
+),
+firstPublished: "2021",
   website: "Übungen bei patellofemoralem Schmerzsyndrom",
     websiteUrl:
       "https://www.racgp.org.au/clinical-resources/clinical-guidelines/handi/handi-interventions/exercise/exercise-for-patellofemoral-pain-syndrome",
@@ -1890,9 +2067,53 @@ const nonPharmaOptions: NonPharmaOption[] = [
   {
   category: "Hilfsmittel",
   name: "Schienen zur Linderung von Schmerzen bei Handarthrose",
-  summary:
-    "Fertigschienen oder maßgefertigte Schienen können nachts oder tagsüber getragen werden, um betroffene Gelenke zu stützen oder ruhigzustellen.",
-  firstPublished: "2014",
+  summary: (
+  <div className="space-y-4">
+    <p>
+      Fertigschienen oder maßgefertigte Schienen können nachts oder tagsüber
+      getragen werden, um betroffene Gelenke zu stützen oder ruhigzustellen.
+    </p>
+
+    <div>
+      <p className="font-semibold text-slate-900">
+        Indikation:
+      </p>
+      <p className="mt-1">
+        Patienten mit leichten bis mäßigen Schmerzen aufgrund einer Arthrose
+        des ersten Handwurzel-Mittelhandgelenks (CMC-1) an der Daumenbasis oder
+        anderen Gelenken der Hand.
+      </p>
+    </div>
+
+    <div>
+      <p>
+        Der{" "}
+        <span className="font-semibold text-slate-900">
+          Zeitpunkt
+        </span>{" "}
+        des Tragens hängt davon ab, wann der Patient Schmerzen verspürt
+        (d. h. bei Belastung, in Ruhe oder beides), von den täglichen
+        Aktivitäten und den Vorlieben des Patienten.
+      </p>
+    </div>
+
+    <div>
+      <p>
+        Eine starre „Ruheschiene“ aus thermoplastischem Material kann nachts
+        oder zeitweise tagsüber getragen werden.
+      </p>
+    </div>
+
+    <div>
+      <p>
+        Flexiblere, vorgefertigte Neoprenschienen (oder „Arbeitsschienen“)
+        werden oft für den Tagesgebrauch bevorzugt, um die Schmerzen bei
+        Aktivitäten zu lindern.
+      </p>
+    </div>
+  </div>
+),
+ firstPublished: "2014",
   website: "Schienen zur Linderung von Schmerzen bei Handarthrose",
   websiteUrl:
     "https://www.racgp.org.au/clinical-resources/clinical-guidelines/handi/handi-interventions/device/splints-for-the-reduction-of-pain-from-hand-osteoa",
@@ -1906,9 +2127,52 @@ const nonPharmaOptions: NonPharmaOption[] = [
  {
   category: "Hilfsmittel",
   name: "Gehstock bei Kniearthrose",
-  summary:
-    "Tägliche Verwendung einer Gehhilfe oder eines Stocks, um die Belastung des betroffenen Kniegelenks zu verringern und Schmerzen sowie die Funktion zu verbessern.",
-  firstPublished: "Keine Angabe",
+ summary: (
+  <div className="space-y-4">
+    <p>
+      Tägliche Verwendung einer Gehhilfe oder eines Stocks, um die Belastung
+      sowie Schmerzen des betroffenen Kniegelenks zu verringern und die
+      Funktion zu verbessern.
+    </p>
+
+    <div>
+      <p className="font-semibold text-slate-900">
+        Indikation:
+      </p>
+      <p className="mt-1">
+        Menschen mit Kniearthrose, die unter Schmerzen leiden und
+        Schwierigkeiten beim Gehen haben.
+      </p>
+    </div>
+
+    <div>
+      <p className="font-semibold text-slate-900">
+        Kontraindikatoren:
+      </p>
+      <p className="mt-1">
+        Ein Gehstock wird nicht empfohlen, wenn bereits Schmerzen im Handgelenk,
+        Ellenbogen oder in der Schulter auf der gegenüberliegenden Seite
+        bestehen.
+      </p>
+    </div>
+
+    <p>
+      Die Leitlinien der „Osteoarthritis Research International“ empfehlen,
+      dass Menschen mit beidseitiger Erkrankung statt Gehstöcken Geh-Gestelle
+      oder Rollatoren verwenden sollten.
+    </p>
+
+    <div>
+      <p className="font-semibold text-slate-900">
+        Sicherheit:
+      </p>
+      <p className="mt-1">
+        Gehstöcke haben eine maximale Gewichtsgrenze, daher muss ein geeigneter
+        Gehstock ausgewählt werden.
+      </p>
+    </div>
+  </div>
+), firstPublished: "Keine Angabe",
   website: "Gehhilfe für Kniearthrose",
   websiteUrl:
     "https://www.racgp.org.au/clinical-resources/clinical-guidelines/handi/handi-interventions/device/walking-cane-for-knee-osteoarthritis",
@@ -1922,9 +2186,40 @@ const nonPharmaOptions: NonPharmaOption[] = [
   {
     category: "Hilfsmittel",
     name: "Knie-Taping bei Arthrose",
-    summary:
-      "Starker Klebeband oder Bandage wird vor schmerzhaften Aktivitäten aufgetragen, um die schmerzhaften weichen Gewebe zu entlasten.",
-    firstPublished: "Keine Angabe",
+    summary: (
+  <div className="space-y-4">
+    <p>
+      Anlegen von Tape oder Bandagen vor schmerzhaften Aktivitäten, zur
+      Entlastung schmerzhafter Weichteile.
+    </p>
+
+    <div>
+      <p className="font-semibold text-slate-900">
+        Indikation:
+      </p>
+      <p className="mt-1">
+        Menschen mit Kniearthrose, die unter chronischem Schmerz leiden.
+      </p>
+    </div>
+
+    <div>
+      <p className="font-semibold text-slate-900">
+        Sicherheit:
+      </p>
+      <p className="mt-1">
+        Ein Physiotherapeut sollte dem Patienten zeigen, wie Tape und Bandagen
+        adäquat selbst angelegt werden können. Da es zu minimalen
+        Hautirritationen kommen kann, ist Hautpflege bei der Auswahl des Tapes,
+        der Nutzung und der Entfernung empfohlen.
+      </p>
+    </div>
+
+    <p>
+      Das Tapen wird nicht als alleinige Intervention empfohlen.
+    </p>
+  </div>
+),
+ firstPublished: "Keine Angabe",
     website: "Knieverband für Arthrose",
     websiteUrl:
       "https://www.racgp.org.au/clinical-resources/clinical-guidelines/handi/handi-interventions/device/knee-taping-for-osteoarthritis",
@@ -1932,9 +2227,32 @@ const nonPharmaOptions: NonPharmaOption[] = [
   {
   category: "Verfahren",
   name: "Physiotherapie bei Tennisellenbogen",
-  summary:
-    "Ein physiotherapeutisches Programm mit Übungen, Ellenbogenmobilisation, Eigenübungen und progressivem Training der Handgelenkstrecker.",
-  firstPublished: "Keine Angabe",
+  summary: (
+  <div className="space-y-4">
+    <p>
+      Physiotherapeutische Übungen, Ellenbogenmobilisation, Eigenübungen und
+      progressives Training der Handgelenkstrecker zur Schmerzlinderung.
+    </p>
+
+    <div>
+      <p className="font-semibold text-slate-900">
+        Indikation:
+      </p>
+      <p className="mt-1">
+        Menschen mit Tennisellenbogen, bei denen Schmerzen länger als 6 Wochen
+        bestehen. Ein früherer Beginn des Trainings kann vorteilhaft sein.
+      </p>
+    </div>
+
+    <p>
+      Die Symptome bessern sich meist innerhalb von 12 Monaten von selbst.
+      Physiotherapie kann die Schmerzlinderung beschleunigen und im Vergleich
+      zur Behandlung mit Kortikosteroiden langfristig bessere Ergebnisse
+      erzielen.
+    </p>
+  </div>
+),
+ firstPublished: "Keine Angabe",
   website: "Physiotherapie bei Tennisellenbogen",
   websiteUrl:
     "https://www.racgp.org.au/clinical-resources/clinical-guidelines/handi/handi-interventions/procedures/physiotherapy-for-tennis-elbow",
@@ -1948,19 +2266,79 @@ const nonPharmaOptions: NonPharmaOption[] = [
   {
     category: "Verfahren",
     name: "Kompressionstherapie bei venösen Unterschenkelulzera",
-    summary:
-      "Medizinische Kompressionstherapie am Unterschenkel zur Verbesserung des venösen Rückflusses und zur Verringerung von Ödemen.",
-    firstPublished: "2017",
+    summary: (
+  <div className="space-y-4">
+    <p>
+      Medizinische Kompressionstherapie am Unterschenkel zur Verbesserung des
+      venösen Rückflusses und zur Verringerung von Ödemen.
+    </p>
+
+    <div>
+      <p className="font-semibold text-slate-900">
+        Indikation:
+      </p>
+      <p className="mt-1">
+        Personen mit venösen Unterschenkelulzera.
+      </p>
+    </div>
+
+    <div>
+      <p className="font-semibold text-slate-900">
+        Kontraindikation:
+      </p>
+      <p className="mt-1">
+        Eine Kompression sollte nicht angewendet werden, bevor eine angemessene
+        Beurteilung erfolgt und eine periphere arterielle Verschlusskrankheit
+        (pAVK) ausgeschlossen wurde. Zudem erfordern Herz-, Nieren- oder
+        Leberinsuffizienz, Zellulitis sowie eine akute tiefe Venenthrombose
+        (nach erfolgter Antikoagulation) bei gewollter Nutzung von Tapes eine
+        angemessene Beurteilung und Behandlung.
+      </p>
+    </div>
+
+    <p>
+      Für Personen mit Diabetes mellitus, Herz-Kreislauf-Erkrankungen,
+      Malignomen oder Ulzera gemischter Ätiologie liegt keine Evidenzen vor,
+      daher ist bei der Kompressionstherapie besondere Vorsicht geboten.
+    </p>
+  </div>
+),
+  firstPublished: "2017",
     website: "Kompressionstherapie bei venösen Unterschenkelulzera",
     websiteUrl:
       "https://www.racgp.org.au/clinical-resources/clinical-guidelines/handi/handi-interventions/procedures/compression-for-venous-leg-ulcers",
   },
   {
   category: "Kognitive und verhaltenstherapeutische Verfahren",
-  name: "Achtsamkeitstraining und kognitive Verhaltenstherapie bei chronischen Rückenschmerzen",
-  summary:
-    "Achtsamkeitsbasierte Stressreduktion und kognitive Verhaltenstherapie in Gruppensitzungen über acht Wochen mit zusätzlichen Übungen zu Hause.",
-  firstPublished: "2017",
+  name: "AAchtsamkeitstraining und kognitive Verhaltenstherapie bei chronischen Schmerzen im unteren Rücken",
+  summary: (
+  <div className="space-y-4">
+    <p>
+      Achtsamkeitstraining und kognitive Verhaltenstherapie in Gruppensitzungen
+      über zur Reduktion von Schmerz und Funktionsbeeinträchtigung.
+    </p>
+
+    <div>
+      <p className="font-semibold text-slate-900">
+        Indikation:
+      </p>
+      <p className="mt-1">
+        Personen mit chronischem Schmerz im unteren Rücken.
+      </p>
+    </div>
+
+    <div>
+      <p className="font-semibold text-slate-900">
+        Vorsichtig bei:
+      </p>
+      <p className="mt-1">
+        Patienten mit Spinalkanalstenose, Problemen im Zusammenhang mit einer
+        Wirbelsäulenkompensation oder einer Wirbelsäulenverletzung.
+      </p>
+    </div>
+  </div>
+),
+ firstPublished: "2017",
   website:
     "Achtsamkeit und kognitive Verhaltenstherapie bei chronischen Rückenschmerzen",
   websiteUrl:
