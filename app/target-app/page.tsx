@@ -289,15 +289,15 @@ Falls keine aktuelle Indikation mehr besteht, sollte ein Ausschleichen bzw. Abse
 
   const showMultiMedicationWarning = selectedCountAmongFour > 1;
 
- const showAbsetzhilfe = useMemo(() => {
+const showAbsetzhilfe = useMemo(() => {
   return (
     takesNSAIDs === false &&
     (
-      medications.antiplatelets === false ||
-      medications.anticoagulants === false ||
-      medications.ssri === false ||
-      medications.corticosteroids === false ||
-      medications.bisphosphonate === false
+      medications.antiplatelets !== null ||
+      medications.anticoagulants !== null ||
+      medications.ssri !== null ||
+      medications.corticosteroids !== null ||
+      medications.bisphosphonate !== null
     )
   );
 }, [medications, takesNSAIDs]);
@@ -619,7 +619,18 @@ description="Wählen Sie die zutreffende Option aus, um die Risikobewertung fort
     rel="noopener noreferrer"
     className="block w-full text-left font-semibold text-sky-700 underline underline-offset-2 hover:text-sky-900"
   >
-    Absetzhilfe 
+    <span className="text-base font-semibold">
+  Absetzhilfe
+</span>
+  </a>
+</QuickAction>
+
+<QuickAction>
+  <a
+    href="/target-platform"
+    className="block w-full text-left font-semibold text-sky-700 underline underline-offset-2 hover:text-sky-900"
+  >
+    Patientenmaterialien
   </a>
 </QuickAction>
 
@@ -1352,7 +1363,9 @@ function PainScaleModal({
         rel="noopener noreferrer"
         className="block w-full rounded-xl border border-slate-200 bg-white px-4 py-3 text-left text-sm font-semibold text-slate-700 transition hover:border-sky-300 hover:bg-sky-50 hover:text-sky-800"
       >
-        Absetzhilfe 
+        <span className="text-base font-semibold">
+  Absetzhilfe
+</span>
       </a>
     </div>
   )}

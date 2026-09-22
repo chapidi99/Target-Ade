@@ -71,7 +71,7 @@ export default function TargetPlatformPage() {
 
     <div className="mt-6">
       <h3 className="mt-2 text-2xl font-bold text-slate-900">
-        Vorbereitung
+        Studienmaterialien
       </h3>
 
       <p className="mt-3 text-sm leading-6 text-slate-600">
@@ -83,6 +83,25 @@ export default function TargetPlatformPage() {
 
     {/* PDF Links */}
     <div className="mt-7 space-y-3">
+
+      {/* Flyer Patientenrekrutierung */}
+      <a
+        href="/Vorbereitung/"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="group flex items-center justify-between rounded-2xl border border-slate-200 bg-slate-50 px-4 py-4 transition hover:border-blue-300 hover:bg-blue-50"
+      >
+        <div className="flex items-center gap-3">
+          <FileText className="h-5 w-5 shrink-0 text-blue-600" />
+
+          <span className="text-sm font-semibold text-slate-700">
+            GCP-konforme Studiendurchführung: Studienablauf und studienbezogene Dokumente
+          </span>
+        </div>
+
+        <ExternalLink className="h-4 w-4 shrink-0 text-slate-400 transition group-hover:text-blue-600" />
+      </a>
+
 
       {/* Flyer Patientenrekrutierung */}
       <a
@@ -222,7 +241,7 @@ export default function TargetPlatformPage() {
       </a>
 
       <a
-        href="/Patientenmaterialien/Notfallplan_Patienten.pdf"
+        href="/Patientenmaterialien/sichere_Arzneimitteltherapie.pdf"
         target="_blank"
         rel="noopener noreferrer"
         className="group flex items-center justify-between rounded-2xl border border-slate-200 bg-slate-50 px-4 py-4 transition hover:border-emerald-300 hover:bg-emerald-50"
@@ -230,7 +249,7 @@ export default function TargetPlatformPage() {
         <div className="flex items-center gap-3">
           <FileText className="h-5 w-5 shrink-0 text-emerald-600" />
           <span className="text-sm font-semibold text-slate-700">
-            Notfallplan für Patient*innen
+            sichere_Arzneimitteltherapie
           </span>
         </div>
 
