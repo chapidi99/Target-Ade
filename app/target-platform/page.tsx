@@ -74,7 +74,7 @@ export default function TargetPlatformPage() {
         Studienmaterialien
       </h3>
 
-      <p className="mt-3 text-sm leading-6 text-slate-600">
+      <p className="mt-3 text-base leading-7 text-slate-600">
         Materialien zur Vorbereitung auf die TARGET-ADE Studie,
         einschließlich relevanter Informationen und Unterlagen für die
         Durchführung.
@@ -200,7 +200,7 @@ export default function TargetPlatformPage() {
       >
         <div className="flex items-center gap-3">
           <FileText className="h-5 w-5 shrink-0 text-emerald-600" />
-          <span className="text-sm font-semibold text-slate-700">
+          <span className="text-base font-semibold text-slate-700">
             Broschüre – Gastrointestinale Blutung
           </span>
         </div>

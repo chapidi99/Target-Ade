@@ -369,7 +369,7 @@ return {
                 TARGET - ADE App
               </h1>
 
-              <p className="mt-1 text-sm text-slate-600">
+              <p className="mt-1 text-base text-slate-600">
                 GI-Blutungsrisiko und Dashboard zur Medikationsüberprüfung
               </p>
             </div>
@@ -722,7 +722,7 @@ description="Wählen Sie die zutreffende Option aus, um die Risikobewertung fort
               </button>
 
               {isOpen && (
-                <div className="border-t border-slate-200 px-4 py-3 text-sm leading-6 text-slate-700">
+                <div className="border-t border-slate-200 px-4 py-3 text-base leading-7 text-slate-700">
                   <div className="whitespace-pre-line">{box.text}</div>
 
 {box.link && (
@@ -813,7 +813,7 @@ function SectionHeader({
       </h2>
 
       {description && (
-        <p className="mt-2 text-sm text-slate-600">
+        <p className="mt-2 text-base text-slate-600">
           {description}
         </p>
       )}
@@ -852,7 +852,7 @@ function SegmentedChoice({
       <button
         type="button"
         onClick={() => onChange(true)}
-        className={`rounded-xl px-5 py-2.5 text-sm font-semibold transition ${
+        className={`rounded-xl px-5 py-2.5 text-base font-semibold transition ${
           value === true
             ? "bg-sky-600 text-white shadow-sm"
             : "text-slate-700 hover:bg-white"
@@ -863,7 +863,7 @@ function SegmentedChoice({
       <button
         type="button"
         onClick={() => onChange(false)}
-        className={`rounded-xl px-5 py-2.5 text-sm font-semibold transition ${
+        className={`rounded-xl px-5 py-2.5 text-base font-semibold transition ${
           value === false
             ? "bg-sky-600 text-white shadow-sm"
             : "text-slate-700 hover:bg-white"
@@ -893,7 +893,7 @@ function RiskItem({
     className="mt-1 h-5 w-5 shrink-0 rounded border-slate-300 text-sky-600 focus:ring-sky-500"
   />
 
-  <span className="flex-1 text-sm leading-6 text-slate-800">
+  <span className="flex-1 text-base leading-6 text-slate-800">
     {label}
   </span>
 </label>
@@ -920,7 +920,7 @@ function MedicationRow({
       }`}
     >
       <div
-        className={`pr-4 text-sm font-medium ${
+        className={`pr-4 text-base font-medium ${
           isYes ? "text-rose-900" : "text-slate-800"
         }`}
       >
@@ -931,7 +931,7 @@ function MedicationRow({
         <button
           type="button"
           onClick={() => onChange(true)}
-          className={`rounded-xl px-4 py-2 text-sm font-semibold transition ${
+          className={`rounded-xl px-4 py-2 text-base font-semibold transition ${
             value === true
               ? "bg-rose-600 text-white shadow-sm"
               : "text-slate-700 hover:bg-slate-50"
@@ -943,7 +943,7 @@ function MedicationRow({
         <button
           type="button"
           onClick={() => onChange(false)}
-          className={`rounded-xl px-4 py-2 text-sm font-semibold transition ${
+          className={`rounded-xl px-4 py-2 text-base font-semibold transition ${
             value === false
               ? "bg-sky-600 text-white shadow-sm"
               : "text-slate-700 hover:bg-slate-50"
@@ -984,9 +984,9 @@ function InfoCard({
     <div className={`rounded-3xl border p-4 shadow-sm ${toneClass}`}>
       <div className="mb-2 flex items-center gap-2">
         {icon && <span className="text-slate-500">{icon}</span>}
-        <h3 className="text-sm font-semibold text-slate-900">{title}</h3>
+        <h3 className="text-base font-semibold text-slate-900">{title}</h3>
       </div>
-      <div className="text-sm leading-6 text-slate-700">{children}</div>
+      <div className="text-base leading-7 text-slate-700">{children}</div>
     </div>
   );
 }
@@ -1001,7 +1001,7 @@ function MedicationAccordion({ boxes }: { boxes: GuidanceBox[] }) {
         <h2 className="text-sm font-semibold uppercase tracking-[0.18em] text-slate-500">
           Arzneimittelbezogene Empfehlungen
         </h2>
-        <p className="mt-1 text-sm text-slate-600">
+        <p className="mt-1 text-base text-slate-600">
           Wählen Sie eine Medikamentengruppe aus, um die Empfehlung anzuzeigen.
         </p>
       </div>
@@ -1032,7 +1032,7 @@ function MedicationAccordion({ boxes }: { boxes: GuidanceBox[] }) {
               </button>
 
               {isOpen && (
-                <div className="border-t border-slate-200 px-4 py-3 text-sm leading-6 text-slate-700">
+                <div className="border-t border-slate-200 px-4 py-3 text-base leading-7 text-slate-700">
                   <div className="whitespace-pre-line">{box.text}</div>
 
                   {box.link && (
@@ -1669,7 +1669,7 @@ function handlePrintSDM() {
              id="sdm-print-content"
             className="rounded-3xl border border-slate-200 bg-slate-50 p-5"
 >
-          <div className="space-y-5 text-sm leading-7 text-slate-800">
+          <div className="space-y-5 text-base leading-7 text-slate-800">
             <h3 className="text-base font-bold">
               Gespräche mit Patient*innen über nicht-medikamentöse Therapien zur
               Schmerzbehandlung
@@ -2500,7 +2500,7 @@ function NonPharmaOptionsModal({ onClose }: { onClose: () => void }) {
                   </div>
                 </div>
 
-                <div className="mt-2 text-sm leading-6 text-slate-600">
+                <div className="mt-2 text-base leading-6 text-slate-600">
   {isOpen
     ? option.summary
     : typeof option.summary === "string"
@@ -2514,7 +2514,7 @@ function NonPharmaOptionsModal({ onClose }: { onClose: () => void }) {
   <button
     type="button"
     onClick={() => setOpenCard(isOpen ? null : option.name)}
-    className="rounded-2xl border border-slate-300 px-3 py-2 text-xs font-semibold text-slate-700 hover:bg-slate-50"
+    className="rounded-2xl border border-slate-300 px-3 py-2 text-sm font-semibold text-slate-700 hover:bg-slate-50"
   >
     {isOpen ? "Weniger anzeigen" : "Zusammenfassung lesen"}
   </button>
@@ -2523,7 +2523,7 @@ function NonPharmaOptionsModal({ onClose }: { onClose: () => void }) {
     href={option.websiteUrl}
     target="_blank"
     rel="noopener noreferrer"
-    className="rounded-2xl bg-sky-600 px-3 py-2 text-xs font-semibold text-white hover:bg-sky-700"
+    className="rounded-2xl bg-sky-600 px-3 py-2 text-sm font-semibold text-white hover:bg-sky-700"
   >
     Website
   </a>
@@ -2534,7 +2534,7 @@ function NonPharmaOptionsModal({ onClose }: { onClose: () => void }) {
       href={pdf.url}
       target="_blank"
       rel="noopener noreferrer"
-      className="inline-flex items-center rounded-2xl border border-emerald-300 bg-emerald-50 px-3 py-2 text-xs font-semibold text-emerald-700 transition hover:bg-emerald-100"
+      className="inline-flex items-center rounded-2xl border border-emerald-300 bg-emerald-50 px-3 py-2 text-sm font-semibold text-emerald-700 transition hover:bg-emerald-100"
     >
       📄 {pdf.label}
     </a>
@@ -2783,7 +2783,7 @@ ${isHighRisk ? highRiskSpecificText : moderateRiskSpecificText}
               : "border-amber-200 bg-amber-50"
           }`}
         >
-          <div className="space-y-6 text-sm leading-7 text-slate-800">
+          <div className="space-y-6 text-base leading-7 text-slate-800">
   <ScriptBlock title="Sprechen Sie mit Ihrem Patient*innen über das Risiko einer GI-Blutung">
     <p>(aufgrund von NSARs wie Ibuprofen, Diclofenac, ASS, etc.)</p>
     <p className="text-xs text-slate-500">
@@ -2980,7 +2980,7 @@ function ScriptBlock({
 }) {
   return (
     <section className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
-      <h3 className="mb-3 text-sm font-bold text-slate-900">{title}</h3>
+      <h3 className="mb-3 text-base font-bold text-slate-900">{title}</h3>
       <div className="space-y-3">{children}</div>
     </section>
   );

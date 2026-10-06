@@ -90,16 +90,16 @@ export default function HomePage() {
             </div>
 
             <div className="mx-auto mt-4 max-w-3xl text-center">
-              <h1 className="text-2xl font-bold tracking-tight text-slate-950 sm:text-3xl">
+              <h1 className="text-3xl font-bold tracking-tight text-slate-950 sm:text-4xl">
                 TARGET-ADE Studie
               </h1>
 
-              <p className="mt-3 text-base leading-relaxed text-slate-600 sm:text-lg">
+              <p className="mt-3 text-lg leading-relaxed text-slate-600 sm:text-xl">
                 Prävention von Hospitalisierungen aufgrund von unerwünschten
                 Arzneimittelereignissen
               </p>
 
-              <p className="mt-1 text-base leading-relaxed text-slate-600 sm:text-lg">
+              <p className="mt-1 text-lg leading-relaxed text-slate-600 sm:text-xl">
                 Gastrointestinale Blutungen
               </p>
             </div>
@@ -128,14 +128,14 @@ export default function HomePage() {
   <div className="mt-6 flex flex-wrap gap-4">
   <Link
     href="/target-app"
-    className="inline-flex items-center rounded-2xl bg-sky-600 px-6 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-sky-700 hover:shadow-md"
+    className="inline-flex items-center rounded-2xl bg-sky-600 px-6 py-3 text-base font-semibold text-white shadow-sm transition hover:bg-sky-700 hover:shadow-md"
   >
     TARGET-App öffnen
   </Link>
 
   <Link
   href="/target-platform"
-  className="inline-flex items-center rounded-2xl border border-sky-600 bg-white px-6 py-3 text-sm font-semibold text-sky-700 shadow-sm transition hover:bg-sky-50 hover:shadow-md"
+  className="inline-flex items-center rounded-2xl border border-sky-600 bg-white px-6 py-3 text-base font-semibold text-sky-700 shadow-sm transition hover:bg-sky-50 hover:shadow-md"
 >
   Zur TARGET Platform
 </Link>
