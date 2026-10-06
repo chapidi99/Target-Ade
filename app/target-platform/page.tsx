@@ -94,7 +94,7 @@ export default function TargetPlatformPage() {
         <div className="flex items-center gap-3">
           <FileText className="h-5 w-5 shrink-0 text-blue-600" />
 
-          <span className="text-sm font-semibold text-slate-700">
+          <span className="text-base font-semibold text-slate-700">
             GCP-konforme Studiendurchführung: Studienablauf und studienbezogene Dokumente
           </span>
         </div>
@@ -113,7 +113,7 @@ export default function TargetPlatformPage() {
         <div className="flex items-center gap-3">
           <FileText className="h-5 w-5 shrink-0 text-blue-600" />
 
-          <span className="text-sm font-semibold text-slate-700">
+          <span className="text-base font-semibold text-slate-700">
             Flyer zur Patientenrekrutierung
           </span>
         </div>
@@ -131,7 +131,7 @@ export default function TargetPlatformPage() {
         <div className="flex items-center gap-3">
           <FileText className="h-5 w-5 shrink-0 text-blue-600" />
 
-          <span className="text-sm font-semibold text-slate-700">
+          <span className="text-base font-semibold text-slate-700">
             Infoblatt zur Studienteilnahme
           </span>
         </div>
@@ -149,7 +149,7 @@ export default function TargetPlatformPage() {
         <div className="flex items-center gap-3">
           <FileText className="h-5 w-5 shrink-0 text-blue-600" />
 
-          <span className="text-sm font-semibold text-slate-700">
+          <span className="text-base font-semibold text-slate-700">
             Patienten-Einverständniserklärung
           </span>
         </div>
@@ -183,7 +183,7 @@ export default function TargetPlatformPage() {
         Patientenmaterialien
       </h3>
 
-      <p className="mt-3 text-sm leading-6 text-slate-600">
+      <p className="mt-3 text-base leading-7 text-slate-600">
         Informations- und Unterstützungsmaterialien für Patient*innen
         im Rahmen der TARGET-ADE Studie.
       </p>
@@ -216,7 +216,7 @@ export default function TargetPlatformPage() {
       >
         <div className="flex items-center gap-3">
           <FileText className="h-5 w-5 shrink-0 text-emerald-600" />
-          <span className="text-sm font-semibold text-slate-700">
+          <span className="text-base font-semibold text-slate-700">
             Broschüre – Wie kommt es zur Multimedikation?
           </span>
         </div>
@@ -232,7 +232,7 @@ export default function TargetPlatformPage() {
       >
         <div className="flex items-center gap-3">
           <FileText className="h-5 w-5 shrink-0 text-emerald-600" />
-          <span className="text-sm font-semibold text-slate-700">
+          <span className="text-base font-semibold text-slate-700">
             Medikamente richtig einnehmen – Techniken
           </span>
         </div>
@@ -248,7 +248,7 @@ export default function TargetPlatformPage() {
       >
         <div className="flex items-center gap-3">
           <FileText className="h-5 w-5 shrink-0 text-emerald-600" />
-          <span className="text-sm font-semibold text-slate-700">
+          <span className="text-base font-semibold text-slate-700">
             sichere_Arzneimitteltherapie
           </span>
         </div>
@@ -264,7 +264,7 @@ export default function TargetPlatformPage() {
       >
         <div className="flex items-center gap-3">
           <FileText className="h-5 w-5 shrink-0 text-emerald-600" />
-          <span className="text-sm font-semibold text-slate-700">
+          <span className="text-base font-semibold text-slate-700">
             Verhalten bei akuter Erkrankung
           </span>
         </div>
