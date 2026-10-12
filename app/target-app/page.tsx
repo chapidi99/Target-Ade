@@ -2383,7 +2383,7 @@ firstPublished: "2021",
 function NonPharmaOptionsModal({ onClose }: { onClose: () => void }) {
   const [search, setSearch] = useState("");
   const [category, setCategory] = useState<string>("Alle");
-  const [openCard, setOpenCard] = useState<string | null>(null);
+  const [openCards, setOpenCards] = useState<string[]>([]);
 
   const categories = [
   "Alle",
@@ -2463,7 +2463,7 @@ function NonPharmaOptionsModal({ onClose }: { onClose: () => void }) {
 
         <div className="grid gap-4 md:grid-cols-2">
           {filteredOptions.map((option) => {
-            const isOpen = openCard === option.name;
+            const isOpen = openCards.includes(option.name);
 
             return (
               <div
@@ -2511,7 +2511,13 @@ function NonPharmaOptionsModal({ onClose }: { onClose: () => void }) {
                 <div className="mt-4 flex flex-wrap gap-3">
   <button
     type="button"
-    onClick={() => setOpenCard(isOpen ? null : option.name)}
+    onClick={() =>
+  setOpenCards((current) =>
+    isOpen
+      ? current.filter((name) => name !== option.name)
+      : [...current, option.name]
+  )
+}
     aria-expanded={isOpen}
     className="rounded-2xl border border-slate-300 px-3 py-2 text-sm font-semibold text-slate-700 hover:bg-slate-50"
   >
