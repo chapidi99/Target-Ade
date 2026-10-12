@@ -90,16 +90,16 @@ export default function HomePage() {
             </div>
 
             <div className="mx-auto mt-4 max-w-3xl text-center">
-              <h1 className="text-3xl font-bold tracking-tight text-slate-950 sm:text-4xl">
+              <h1 className="text-4xl font-bold tracking-tight text-slate-950 sm:text-5xl">
                 TARGET-ADE Studie
               </h1>
 
-              <p className="mt-3 text-lg leading-relaxed text-slate-600 sm:text-xl">
+              <p className="mt-3 text-xl leading-relaxed text-slate-600 sm:text-2xl">
                 Prävention von Hospitalisierungen aufgrund von unerwünschten
                 Arzneimittelereignissen
               </p>
 
-              <p className="mt-1 text-lg leading-relaxed text-slate-600 sm:text-xl">
+              <p className="mt-1 text-xl leading-relaxed text-slate-600 sm:text-2xl">
                 Gastrointestinale Blutungen
               </p>
             </div>
@@ -110,7 +110,7 @@ export default function HomePage() {
       <section className="mx-auto max-w-7xl px-6 py-4 sm:px-8 lg:px-10 lg:py-6">
         <div className="rounded-[1.5rem] bg-white px-6 py-5 shadow-[0_12px_36px_rgba(15,23,42,0.05)] sm:px-8 lg:px-10 lg:py-6">
           <div className="max-w-5xl">
-            <p className="text-base leading-relaxed text-slate-600 sm:text-lg">
+            <p className="text-lg leading-8 text-slate-600 sm:text-xl">
               Die TARGET-ADE Intervention wurde partizipativ mit
               Gesundheitsfachpersonen (Hausärzt*innen, Spezialist*innen,
               Apotheker*innen und MFAs) und Patient*innen entwickelt. Um Sie
@@ -128,14 +128,14 @@ export default function HomePage() {
   <div className="mt-6 flex flex-wrap gap-4">
   <Link
     href="/target-app"
-    className="inline-flex items-center rounded-2xl bg-sky-600 px-6 py-3 text-base font-semibold text-white shadow-sm transition hover:bg-sky-700 hover:shadow-md"
+    className="inline-flex items-center rounded-2xl bg-sky-600 px-6 py-3 text-lg font-semibold text-white shadow-sm transition hover:bg-sky-700 hover:shadow-md"
   >
     TARGET-App öffnen
   </Link>
 
   <Link
   href="/target-platform"
-  className="inline-flex items-center rounded-2xl border border-sky-600 bg-white px-6 py-3 text-base font-semibold text-sky-700 shadow-sm transition hover:bg-sky-50 hover:shadow-md"
+  className="inline-flex items-center rounded-2xl border border-sky-600 bg-white px-6 py-3 text-lg font-semibold text-sky-700 shadow-sm transition hover:bg-sky-50 hover:shadow-md"
 >
   Zur TARGET Platform
 </Link>
