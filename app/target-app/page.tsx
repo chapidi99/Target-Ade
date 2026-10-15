@@ -47,7 +47,7 @@ type GuidanceBox = {
 export default function TargetAppPage() {
   const [takesNSAIDs, setTakesNSAIDs] = useState<YesNo>(null);
   const [showAlternativesModal, setShowAlternativesModal] = useState(false);
-
+const [showPatientMaterialsModal, setShowPatientMaterialsModal] = useState(false);
 const [showNsaidRiskScript, setShowNsaidRiskScript] = useState(false);
 const [selectedMedicationBox, setSelectedMedicationBox] = useState<string | null>(null);
   const [riskFactors, setRiskFactors] = useState<Record<RiskFactorKey, boolean>>(
@@ -626,12 +626,13 @@ description="Wählen Sie die zutreffende Option aus, um die Risikobewertung fort
 </QuickAction>
 
 <QuickAction>
-  <a
-    href="/target-platform"
-    className="block w-full text-left font-semibold text-sky-700 underline underline-offset-2 hover:text-sky-900"
+  <button
+    type="button"
+    onClick={() => setShowPatientMaterialsModal(true)}
+    className="block w-full text-left text-lg font-semibold text-sky-700 underline underline-offset-2 hover:text-sky-900"
   >
     Patientenmaterialien
-  </a>
+  </button>
 </QuickAction>
 
      {/* <QuickAction>
@@ -762,6 +763,11 @@ description="Wählen Sie die zutreffende Option aus, um die Risikobewertung fort
   />
 )}
 
+{showPatientMaterialsModal && (
+  <PatientMaterialsModal
+    onClose={() => setShowPatientMaterialsModal(false)}
+  />
+)}
 
 
 {showNsaidRiskScript && nsaidRiskResult && (
@@ -771,6 +777,96 @@ description="Wählen Sie die zutreffende Option aus, um die Risikobewertung fort
   />
 )}
     </main>
+  );
+}
+
+function PatientMaterialsModal({
+  onClose,
+}: {
+  onClose: () => void;
+}) {
+  const patientMaterials = [
+    {
+      title: "Broschüre – Gastrointestinale Blutung",
+      url: "/Patientenmaterialien/Broschuere_Gastrointestinale_Blutung.pdf",
+    },
+    {
+      title: "Broschüre – Wie kommt es zur Multimedikation?",
+      url: "/Patientenmaterialien/Broschuere_Wie_kommt_es_zur_Multimedikation.pdf",
+    },
+    {
+      title: "Medikamente richtig einnehmen – Techniken",
+      url: "/Patientenmaterialien/Medikamente_richtig_einnehmen_Techniken.pdf",
+    },
+    {
+      title: "Sichere Arzneimitteltherapie",
+      url: "/Patientenmaterialien/sichere_Arzneimitteltherapie.pdf",
+    },
+    {
+      title: "Verhalten bei akuter Erkrankung",
+      url: "/Patientenmaterialien/Verhalten_bei_akuter_Erkrankung.pdf",
+    },
+  ];
+
+  return (
+    <div
+      className="fixed inset-0 z-[90] overflow-auto bg-slate-950/70 p-4"
+      onClick={onClose}
+    >
+      <div
+        className="mx-auto w-full max-w-3xl rounded-3xl bg-white p-6 shadow-2xl"
+        onClick={(e) => e.stopPropagation()}
+      >
+        <div className="mb-6 flex items-center justify-between gap-4">
+          <div>
+            <h2 className="text-2xl font-bold text-slate-900">
+              Patientenmaterialien
+            </h2>
+
+            <p className="mt-2 text-lg leading-7 text-slate-600">
+              Informations- und Unterstützungsmaterialien für Patient*innen
+              im Rahmen der TARGET-ADE Studie.
+            </p>
+          </div>
+
+          <button
+            type="button"
+            onClick={onClose}
+            className="rounded-2xl border border-slate-300 px-4 py-2 text-base font-semibold text-slate-700 hover:bg-slate-50"
+          >
+            Schließen
+          </button>
+        </div>
+
+        <div className="space-y-3">
+          {patientMaterials.map((document) => (
+            <a
+              key={document.url}
+              href={document.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center justify-between gap-4 rounded-2xl border border-emerald-200 bg-emerald-50 px-5 py-4 text-lg font-semibold text-slate-800 transition hover:border-emerald-300 hover:bg-emerald-100"
+            >
+              <span className="flex items-center gap-3">
+                <span aria-hidden="true">📄</span>
+                {document.title}
+              </span>
+
+              <span
+                aria-hidden="true"
+                className="shrink-0 text-slate-500"
+              >
+                ↗
+              </span>
+            </a>
+          ))}
+        </div>
+
+        <p className="mt-5 text-sm leading-6 text-slate-500">
+          Die Dokumente werden als PDF in einem neuen Browser-Tab geöffnet.
+        </p>
+      </div>
+    </div>
   );
 }
 
@@ -1370,11 +1466,16 @@ function PainScaleModal({
     </div>
   )}
 </div>
-
+<span
+  className="block text-lg font-semibold text-sky-700 underline underline-offset-2"
+  aria-disabled="true"
+>
+  Medikamentöse Möglichkeiten zur Schmerzbehandlung
+</span>
         <button
   type="button"
   onClick={() => setShowNonPharmaOptions(true)}
-  className="block font-semibold text-sky-700 underline underline-offset-2 hover:text-sky-900"
+  className="block text-lg font-semibold text-sky-700 underline underline-offset-2 hover:text-sky-900"
 >
   Nicht-medikamentöse Möglichkeiten zur Schmerzbehandlung
 </button>
