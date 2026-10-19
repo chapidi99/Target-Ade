@@ -366,7 +366,7 @@ return {
 
             <div>
               <h1 className="text-2xl font-bold tracking-tight">
-                TARGET - ADE App
+                TARGET-ADE App
               </h1>
 
               <p className="mt-1 text-base text-slate-600">
@@ -423,7 +423,7 @@ description="Wählen Sie die zutreffende Option aus, um die Risikobewertung fort
   />
 
   <RiskItem
-    label="Alter >60"
+    label="Alter >60 Jahre "
     checked={riskFactors.ageOver60to65}
     onChange={() => toggleRiskFactor("ageOver60to65")}
   />
@@ -435,7 +435,7 @@ description="Wählen Sie die zutreffende Option aus, um die Risikobewertung fort
   />
 
   <RiskItem
-    label="Gleichzeitige Gabe von niedrig dosiertem ASS (Acetylsalicylsäure)"
+    label="Gleichzeitige Gabe von niedrig dosierter ASS (Acetylsalicylsäure)"
     checked={riskFactors.concomitantLowDoseASA}
     onChange={() => toggleRiskFactor("concomitantLowDoseASA")}
   />
@@ -459,7 +459,7 @@ description="Wählen Sie die zutreffende Option aus, um die Risikobewertung fort
   />
 
   <RiskItem
-    label="Gleichzeitige SSRI-Therapie seit ≥6 Monaten"
+    label="Gleichzeitige SSRI-Therapie seit ≥ 6 Monaten"
     checked={riskFactors.concomitantSSRI}
     onChange={() => toggleRiskFactor("concomitantSSRI")}
   />
@@ -502,7 +502,7 @@ description="Wählen Sie die zutreffende Option aus, um die Risikobewertung fort
       />
 
       <MedicationRow
-        label="SSRI oder SNRI Venlafaxin seit ≥6 Monaten"
+        label="SSRI oder SNRI Venlafaxin seit ≥ 6 Monaten"
         value={medications.ssri}
         onChange={(value) => setMedication("ssri", value)}
       />
@@ -516,7 +516,7 @@ description="Wählen Sie die zutreffende Option aus, um die Risikobewertung fort
       />
 
       <MedicationRow
-        label="Bisphosphonate seit ≥3 Jahren"
+        label="Bisphosphonate seit ≥ 3 Jahren"
         value={medications.bisphosphonate}
         onChange={(value) => setMedication("bisphosphonate", value)}
       />
@@ -562,7 +562,7 @@ description="Wählen Sie die zutreffende Option aus, um die Risikobewertung fort
       gastroprotektive Therapie (z. B. mit einem Protonenpumpenhemmer)
       erwogen werden.
 
-      Link zum Algorithmus.
+    
     </InfoCard>
   </div>
 )}
@@ -606,7 +606,7 @@ description="Wählen Sie die zutreffende Option aus, um die Risikobewertung fort
         <button
           type="button"
           onClick={() => setShowAlternativesModal(true)}
-          className="block w-full text-left font-semibold text-sky-700 underline underline-offset-2 hover:text-sky-900"
+          className="block w-full text-left text-lg font-semibold text-sky-700 underline underline-offset-2 hover:text-sky-900"
         >
           Alternative Möglichkeiten zur Schmerzbehandlung
         </button>
@@ -619,7 +619,7 @@ description="Wählen Sie die zutreffende Option aus, um die Risikobewertung fort
     rel="noopener noreferrer"
     className="block w-full text-left font-semibold text-sky-700 underline underline-offset-2 hover:text-sky-900"
   >
-    <span className="text-base font-semibold">
+    <span className="text-base text-lg font-semibold">
   Absetzhilfe
 </span>
   </a>
@@ -631,7 +631,7 @@ description="Wählen Sie die zutreffende Option aus, um die Risikobewertung fort
     onClick={() => setShowPatientMaterialsModal(true)}
     className="block w-full text-left text-lg font-semibold text-sky-700 underline underline-offset-2 hover:text-sky-900"
   >
-    Patientenmaterialien
+    Patient*innenmaterialien
   </button>
 </QuickAction>
 
@@ -1441,30 +1441,28 @@ function PainScaleModal({
   </button>
 
   {showDecisionSupportMenu && (
-    <div className="space-y-2 border-t border-slate-200 p-3">
-      <button
-        type="button"
-        onClick={() => {
-          setShowSDMScript(true);
-          setShowDecisionSupportMenu(false);
-        }}
-        className="block w-full rounded-xl border border-slate-200 bg-white px-4 py-3 text-left text-sm font-semibold text-slate-700 transition hover:border-sky-300 hover:bg-sky-50 hover:text-sky-800"
-      >
-        Gesprächsleitfaden zur gemeinsamen Entscheidungsfindung
-      </button>
+  <div className="space-y-2 border-t border-slate-200 p-3">
+    <button
+      type="button"
+      onClick={() => {
+        setShowSDMScript(true);
+        setShowDecisionSupportMenu(false);
+      }}
+      className="block w-full rounded-xl border border-slate-200 bg-white px-4 py-3 text-left text-base font-semibold text-slate-700 transition hover:border-sky-300 hover:bg-sky-50 hover:text-sky-800"
+    >
+      Gesprächsleitfaden zur gemeinsamen Entscheidungsfindung
+    </button>
 
-      <a
-        href="https://www.uni-bielefeld.de/fakultaeten/medizin/fakultaet/arbeitsgruppen/allgemeinmedizin/forschung/target/Absetzhilfe-bei-Verdacht-auf-PIM-TARGET.pdf"
-        target="_blank"
-        rel="noopener noreferrer"
-        className="block w-full rounded-xl border border-slate-200 bg-white px-4 py-3 text-left text-sm font-semibold text-slate-700 transition hover:border-sky-300 hover:bg-sky-50 hover:text-sky-800"
-      >
-        <span className="text-base font-semibold">
-  Absetzhilfe
-</span>
-      </a>
-    </div>
-  )}
+    <a
+      href="https://www.uni-bielefeld.de/fakultaeten/medizin/fakultaet/arbeitsgruppen/allgemeinmedizin/forschung/target/Absetzhilfe-bei-Verdacht-auf-PIM-TARGET.pdf"
+      target="_blank"
+      rel="noopener noreferrer"
+      className="block w-full rounded-xl border border-slate-200 bg-white px-4 py-3 text-left text-base font-semibold text-slate-700 transition hover:border-sky-300 hover:bg-sky-50 hover:text-sky-800"
+    >
+      Absetzhilfe
+    </a>
+  </div>
+)}
 </div>
 <span
   className="block text-lg font-semibold text-sky-700 underline underline-offset-2"
@@ -2158,8 +2156,7 @@ firstPublished: "2014, aktualisiert 2017",
         Indikation:
       </p>
       <p className="mt-1">
-        Patellofemoralen Schmerz bei Kniebelastungen wie dem Treppensteigen,
-        Hocken oder längerem Sitzen.
+        Patellofemoraler Schmerz bei Kniebelastungen wie Treppensteigen, Hocken oder längeres Sitzen. 
       </p>
     </div>
 
@@ -2168,8 +2165,7 @@ firstPublished: "2014, aktualisiert 2017",
         Kontraindikationen:
       </p>
       <p className="mt-1">
-        Andere Differentialdiagnosen von Patellarschmerzen müssen berücksichtigt
-        werden.
+        Andere Differentialdiagnosen zu Patellaschmerzen müssen berücksichtigt werden. 
       </p>
     </div>
   </div>
@@ -2202,11 +2198,7 @@ firstPublished: "2021",
 
     <div>
       <p>
-        Der{" "}
-        <span className="font-semibold text-slate-900">
-          Zeitpunkt
-        </span>{" "}
-        des Tragens hängt davon ab, wann der Patient Schmerzen verspürt
+        Der Zeitpunkt des Tragens hängt davon ab, wann der Patient Schmerzen verspürt
         (d. h. bei Belastung, in Ruhe oder beides), von den täglichen
         Aktivitäten und den Vorlieben des Patienten.
       </p>
@@ -2304,7 +2296,7 @@ firstPublished: "2021",
     summary: (
   <div className="space-y-4">
     <p>
-      Anlegen von Tape oder Bandagen vor schmerzhaften Aktivitäten, zur
+      Anlegen von Tape oder Bandagen vor schmerzhaften Aktivitäten zur
       Entlastung schmerzhafter Weichteile.
     </p>
 
@@ -2322,7 +2314,7 @@ firstPublished: "2021",
         Sicherheit:
       </p>
       <p className="mt-1">
-        Ein Physiotherapeut sollte dem Patienten zeigen, wie Tape und Bandagen
+        Ein Physiotherapeut sollte dem Patienten zeigen, wie Tapes und Bandagen
         adäquat selbst angelegt werden können. Da es zu minimalen
         Hautirritationen kommen kann, ist Hautpflege bei der Auswahl des Tapes,
         der Nutzung und der Entfernung empfohlen.
@@ -2346,7 +2338,7 @@ firstPublished: "2021",
   <div className="space-y-4">
     <p>
       Physiotherapeutische Übungen, Ellenbogenmobilisation, Eigenübungen und
-      progressives Training der Handgelenkstrecker zur Schmerzlinderung.
+      progressives Training der Handgelenksstrecker zur Schmerzlinderung.
     </p>
 
     <div>
@@ -2413,7 +2405,7 @@ firstPublished: "2021",
 
     <p>
       Für Personen mit Diabetes mellitus, Herz-Kreislauf-Erkrankungen,
-      Malignomen oder Ulzera gemischter Ätiologie liegt keine Evidenzen vor,
+      Malignomen oder Ulzera gemischter Ätiologie liegt keine Evidenz vor,
       daher ist bei der Kompressionstherapie besondere Vorsicht geboten.
     </p>
   </div>
@@ -2425,12 +2417,12 @@ firstPublished: "2021",
   },
   {
   category: "Kognitive und verhaltenstherapeutische Verfahren",
-  name: "AAchtsamkeitstraining und kognitive Verhaltenstherapie bei chronischen Schmerzen im unteren Rücken",
+  name: "Achtsamkeitstraining und kognitive Verhaltenstherapie bei chronischen Schmerzen im unteren Rücken",
   summary: (
   <div className="space-y-4">
     <p>
       Achtsamkeitstraining und kognitive Verhaltenstherapie in Gruppensitzungen
-      über zur Reduktion von Schmerz und Funktionsbeeinträchtigung.
+      zur Reduktion von Schmerz und Funktionsbeeinträchtigung.
     </p>
 
     <div>
@@ -2438,7 +2430,7 @@ firstPublished: "2021",
         Indikation:
       </p>
       <p className="mt-1">
-        Personen mit chronischem Schmerz im unteren Rücken.
+        Personen mit chronischen Schmerzen im unteren Rücken.
       </p>
     </div>
 
