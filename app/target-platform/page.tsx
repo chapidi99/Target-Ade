@@ -157,6 +157,24 @@ export default function TargetPlatformPage() {
         <ExternalLink className="h-4 w-4 shrink-0 text-slate-400 transition group-hover:text-blue-600" />
       </a>
 
+      {/* Rekrutierungsgespräch mit Patient*innen */}
+      <a
+        href="/Vorbereitung/Rekrutierungsgespraech_mit_Patientinnen.pdf"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="group flex items-center justify-between rounded-2xl border border-slate-200 bg-slate-50 px-4 py-4 transition hover:border-blue-300 hover:bg-blue-50"
+      >
+        <div className="flex items-center gap-3">
+          <FileText className="h-5 w-5 shrink-0 text-blue-600" />
+
+          <span className="text-lg font-semibold text-slate-700">
+            Rekrutierungsgespräch mit Patient*innen
+          </span>
+        </div>
+
+        <ExternalLink className="h-4 w-4 shrink-0 text-slate-400 transition group-hover:text-blue-600" />
+      </a>
+
     </div>
 
     <p className="mt-5 text-sm leading-5 text-slate-500">

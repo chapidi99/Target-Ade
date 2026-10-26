@@ -179,7 +179,7 @@ Falls eine NSAR-Therapie unvermeidbar ist, sollte ein COX-2-Hemmer in Kombinatio
     if (medications.antiplatelets === true) {
       boxes.push({
         title: "Thrombozytenaggregationshemmer",
-        text: `Thrombozytenaggregationshemmer (ASS, einschließlich niedrig dosierter ASS, sowie P2Y12-Inhibitoren wie z. B. Clopidogrel) sind ein unabhängiger Risikofaktor für gastrointestinale Blutungen; eine Überprüfung der Indikation wird empfohlen.
+        text: `Thrombozytenaggregationshemmer (ASS, einschließlich niedrig dosiertem ASS, sowie P2Y12-Inhibitoren wie z. B. Clopidogrel) sind ein unabhängiger Risikofaktor für gastrointestinale Blutungen; eine Überprüfung der Indikation wird empfohlen.
 
 Patient*innen mit einer Vorgeschichte einer gastralen antralen vaskulären Ektasie (GAVE), die Thrombozytenaggregationshemmer oder Antikoagulanzien erhalten, haben ein erhöhtes Risiko für gastrointestinale Blutungen (STOP-Kriterien). Es wird empfohlen, auf Anzeichen einer gastrointestinalen Toxizität zu achten.`,
       });
@@ -409,7 +409,7 @@ description="Wählen Sie die zutreffende Option aus, um die Risikobewertung fort
 
                 <div className="mt-6 grid gap-3 md:grid-cols-2">
   <RiskItem
-    label="Frühere gastrointestinale Blutungen oder komplizierter peptischer Ulkus (z. B. Perforation)"
+    label="Frühere gastrointestinale Blutungen oder kompliziertes peptisches Ulkus (z. B. Perforation)"
     checked={riskFactors.previousGIBleedingOrComplicatedUlcer}
     onChange={() =>
       toggleRiskFactor("previousGIBleedingOrComplicatedUlcer")
@@ -417,7 +417,7 @@ description="Wählen Sie die zutreffende Option aus, um die Risikobewertung fort
   />
 
   <RiskItem
-    label="Aktiver peptischer Ulkus"
+    label="Aktives peptisches Ulkus"
     checked={riskFactors.activePepticUlcer}
     onChange={() => toggleRiskFactor("activePepticUlcer")}
   />
@@ -435,7 +435,7 @@ description="Wählen Sie die zutreffende Option aus, um die Risikobewertung fort
   />
 
   <RiskItem
-    label="Gleichzeitige Gabe von niedrig dosierter ASS (Acetylsalicylsäure)"
+    label="Gleichzeitige Gabe von niedrig dosiertem ASS (Acetylsalicylsäure)"
     checked={riskFactors.concomitantLowDoseASA}
     onChange={() => toggleRiskFactor("concomitantLowDoseASA")}
   />
