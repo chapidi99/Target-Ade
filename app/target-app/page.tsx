@@ -238,7 +238,7 @@ Es besteht das Risiko eines Wiederauftretens bzw. einer Verschlechterung von Ös
     ) {
       boxes.push({
         title: "Thrombozytenaggregationshemmer",
-        text: `Thrombozytenaggregationshemmer (ASS, einschließlich niedrig dosierter ASS, sowie P2Y12-Inhibitoren wie z. B. Clopidogrel) sind ein unabhängiger Risikofaktor für gastrointestinale Blutungen; eine Überprüfung der Indikation wird empfohlen.
+        text: `Thrombozytenaggregationshemmer (ASS, einschließlich niedrig dosiertem ASS, sowie P2Y12-Inhibitoren wie z. B. Clopidogrel) sind ein unabhängiger Risikofaktor für gastrointestinale Blutungen; eine Überprüfung der Indikation wird empfohlen.
 
 Patient*innen mit einer Vorgeschichte einer gastralen antralen vaskulären Ektasie (GAVE), die Thrombozytenaggregationshemmer oder Antikoagulanzien erhalten, haben ein erhöhtes Risiko für gastrointestinale Blutungen (STOP-Kriterien). Es wird empfohlen, auf Anzeichen einer gastrointestinalen Toxizität zu achten.`,
       });
